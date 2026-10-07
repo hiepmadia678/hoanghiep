@@ -3,46 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#050508">
+<meta name="theme-color" content="#000000">
 <meta name="color-scheme" content="dark">
 <title>Hoàng Hiệp — Tài Nguyên iOS</title>
-<meta name="description" content="Chia sẻ tài nguyên vọc vạch iOS — chứng chỉ, công cụ và IPA miễn phí, cập nhật liên tục.">
+<meta name="description" content="Chia sẻ tài nguyên vọc vạch iOS — chứng chỉ, công cụ và IPA miễn phí.">
 <meta name="author" content="Hoàng Hiệp">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hoàng Hiệp — Tài Nguyên iOS">
-<meta property="og:description" content="Chứng chỉ, công cụ và IPA miễn phí cho cộng đồng iOS.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%236366f1'/%3E%3Cstop offset='1' stop-color='%23a855f7'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='22' fill='url(%23g)'/%3E%3Ctext x='50' y='68' font-family='system-ui' font-size='54' font-weight='700' fill='white' text-anchor='middle'%3EH%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23000'/%3E%3Ctext x='50' y='70' font-family='system-ui' font-size='60' font-weight='600' fill='white' text-anchor='middle'%3EH%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
-/* ============================================================
-   TOKENS
-   ============================================================ */
 :root {
-    --bg: #050508;
-    --surface: rgba(255, 255, 255, 0.028);
-    --surface-hi: rgba(255, 255, 255, 0.055);
-    --surface-active: rgba(255, 255, 255, 0.08);
-    --border: rgba(255, 255, 255, 0.07);
-    --border-hi: rgba(255, 255, 255, 0.14);
-    --text: #fafafa;
-    --text-2: #a1a1aa;
-    --text-3: #71717a;
-    --text-4: #52525b;
-    --indigo: #6366f1;
-    --violet: #a855f7;
-    --cyan: #22d3ee;
-    --emerald: #10b981;
-    --amber: #f59e0b;
-    --rose: #f43f5e;
+    --bg: #000000;
+    --surface: #0d0d0f;
+    --surface-hover: #141416;
+    --surface-active: #191919;
+    --border: #1c1c1f;
+    --border-hover: #2a2a2e;
+    --text: #f5f5f7;
+    --text-2: #86868b;
+    --text-3: #5c5c62;
+    --text-4: #3a3a3f;
+    --accent: #0a84ff;
+    --green: #30d158;
     --font: "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
     --safe-top: env(safe-area-inset-top, 0px);
     --safe-bot: env(safe-area-inset-bottom, 0px);
-    --ease: cubic-bezier(0.32, 0.72, 0, 1);
-    --spring: cubic-bezier(0.34, 1.3, 0.64, 1);
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -57,234 +46,84 @@ body {
     min-height: 100dvh;
     display: flex;
     justify-content: center;
-    padding: calc(56px + var(--safe-top)) 20px calc(80px + var(--safe-bot));
+    padding: calc(64px + var(--safe-top)) 22px calc(80px + var(--safe-bot));
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    letter-spacing: -0.012em;
+    letter-spacing: -0.011em;
     line-height: 1.5;
-    position: relative;
     overflow-x: hidden;
-    animation: pageIn 0.6s var(--ease);
-}
-
-@keyframes pageIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* ============================================================
-   BACKGROUND DECOR
-   ============================================================ */
-.bg-decor {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    overflow: hidden;
-}
-
-.orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(100px);
-    will-change: transform;
-}
-
-.orb.o1 {
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(99, 102, 241, 0.28), transparent 70%);
-    top: -180px;
-    left: -160px;
-    animation: float1 24s ease-in-out infinite;
-}
-
-.orb.o2 {
-    width: 420px;
-    height: 420px;
-    background: radial-gradient(circle, rgba(168, 85, 247, 0.22), transparent 70%);
-    top: 30%;
-    right: -180px;
-    animation: float2 28s ease-in-out infinite;
-}
-
-.orb.o3 {
-    width: 380px;
-    height: 380px;
-    background: radial-gradient(circle, rgba(34, 211, 238, 0.18), transparent 70%);
-    bottom: -160px;
-    left: 20%;
-    animation: float1 32s ease-in-out infinite reverse;
-}
-
-@keyframes float1 {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(60px, 50px) scale(1.15); }
-}
-
-@keyframes float2 {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(-50px, -40px) scale(1.2); }
-}
-
-/* noise overlay */
-.bg-decor::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    opacity: 0.15;
-    mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-/* grid pattern */
-.bg-grid {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    background-image:
-        linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
-    background-size: 44px 44px;
-    mask-image: radial-gradient(ellipse 70% 50% at 50% 30%, #000, transparent 80%);
-    -webkit-mask-image: radial-gradient(ellipse 70% 50% at 50% 30%, #000, transparent 80%);
 }
 
 .container {
     width: 100%;
-    max-width: 560px;
-    position: relative;
-    z-index: 1;
+    max-width: 520px;
 }
 
 /* ============================================================
    HERO
    ============================================================ */
 .hero {
-    margin-bottom: 32px;
+    margin-bottom: 44px;
 }
 
-.hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 11px;
+.hero h1 {
+    font-size: 32px;
     font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--text-2);
-    padding: 5px 11px 5px 9px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 100px;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    margin-bottom: 18px;
-}
-
-.hero-badge .check {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--indigo), var(--violet));
-    display: grid;
-    place-items: center;
-    color: #fff;
-    font-size: 8px;
-}
-
-.hero-title {
-    font-size: 38px;
-    font-weight: 800;
-    letter-spacing: -0.035em;
+    letter-spacing: -0.03em;
     color: var(--text);
-    line-height: 1.05;
     margin-bottom: 8px;
-    background: linear-gradient(180deg, #ffffff 0%, #a1a1aa 130%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    line-height: 1.15;
 }
 
-.hero-handle {
+.hero .handle {
     display: inline-flex;
     align-items: center;
     gap: 7px;
-    font-size: 13px;
-    font-weight: 500;
+    font-size: 14px;
+    font-weight: 400;
     color: var(--text-2);
-    padding: 5px 12px 5px 10px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 100px;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    margin-bottom: 16px;
+    margin-bottom: 20px;
 }
 
-.hero-handle::before {
+.hero .handle::before {
     content: "";
-    width: 6px;
-    height: 6px;
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
-    background: var(--emerald);
-    box-shadow: 0 0 8px var(--emerald);
-    animation: statusPulse 2.4s ease-out infinite;
+    background: var(--green);
+    flex-shrink: 0;
 }
 
-@keyframes statusPulse {
-    0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6), 0 0 8px var(--emerald); }
-    70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0), 0 0 8px var(--emerald); }
-    100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0), 0 0 8px var(--emerald); }
-}
-
-.hero-bio {
-    font-size: 14.5px;
-    line-height: 1.6;
+.hero .bio {
+    font-size: 15px;
+    line-height: 1.55;
     color: var(--text-2);
     font-weight: 400;
-    max-width: 480px;
+    max-width: 460px;
 }
 
 /* ============================================================
-   STATS — pill grid
+   STATS
    ============================================================ */
 .stats {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
     gap: 8px;
-    margin-bottom: 36px;
+    margin-bottom: 44px;
 }
 
 .stat {
+    flex: 1;
     display: flex;
     align-items: center;
-    gap: 11px;
-    padding: 12px 14px;
+    gap: 12px;
+    padding: 14px 16px;
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 14px;
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
+    transition: border-color 0.2s var(--ease);
 }
 
-.stat::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 20%;
-    right: 20%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--indigo), transparent);
-    opacity: 0;
-    transition: opacity 0.4s var(--ease);
-}
-
-.stat.loaded::before { opacity: 0.7; }
+.stat.loaded { border-color: var(--border-hover); }
 
 .stat-icon {
     flex-shrink: 0;
@@ -294,106 +133,64 @@ body {
     display: grid;
     place-items: center;
     font-size: 14px;
-    background: rgba(99, 102, 241, 0.1);
-    border: 1px solid rgba(99, 102, 241, 0.2);
-    color: #a5b4fc;
+    background: #1a1a1d;
+    color: var(--text-2);
 }
 
 .stat-body {
     display: flex;
     flex-direction: column;
-    gap: 1px;
+    gap: 0;
     min-width: 0;
 }
 
 .stat-label {
-    font-size: 10.5px;
+    font-size: 11px;
     font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
     color: var(--text-3);
+    letter-spacing: 0.01em;
+    white-space: nowrap;
 }
 
 .stat-value {
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    font-size: 17px;
+    font-weight: 600;
     color: var(--text);
-    line-height: 1.1;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
     font-variant-numeric: tabular-nums;
-    transition: color 0.3s var(--ease);
 }
 
 .stat-value.loading {
     color: var(--text-4);
-    animation: valuePulse 1.4s ease-in-out infinite;
-}
-
-@keyframes valuePulse {
-    0%, 100% { opacity: 0.35; }
-    50% { opacity: 0.7; }
 }
 
 /* ============================================================
    SECTION
    ============================================================ */
 .section {
-    margin-bottom: 36px;
+    margin-bottom: 40px;
 }
 
-.section-head {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 14px;
-    padding-left: 2px;
-}
-
-.section-head .icon-badge {
-    flex-shrink: 0;
-    width: 22px;
-    height: 22px;
-    border-radius: 7px;
-    display: grid;
-    place-items: center;
+.section-title {
     font-size: 11px;
-    background: var(--surface-hi);
-    border: 1px solid var(--border);
-}
-
-.section-head .title {
-    font-size: 12px;
     font-weight: 600;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--text-2);
+    color: var(--text-3);
+    margin-bottom: 14px;
+    padding-left: 4px;
 }
 
-.section-head .line {
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, var(--border), transparent);
-}
-
-.category {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 12.5px;
+.subsection {
+    font-size: 12px;
     font-weight: 500;
     color: var(--text-3);
-    margin: 22px 0 10px;
-    padding-left: 2px;
+    margin: 20px 0 8px;
+    padding-left: 4px;
 }
 
-.category:first-of-type { margin-top: 0; }
-
-.category .dot {
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: var(--text-4);
-}
+.subsection:first-of-type { margin-top: 0; }
 
 /* ============================================================
    LIST
@@ -401,7 +198,11 @@ body {
 .list {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
 }
 
 /* ============================================================
@@ -410,118 +211,59 @@ body {
 .card {
     display: flex;
     align-items: center;
-    gap: 13px;
-    padding: 13px 14px;
+    gap: 14px;
+    padding: 14px 16px;
     background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 14px;
     text-decoration: none;
     color: inherit;
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    transition:
-        background 0.2s var(--ease),
-        border-color 0.2s var(--ease),
-        box-shadow 0.3s var(--ease),
-        transform 0.15s var(--ease);
-    min-height: 58px;
+    transition: background 0.15s var(--ease);
     cursor: pointer;
     -webkit-user-select: none;
     user-select: none;
-    position: relative;
-    overflow: hidden;
+    min-height: 58px;
 }
 
-/* border gradient hover */
-.card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 1px;
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.5), rgba(168, 85, 247, 0.5), rgba(34, 211, 238, 0.5));
-    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 0.3s var(--ease);
-    pointer-events: none;
-}
-
-.card:hover::before { opacity: 1; }
-
-.card:hover {
-    background: var(--surface-hi);
-    box-shadow: 0 12px 40px -12px rgba(99, 102, 241, 0.25);
-}
-
-.card:active {
-    transform: scale(0.995);
-    background: var(--surface-active);
-    transition-duration: 0.06s;
-}
+.card:hover { background: var(--surface-hover); }
+.card:active { background: var(--surface-active); }
 
 .card:focus-visible {
-    outline: 2px solid var(--indigo);
-    outline-offset: 2px;
+    outline: 2px solid var(--accent);
+    outline-offset: -2px;
 }
 
-/* ICON BOX */
 .card-icon {
     flex-shrink: 0;
-    width: 38px;
-    height: 38px;
-    border-radius: 11px;
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
     display: grid;
     place-items: center;
-    font-size: 17px;
+    font-size: 16px;
     line-height: 1;
-    background: var(--surface-hi);
-    border: 1px solid var(--border);
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s var(--spring);
+    background: #1a1a1d;
+    color: var(--text);
 }
 
-.card:hover .card-icon { transform: scale(1.06); }
-
-.card-icon::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.08), transparent 60%);
-    pointer-events: none;
-}
-
-/* colored variants */
-.card-icon.indigo { background: rgba(99, 102, 241, 0.12); border-color: rgba(99, 102, 241, 0.22); }
-.card-icon.violet { background: rgba(168, 85, 247, 0.12); border-color: rgba(168, 85, 247, 0.22); }
-.card-icon.cyan   { background: rgba(34, 211, 238, 0.12); border-color: rgba(34, 211, 238, 0.22); }
-.card-icon.emerald{ background: rgba(16, 185, 129, 0.12); border-color: rgba(16, 185, 129, 0.22); }
-.card-icon.amber  { background: rgba(245, 158, 11, 0.12); border-color: rgba(245, 158, 11, 0.22); }
-.card-icon.rose   { background: rgba(244, 63, 94, 0.12);  border-color: rgba(244, 63, 94, 0.22); }
-
-/* CONTENT */
 .card-content {
     flex: 1;
     min-width: 0;
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 1px;
 }
 
 .card-title {
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 14.5px;
+    font-weight: 500;
     color: var(--text);
-    letter-spacing: -0.008em;
+    letter-spacing: -0.01em;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
 .card-sub {
-    font-size: 11.5px;
+    font-size: 12.5px;
     font-weight: 400;
     color: var(--text-3);
     white-space: nowrap;
@@ -529,45 +271,24 @@ body {
     text-overflow: ellipsis;
 }
 
-/* COUNT */
 .card-count {
     flex-shrink: 0;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    font-size: 10.5px;
-    font-weight: 600;
+    font-size: 12px;
+    font-weight: 500;
     color: var(--text-3);
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid var(--border);
-    border-radius: 7px;
-    padding: 3px 7px;
     font-variant-numeric: tabular-nums;
-    transition: color 0.2s var(--ease), border-color 0.2s var(--ease), background 0.2s var(--ease);
+    padding: 3px 8px;
+    background: #1a1a1d;
+    border-radius: 6px;
     opacity: 0;
-    min-width: 30px;
-    justify-content: center;
+    transition: opacity 0.3s var(--ease), color 0.2s var(--ease);
+    min-width: 32px;
+    text-align: center;
 }
 
 .card-count.loaded { opacity: 1; }
+.card:hover .card-count { color: var(--text-2); }
 
-.card:hover .card-count {
-    color: var(--text-2);
-    border-color: var(--border-hi);
-    background: rgba(255, 255, 255, 0.06);
-}
-
-.card-count.bump {
-    animation: countBump 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-@keyframes countBump {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.18); color: var(--indigo); border-color: var(--indigo); }
-    100% { transform: scale(1); }
-}
-
-/* ARROW */
 .card-arrow {
     flex-shrink: 0;
     color: var(--text-4);
@@ -576,8 +297,8 @@ body {
 }
 
 .card:hover .card-arrow {
-    color: var(--indigo);
-    transform: translate(2px, -2px);
+    color: var(--text-2);
+    transform: translateX(2px);
 }
 
 /* ============================================================
@@ -585,93 +306,38 @@ body {
    ============================================================ */
 .footer {
     margin-top: 56px;
-    padding-top: 22px;
-    border-top: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
+    text-align: center;
     font-size: 12px;
     color: var(--text-3);
-    flex-wrap: wrap;
-}
-
-.footer-left {
     display: flex;
-    align-items: center;
-    gap: 8px;
+    flex-direction: column;
+    gap: 3px;
+    letter-spacing: 0.01em;
 }
 
-.footer-logo {
-    width: 22px;
-    height: 22px;
-    border-radius: 7px;
-    display: grid;
-    place-items: center;
-    font-size: 10px;
-    font-weight: 700;
-    color: #fff;
-    background: linear-gradient(135deg, var(--indigo), var(--violet));
-}
-
-.footer-name {
-    color: var(--text-2);
-    font-weight: 500;
-}
-
-.footer-copy {
-    font-size: 11px;
-    color: var(--text-4);
-}
-
-/* ============================================================
-   SMALL
-   ============================================================ */
 @media (max-width: 380px) {
-    body { padding: calc(44px + var(--safe-top)) 16px calc(64px + var(--safe-bot)); }
-    .hero { margin-bottom: 26px; }
-    .hero-title { font-size: 32px; }
-    .hero-bio { font-size: 13.5px; }
-    .stats { gap: 7px; margin-bottom: 30px; }
-    .stat { padding: 11px 12px; gap: 9px; }
+    body { padding: calc(48px + var(--safe-top)) 18px calc(64px + var(--safe-bot)); }
+    .hero h1 { font-size: 28px; }
+    .hero .bio { font-size: 14px; }
+    .stats { gap: 6px; margin-bottom: 36px; }
+    .stat { padding: 12px 13px; gap: 10px; }
     .stat-icon { width: 30px; height: 30px; font-size: 13px; }
     .stat-value { font-size: 16px; }
-    .card { padding: 12px 13px; gap: 11px; min-height: 54px; }
-    .card-icon { width: 36px; height: 36px; font-size: 15px; }
-    .card-title { font-size: 13.5px; }
-    .card-sub { font-size: 11px; }
-    .card-count { font-size: 10px; padding: 2px 6px; min-width: 26px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
-    }
-    .orb { animation: none; }
+    .card { padding: 13px 14px; gap: 12px; min-height: 54px; }
+    .card-title { font-size: 14px; }
+    .card-sub { font-size: 12px; }
 }
 </style>
 </head>
 <body>
 
-<div class="bg-decor" aria-hidden="true">
-    <div class="orb o1"></div>
-    <div class="orb o2"></div>
-    <div class="orb o3"></div>
-</div>
-<div class="bg-grid" aria-hidden="true"></div>
-
 <main class="container">
 
     <!-- ===== HERO ===== -->
     <header class="hero">
-        <div class="hero-badge">
-            <span class="check"><i class="fas fa-check"></i></span>
-            <span>Verified</span>
-        </div>
-        <h1 class="hero-title">Hoàng Hiệp</h1>
-        <div class="hero-handle">@hiepmadia678</div>
-        <p class="hero-bio">Chia sẻ tài nguyên vọc vạch iOS — chứng chỉ, công cụ và IPA miễn phí, cập nhật liên tục cho cộng đồng.</p>
+        <h1>Hoàng Hiệp</h1>
+        <div class="handle">@hiepmadia678</div>
+        <p class="bio">Chia sẻ tài nguyên vọc vạch iOS — chứng chỉ, công cụ và IPA miễn phí, cập nhật liên tục cho cộng đồng.</p>
     </header>
 
     <!-- ===== STATS ===== -->
@@ -694,15 +360,11 @@ body {
 
     <!-- ===== KẾT NỐI ===== -->
     <section class="section">
-        <div class="section-head">
-            <div class="icon-badge">🔗</div>
-            <div class="title">Kết nối</div>
-            <div class="line"></div>
-        </div>
+        <div class="section-title">Kết nối</div>
 
         <div class="list">
             <a href="https://discord.gg/hzYHCtFWdB" target="_blank" rel="noopener noreferrer" class="card" data-resource="social_discord_server">
-                <div class="card-icon indigo">💬</div>
+                <div class="card-icon">💬</div>
                 <div class="card-content">
                     <div class="card-title">Discord Server</div>
                     <div class="card-sub">Cộng đồng</div>
@@ -712,7 +374,7 @@ body {
             </a>
 
             <a href="https://discord.gg/7A6hbKyK" target="_blank" rel="noopener noreferrer" class="card" data-resource="social_discord_dm">
-                <div class="card-icon indigo">💬</div>
+                <div class="card-icon">💬</div>
                 <div class="card-content">
                     <div class="card-title">Discord Cá Nhân</div>
                     <div class="card-sub">@hiepmadia678</div>
@@ -722,7 +384,7 @@ body {
             </a>
 
             <a href="https://www.tiktok.com/@hiepmadia678?_r=1&_t=ZS-9AM019z2oQK" target="_blank" rel="noopener noreferrer" class="card" data-resource="social_tiktok">
-                <div class="card-icon rose">🎵</div>
+                <div class="card-icon">🎵</div>
                 <div class="card-content">
                     <div class="card-title">TikTok</div>
                     <div class="card-sub">@hiepmadia678</div>
@@ -732,7 +394,7 @@ body {
             </a>
 
             <a href="https://www.facebook.com/share/1Ea1z2vcK6/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="card" data-resource="social_facebook">
-                <div class="card-icon cyan">📘</div>
+                <div class="card-icon">📘</div>
                 <div class="card-content">
                     <div class="card-title">Facebook</div>
                     <div class="card-sub">Hoàng Hiệp</div>
@@ -742,7 +404,7 @@ body {
             </a>
 
             <a href="https://www.instagram.com/hiepmadia678" target="_blank" rel="noopener noreferrer" class="card" data-resource="social_instagram">
-                <div class="card-icon amber">📷</div>
+                <div class="card-icon">📷</div>
                 <div class="card-content">
                     <div class="card-title">Instagram</div>
                     <div class="card-sub">@hiepmadia678</div>
@@ -755,17 +417,12 @@ body {
 
     <!-- ===== TÀI NGUYÊN ===== -->
     <section class="section">
-        <div class="section-head">
-            <div class="icon-badge">📦</div>
-            <div class="title">Tài nguyên</div>
-            <div class="line"></div>
-        </div>
+        <div class="section-title">Tài nguyên</div>
 
-        <!-- Chứng chỉ -->
-        <h3 class="category"><span class="dot"></span>Chứng chỉ</h3>
+        <div class="subsection">Chứng chỉ</div>
         <div class="list">
             <a href="https://khoindvn.io.vn" target="_blank" rel="noopener noreferrer" class="card" data-resource="res_khoindvn">
-                <div class="card-icon violet">🔐</div>
+                <div class="card-icon">🔐</div>
                 <div class="card-content">
                     <div class="card-title">Khoindvn</div>
                     <div class="card-sub">Esign · Ksign</div>
@@ -775,7 +432,7 @@ body {
             </a>
 
             <a href="https://certios.xyz" target="_blank" rel="noopener noreferrer" class="card" data-resource="res_certios">
-                <div class="card-icon violet">🔐</div>
+                <div class="card-icon">🔐</div>
                 <div class="card-content">
                     <div class="card-title">Certios</div>
                     <div class="card-sub">CSign Free</div>
@@ -785,11 +442,10 @@ body {
             </a>
         </div>
 
-        <!-- Công cụ -->
-        <h3 class="category"><span class="dot"></span>Công cụ</h3>
+        <div class="subsection">Công cụ</div>
         <div class="list">
             <a href="https://sideinstaller.net/" target="_blank" rel="noopener noreferrer" class="card" data-resource="res_sideinstaller">
-                <div class="card-icon emerald">🛠️</div>
+                <div class="card-icon">🛠️</div>
                 <div class="card-content">
                     <div class="card-title">SideInstaller</div>
                     <div class="card-sub">Công cụ sideload</div>
@@ -799,7 +455,7 @@ body {
             </a>
 
             <a href="https://config-fix-lag-ios.netlify.app/iphone_config_2026.mobileconfig" target="_blank" rel="noopener noreferrer" class="card" data-resource="res_fixlag">
-                <div class="card-icon emerald">⚙️</div>
+                <div class="card-icon">⚙️</div>
                 <div class="card-content">
                     <div class="card-title">Fix Lag iPhone 2026</div>
                     <div class="card-sub">Config tối ưu</div>
@@ -809,11 +465,10 @@ body {
             </a>
         </div>
 
-        <!-- IPA -->
-        <h3 class="category"><span class="dot"></span>IPA Downloads</h3>
+        <div class="subsection">IPA Downloads</div>
         <div class="list">
             <a href="https://github.com/nguyenls3005-cell/Test-Up/releases/download/AirCard/AirCard-iOS_1.3.ipa" target="_blank" rel="noopener noreferrer" class="card" data-resource="res_aircard">
-                <div class="card-icon cyan">💳</div>
+                <div class="card-icon">💳</div>
                 <div class="card-content">
                     <div class="card-title">AirCard iOS</div>
                     <div class="card-sub">Tiện ích</div>
@@ -823,7 +478,7 @@ body {
             </a>
 
             <a href="https://dl.ipas.cc/ipas/sbr4ai.ipa" target="_blank" rel="noopener noreferrer" class="card" data-resource="res_locket">
-                <div class="card-icon rose">📸</div>
+                <div class="card-icon">📸</div>
                 <div class="card-content">
                     <div class="card-title">Locket Premium</div>
                     <div class="card-sub">Widget ảnh</div>
@@ -833,7 +488,7 @@ body {
             </a>
 
             <a href="https://dl.ipas.cc/ipas/7q6hng.ipa" target="_blank" rel="noopener noreferrer" class="card" data-resource="res_spotify">
-                <div class="card-icon emerald">🎧</div>
+                <div class="card-icon">🎧</div>
                 <div class="card-content">
                     <div class="card-title">Spotify Premium</div>
                     <div class="card-sub">Nghe nhạc</div>
@@ -843,7 +498,7 @@ body {
             </a>
 
             <a href="https://dl.ipas.cc/ipas/p8uoks.ipa" target="_blank" rel="noopener noreferrer" class="card" data-resource="res_youtube">
-                <div class="card-icon rose">▶️</div>
+                <div class="card-icon">▶️</div>
                 <div class="card-content">
                     <div class="card-title">YouTube Premium</div>
                     <div class="card-sub">Xem video</div>
@@ -856,11 +511,8 @@ body {
 
     <!-- ===== FOOTER ===== -->
     <footer class="footer">
-        <div class="footer-left">
-            <div class="footer-logo">H</div>
-            <span class="footer-name">Hoàng Hiệp</span>
-        </div>
-        <div class="footer-copy">© 2026</div>
+        <div>Made by Hoàng Hiệp</div>
+        <div>© 2026</div>
     </footer>
 
 </main>
@@ -897,30 +549,22 @@ body {
 
     async function apiGet(key) {
         try {
-            const res = await fetch(API_BASE + "/get/" + NAMESPACE + "/" + key, {
-                method: "GET",
-                cache: "no-store"
-            });
+            const res = await fetch(API_BASE + "/get/" + NAMESPACE + "/" + key, { cache: "no-store" });
             if (!res.ok) throw new Error("API " + res.status);
             const data = await res.json();
             return typeof data.value === "number" ? data.value : 0;
         } catch (err) {
-            console.warn("[Counter] get failed:", key, err.message);
             return null;
         }
     }
 
     async function apiHit(key) {
         try {
-            const res = await fetch(API_BASE + "/hit/" + NAMESPACE + "/" + key, {
-                method: "GET",
-                cache: "no-store"
-            });
+            const res = await fetch(API_BASE + "/hit/" + NAMESPACE + "/" + key, { cache: "no-store" });
             if (!res.ok) throw new Error("API " + res.status);
             const data = await res.json();
             return typeof data.value === "number" ? data.value : 0;
         } catch (err) {
-            console.warn("[Counter] hit failed:", key, err.message);
             return null;
         }
     }
@@ -970,8 +614,7 @@ body {
                     const el = document.querySelector('[data-count="' + key + '"]');
                     if (el && value !== null) {
                         el.textContent = formatNumber(value);
-                        el.classList.add("loaded", "bump");
-                        setTimeout(() => el.classList.remove("bump"), 400);
+                        el.classList.add("loaded");
                     }
                 });
 
