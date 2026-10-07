@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#020617">
+<meta name="theme-color" content="#050508">
 <meta name="color-scheme" content="dark">
 <title>Hoàng Hiệp — Tài Nguyên iOS</title>
 <meta name="description" content="Chia sẻ tài nguyên vọc vạch iOS — chứng chỉ, công cụ và IPA miễn phí, cập nhật liên tục.">
@@ -11,40 +11,38 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Hoàng Hiệp — Tài Nguyên iOS">
 <meta property="og:description" content="Chứng chỉ, công cụ và IPA miễn phí cho cộng đồng iOS.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23020617'/%3E%3Ctext x='50' y='68' font-family='system-ui' font-size='54' font-weight='600' fill='%2394fdf8' text-anchor='middle'%3EH%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%236366f1'/%3E%3Cstop offset='1' stop-color='%23a855f7'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='22' fill='url(%23g)'/%3E%3Ctext x='50' y='68' font-family='system-ui' font-size='54' font-weight='700' fill='white' text-anchor='middle'%3EH%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
 /* ============================================================
-   DESIGN TOKENS
+   TOKENS
    ============================================================ */
 :root {
-    --bg: #020617;
-    --bg-glow-1: rgba(148, 253, 248, 0.12);
-    --bg-glow-2: rgba(59, 130, 246, 0.10);
-    --surface: rgba(255, 255, 255, 0.035);
-    --surface-hover: rgba(255, 255, 255, 0.065);
-    --surface-active: rgba(255, 255, 255, 0.09);
-    --border: rgba(255, 255, 255, 0.08);
-    --border-hover: rgba(255, 255, 255, 0.18);
-    --text: #f8fafc;
-    --text-2: #94a3b8;
-    --text-3: #64748b;
-    --text-4: #475569;
-    --accent: #94fdf8;
-    --accent-dim: rgba(148, 253, 248, 0.15);
-    --accent-glow: rgba(148, 253, 248, 0.4);
-    --green: #4ade80;
+    --bg: #050508;
+    --surface: rgba(255, 255, 255, 0.028);
+    --surface-hi: rgba(255, 255, 255, 0.055);
+    --surface-active: rgba(255, 255, 255, 0.08);
+    --border: rgba(255, 255, 255, 0.07);
+    --border-hi: rgba(255, 255, 255, 0.14);
+    --text: #fafafa;
+    --text-2: #a1a1aa;
+    --text-3: #71717a;
+    --text-4: #52525b;
+    --indigo: #6366f1;
+    --violet: #a855f7;
+    --cyan: #22d3ee;
+    --emerald: #10b981;
+    --amber: #f59e0b;
+    --rose: #f43f5e;
     --font: "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-    --radius-card: 16px;
-    --radius-pill: 100px;
-    --radius-badge: 8px;
     --safe-top: env(safe-area-inset-top, 0px);
     --safe-bot: env(safe-area-inset-bottom, 0px);
     --ease: cubic-bezier(0.32, 0.72, 0, 1);
+    --spring: cubic-bezier(0.34, 1.3, 0.64, 1);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -59,67 +57,98 @@ body {
     min-height: 100dvh;
     display: flex;
     justify-content: center;
-    padding: calc(48px + var(--safe-top)) 20px calc(72px + var(--safe-bot));
+    padding: calc(56px + var(--safe-top)) 20px calc(80px + var(--safe-bot));
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    letter-spacing: -0.011em;
+    letter-spacing: -0.012em;
     line-height: 1.5;
     position: relative;
     overflow-x: hidden;
-    animation: pageIn 0.5s var(--ease);
+    animation: pageIn 0.6s var(--ease);
 }
 
 @keyframes pageIn {
-    from { opacity: 0; transform: translateY(8px); }
+    from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
 /* ============================================================
-   BACKGROUND GLOW — animated
+   BACKGROUND DECOR
    ============================================================ */
-.bg-glow {
+.bg-decor {
     position: fixed;
-    inset: -20%;
+    inset: 0;
     z-index: 0;
     pointer-events: none;
     overflow: hidden;
 }
 
-.bg-glow::before,
-.bg-glow::after {
-    content: "";
+.orb {
     position: absolute;
     border-radius: 50%;
-    filter: blur(120px);
+    filter: blur(100px);
     will-change: transform;
 }
 
-.bg-glow::before {
-    width: 520px;
-    height: 520px;
-    background: var(--bg-glow-1);
+.orb.o1 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.28), transparent 70%);
     top: -180px;
     left: -160px;
-    animation: float1 22s ease-in-out infinite;
+    animation: float1 24s ease-in-out infinite;
 }
 
-.bg-glow::after {
-    width: 460px;
-    height: 460px;
-    background: var(--bg-glow-2);
+.orb.o2 {
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.22), transparent 70%);
+    top: 30%;
+    right: -180px;
+    animation: float2 28s ease-in-out infinite;
+}
+
+.orb.o3 {
+    width: 380px;
+    height: 380px;
+    background: radial-gradient(circle, rgba(34, 211, 238, 0.18), transparent 70%);
     bottom: -160px;
-    right: -140px;
-    animation: float2 26s ease-in-out infinite;
+    left: 20%;
+    animation: float1 32s ease-in-out infinite reverse;
 }
 
 @keyframes float1 {
     0%, 100% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(60px, 40px) scale(1.15); }
+    50% { transform: translate(60px, 50px) scale(1.15); }
 }
 
 @keyframes float2 {
     0%, 100% { transform: translate(0, 0) scale(1); }
     50% { transform: translate(-50px, -40px) scale(1.2); }
+}
+
+/* noise overlay */
+.bg-decor::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.15;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* grid pattern */
+.bg-grid {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: radial-gradient(ellipse 70% 50% at 50% 30%, #000, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 50% at 50% 30%, #000, transparent 80%);
 }
 
 .container {
@@ -133,52 +162,85 @@ body {
    HERO
    ============================================================ */
 .hero {
-    margin-bottom: 36px;
+    margin-bottom: 32px;
 }
 
-.hero h1 {
-    font-size: 34px;
-    font-weight: 700;
-    letter-spacing: -0.03em;
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-2);
+    padding: 5px 11px 5px 9px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    margin-bottom: 18px;
+}
+
+.hero-badge .check {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--indigo), var(--violet));
+    display: grid;
+    place-items: center;
+    color: #fff;
+    font-size: 8px;
+}
+
+.hero-title {
+    font-size: 38px;
+    font-weight: 800;
+    letter-spacing: -0.035em;
     color: var(--text);
-    margin-bottom: 6px;
-    line-height: 1.15;
+    line-height: 1.05;
+    margin-bottom: 8px;
+    background: linear-gradient(180deg, #ffffff 0%, #a1a1aa 130%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.hero .handle {
+.hero-handle {
     display: inline-flex;
     align-items: center;
     gap: 7px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     color: var(--text-2);
-    margin-bottom: 18px;
     padding: 5px 12px 5px 10px;
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: var(--radius-pill);
+    border-radius: 100px;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    margin-bottom: 16px;
 }
 
-.hero .handle::before {
+.hero-handle::before {
     content: "";
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: var(--green);
-    box-shadow: 0 0 8px var(--green);
+    background: var(--emerald);
+    box-shadow: 0 0 8px var(--emerald);
     animation: statusPulse 2.4s ease-out infinite;
 }
 
 @keyframes statusPulse {
-    0% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6), 0 0 8px var(--green); }
-    70% { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0), 0 0 8px var(--green); }
-    100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0), 0 0 8px var(--green); }
+    0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6), 0 0 8px var(--emerald); }
+    70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0), 0 0 8px var(--emerald); }
+    100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0), 0 0 8px var(--emerald); }
 }
 
-.hero .bio {
-    font-size: 15px;
+.hero-bio {
+    font-size: 14.5px;
     line-height: 1.6;
     color: var(--text-2);
     font-weight: 400;
@@ -186,25 +248,25 @@ body {
 }
 
 /* ============================================================
-   STATS
+   STATS — pill grid
    ============================================================ */
 .stats {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-bottom: 40px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-bottom: 36px;
 }
 
 .stat {
-    padding: 18px 18px 16px;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 12px 14px;
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: var(--radius-card);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+    border-radius: 14px;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
     position: relative;
     overflow: hidden;
     transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
@@ -214,43 +276,55 @@ body {
     content: "";
     position: absolute;
     top: 0;
-    left: 15%;
-    right: 15%;
+    left: 20%;
+    right: 20%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    background: linear-gradient(90deg, transparent, var(--indigo), transparent);
     opacity: 0;
     transition: opacity 0.4s var(--ease);
 }
 
-.stat.loaded::before { opacity: 1; }
+.stat.loaded::before { opacity: 0.7; }
 
-.stat .label {
+.stat-icon {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    font-size: 14px;
+    background: rgba(99, 102, 241, 0.1);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    color: #a5b4fc;
+}
+
+.stat-body {
     display: flex;
-    align-items: center;
-    gap: 7px;
-    font-size: 11px;
+    flex-direction: column;
+    gap: 1px;
+    min-width: 0;
+}
+
+.stat-label {
+    font-size: 10.5px;
     font-weight: 500;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--text-3);
 }
 
-.stat .label .icon {
-    font-size: 13px;
-    line-height: 1;
-}
-
-.stat .value {
-    font-size: 26px;
+.stat-value {
+    font-size: 18px;
     font-weight: 700;
-    letter-spacing: -0.025em;
+    letter-spacing: -0.02em;
     color: var(--text);
     line-height: 1.1;
     font-variant-numeric: tabular-nums;
     transition: color 0.3s var(--ease);
 }
 
-.stat .value.loading {
+.stat-value.loading {
     color: var(--text-4);
     animation: valuePulse 1.4s ease-in-out infinite;
 }
@@ -267,33 +341,59 @@ body {
     margin-bottom: 36px;
 }
 
-.section-title {
+.section-head {
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-3);
+    gap: 12px;
     margin-bottom: 14px;
     padding-left: 2px;
 }
 
-.section-title .icon {
-    font-size: 13px;
-    line-height: 1;
+.section-head .icon-badge {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 7px;
+    display: grid;
+    place-items: center;
+    font-size: 11px;
+    background: var(--surface-hi);
+    border: 1px solid var(--border);
+}
+
+.section-head .title {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-2);
+}
+
+.section-head .line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border), transparent);
 }
 
 .category {
-    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12.5px;
     font-weight: 500;
-    color: var(--text-2);
-    margin: 20px 0 8px;
+    color: var(--text-3);
+    margin: 22px 0 10px;
     padding-left: 2px;
 }
 
 .category:first-of-type { margin-top: 0; }
+
+.category .dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--text-4);
+}
 
 /* ============================================================
    LIST
@@ -310,15 +410,15 @@ body {
 .card {
     display: flex;
     align-items: center;
-    gap: 14px;
-    padding: 14px 16px;
+    gap: 13px;
+    padding: 13px 14px;
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: var(--radius-card);
+    border-radius: 14px;
     text-decoration: none;
     color: inherit;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
     transition:
         background 0.2s var(--ease),
         border-color 0.2s var(--ease),
@@ -332,12 +432,27 @@ body {
     overflow: hidden;
 }
 
+/* border gradient hover */
+.card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.5), rgba(168, 85, 247, 0.5), rgba(34, 211, 238, 0.5));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s var(--ease);
+    pointer-events: none;
+}
+
+.card:hover::before { opacity: 1; }
+
 .card:hover {
-    background: var(--surface-hover);
-    border-color: var(--border-hover);
-    box-shadow:
-        0 0 0 1px rgba(148, 253, 248, 0.08),
-        0 8px 32px -8px rgba(148, 253, 248, 0.15);
+    background: var(--surface-hi);
+    box-shadow: 0 12px 40px -12px rgba(99, 102, 241, 0.25);
 }
 
 .card:active {
@@ -347,19 +462,47 @@ body {
 }
 
 .card:focus-visible {
-    outline: 2px solid var(--accent);
+    outline: 2px solid var(--indigo);
     outline-offset: 2px;
 }
 
-.card .emoji {
+/* ICON BOX */
+.card-icon {
     flex-shrink: 0;
-    width: 26px;
-    text-align: center;
-    font-size: 19px;
+    width: 38px;
+    height: 38px;
+    border-radius: 11px;
+    display: grid;
+    place-items: center;
+    font-size: 17px;
     line-height: 1;
+    background: var(--surface-hi);
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s var(--spring);
 }
 
-.card .content {
+.card:hover .card-icon { transform: scale(1.06); }
+
+.card-icon::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.08), transparent 60%);
+    pointer-events: none;
+}
+
+/* colored variants */
+.card-icon.indigo { background: rgba(99, 102, 241, 0.12); border-color: rgba(99, 102, 241, 0.22); }
+.card-icon.violet { background: rgba(168, 85, 247, 0.12); border-color: rgba(168, 85, 247, 0.22); }
+.card-icon.cyan   { background: rgba(34, 211, 238, 0.12); border-color: rgba(34, 211, 238, 0.22); }
+.card-icon.emerald{ background: rgba(16, 185, 129, 0.12); border-color: rgba(16, 185, 129, 0.22); }
+.card-icon.amber  { background: rgba(245, 158, 11, 0.12); border-color: rgba(245, 158, 11, 0.22); }
+.card-icon.rose   { background: rgba(244, 63, 94, 0.12);  border-color: rgba(244, 63, 94, 0.22); }
+
+/* CONTENT */
+.card-content {
     flex: 1;
     min-width: 0;
     display: flex;
@@ -367,18 +510,18 @@ body {
     gap: 2px;
 }
 
-.card .title {
+.card-title {
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--text);
-    letter-spacing: -0.005em;
+    letter-spacing: -0.008em;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.card .sub {
-    font-size: 12px;
+.card-sub {
+    font-size: 11.5px;
     font-weight: 400;
     color: var(--text-3);
     white-space: nowrap;
@@ -386,59 +529,55 @@ body {
     text-overflow: ellipsis;
 }
 
-.card .count {
+/* COUNT */
+.card-count {
     flex-shrink: 0;
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--text-4);
+    font-size: 10.5px;
+    font-weight: 600;
+    color: var(--text-3);
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--border);
-    border-radius: var(--radius-badge);
-    padding: 3px 8px;
+    border-radius: 7px;
+    padding: 3px 7px;
     font-variant-numeric: tabular-nums;
     transition: color 0.2s var(--ease), border-color 0.2s var(--ease), background 0.2s var(--ease);
     opacity: 0;
-    min-width: 32px;
+    min-width: 30px;
     justify-content: center;
 }
 
-.card .count.loaded { opacity: 1; }
+.card-count.loaded { opacity: 1; }
 
-.card:hover .count {
+.card:hover .card-count {
     color: var(--text-2);
-    border-color: var(--border-hover);
+    border-color: var(--border-hi);
     background: rgba(255, 255, 255, 0.06);
 }
 
-.card .count .icon {
-    font-size: 9px;
-    line-height: 1;
-    opacity: 0.8;
-}
-
-.card .count.bump {
+.card-count.bump {
     animation: countBump 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 @keyframes countBump {
     0% { transform: scale(1); }
-    50% { transform: scale(1.15); color: var(--accent); border-color: var(--accent); }
+    50% { transform: scale(1.18); color: var(--indigo); border-color: var(--indigo); }
     100% { transform: scale(1); }
 }
 
-.card .arrow {
+/* ARROW */
+.card-arrow {
     flex-shrink: 0;
     color: var(--text-4);
     font-size: 11px;
     transition: color 0.2s var(--ease), transform 0.2s var(--ease);
 }
 
-.card:hover .arrow {
-    color: var(--accent);
-    transform: translateX(3px);
+.card:hover .card-arrow {
+    color: var(--indigo);
+    transform: translate(2px, -2px);
 }
 
 /* ============================================================
@@ -446,37 +585,62 @@ body {
    ============================================================ */
 .footer {
     margin-top: 56px;
-    padding-top: 24px;
+    padding-top: 22px;
     border-top: 1px solid var(--border);
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
     font-size: 12px;
     color: var(--text-3);
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+    flex-wrap: wrap;
 }
 
-.footer .name {
+.footer-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-logo {
+    width: 22px;
+    height: 22px;
+    border-radius: 7px;
+    display: grid;
+    place-items: center;
+    font-size: 10px;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(135deg, var(--indigo), var(--violet));
+}
+
+.footer-name {
     color: var(--text-2);
     font-weight: 500;
+}
+
+.footer-copy {
+    font-size: 11px;
+    color: var(--text-4);
 }
 
 /* ============================================================
    SMALL
    ============================================================ */
 @media (max-width: 380px) {
-    body { padding: calc(36px + var(--safe-top)) 16px calc(56px + var(--safe-bot)); }
-    .hero { margin-bottom: 28px; }
-    .hero h1 { font-size: 28px; }
-    .hero .bio { font-size: 14px; }
-    .stats { gap: 8px; margin-bottom: 32px; }
-    .stat { padding: 15px 14px; }
-    .stat .value { font-size: 22px; }
-    .card { padding: 13px 14px; gap: 12px; min-height: 54px; }
-    .card .emoji { width: 24px; font-size: 17px; }
-    .card .title { font-size: 13.5px; }
-    .card .sub { font-size: 11.5px; }
-    .card .count { font-size: 10px; padding: 2px 6px; min-width: 28px; }
+    body { padding: calc(44px + var(--safe-top)) 16px calc(64px + var(--safe-bot)); }
+    .hero { margin-bottom: 26px; }
+    .hero-title { font-size: 32px; }
+    .hero-bio { font-size: 13.5px; }
+    .stats { gap: 7px; margin-bottom: 30px; }
+    .stat { padding: 11px 12px; gap: 9px; }
+    .stat-icon { width: 30px; height: 30px; font-size: 13px; }
+    .stat-value { font-size: 16px; }
+    .card { padding: 12px 13px; gap: 11px; min-height: 54px; }
+    .card-icon { width: 36px; height: 36px; font-size: 15px; }
+    .card-title { font-size: 13.5px; }
+    .card-sub { font-size: 11px; }
+    .card-count { font-size: 10px; padding: 2px 6px; min-width: 26px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -484,202 +648,219 @@ body {
         animation-duration: 0.01ms !important;
         transition-duration: 0.01ms !important;
     }
-    .bg-glow::before, .bg-glow::after { animation: none; }
+    .orb { animation: none; }
 }
 </style>
 </head>
 <body>
 
-<div class="bg-glow" aria-hidden="true"></div>
+<div class="bg-decor" aria-hidden="true">
+    <div class="orb o1"></div>
+    <div class="orb o2"></div>
+    <div class="orb o3"></div>
+</div>
+<div class="bg-grid" aria-hidden="true"></div>
 
 <main class="container">
 
     <!-- ===== HERO ===== -->
     <header class="hero">
-        <h1>Hoàng Hiệp</h1>
-        <div class="handle">@hiepmadia678</div>
-        <p class="bio">Chia sẻ tài nguyên vọc vạch iOS — chứng chỉ, công cụ và IPA miễn phí, cập nhật liên tục cho cộng đồng.</p>
+        <div class="hero-badge">
+            <span class="check"><i class="fas fa-check"></i></span>
+            <span>Verified</span>
+        </div>
+        <h1 class="hero-title">Hoàng Hiệp</h1>
+        <div class="hero-handle">@hiepmadia678</div>
+        <p class="hero-bio">Chia sẻ tài nguyên vọc vạch iOS — chứng chỉ, công cụ và IPA miễn phí, cập nhật liên tục cho cộng đồng.</p>
     </header>
 
     <!-- ===== STATS ===== -->
     <section class="stats">
         <div class="stat" id="statVisits">
-            <div class="label">
-                <span class="icon">👁️</span>
-                <span>Lượt truy cập</span>
+            <div class="stat-icon">👁️</div>
+            <div class="stat-body">
+                <div class="stat-label">Lượt truy cập</div>
+                <div class="stat-value loading" data-value="visits">—</div>
             </div>
-            <div class="value loading" data-value="visits">—</div>
         </div>
-        <div class="stat" id="statDownloads">
-            <div class="label">
-                <span class="icon">📥</span>
-                <span>Tổng lượt tải</span>
+        <div class="stat" id="statClicks">
+            <div class="stat-icon">⚡</div>
+            <div class="stat-body">
+                <div class="stat-label">Tổng lượt click</div>
+                <div class="stat-value loading" data-value="downloads">—</div>
             </div>
-            <div class="value loading" data-value="downloads">—</div>
         </div>
     </section>
 
     <!-- ===== KẾT NỐI ===== -->
     <section class="section">
-        <h2 class="section-title">
-            <span class="icon">🔗</span>
-            <span>Kết nối</span>
-        </h2>
+        <div class="section-head">
+            <div class="icon-badge">🔗</div>
+            <div class="title">Kết nối</div>
+            <div class="line"></div>
+        </div>
 
         <div class="list">
             <a href="https://discord.gg/hzYHCtFWdB" target="_blank" rel="noopener noreferrer" class="card" data-resource="social_discord_server">
-                <span class="emoji">💬</span>
-                <span class="content">
-                    <span class="title">Discord Server</span>
-                    <span class="sub">Cộng đồng</span>
-                </span>
-                <span class="count" data-count="social_discord_server"></span>
-                <i class="fas fa-arrow-up-right-from-square arrow" aria-hidden="true"></i>
+                <div class="card-icon indigo">💬</div>
+                <div class="card-content">
+                    <div class="card-title">Discord Server</div>
+                    <div class="card-sub">Cộng đồng</div>
+                </div>
+                <span class="card-count" data-count="social_discord_server"></span>
+                <i class="fas fa-arrow-up-right-from-square card-arrow" aria-hidden="true"></i>
             </a>
 
             <a href="https://discord.gg/7A6hbKyK" target="_blank" rel="noopener noreferrer" class="card" data-resource="social_discord_dm">
-                <span class="emoji">💬</span>
-                <span class="content">
-                    <span class="title">Discord Cá Nhân</span>
-                    <span class="sub">@hiepmadia678</span>
-                </span>
-                <span class="count" data-count="social_discord_dm"></span>
-                <i class="fas fa-arrow-up-right-from-square arrow" aria-hidden="true"></i>
+                <div class="card-icon indigo">💬</div>
+                <div class="card-content">
+                    <div class="card-title">Discord Cá Nhân</div>
+                    <div class="card-sub">@hiepmadia678</div>
+                </div>
+                <span class="card-count" data-count="social_discord_dm"></span>
+                <i class="fas fa-arrow-up-right-from-square card-arrow" aria-hidden="true"></i>
             </a>
 
             <a href="https://www.tiktok.com/@hiepmadia678?_r=1&_t=ZS-9AM019z2oQK" target="_blank" rel="noopener noreferrer" class="card" data-resource="social_tiktok">
-                <span class="emoji">🎵</span>
-                <span class="content">
-                    <span class="title">TikTok</span>
-                    <span class="sub">@hiepmadia678</span>
-                </span>
-                <span class="count" data-count="social_tiktok"></span>
-                <i class="fas fa-arrow-up-right-from-square arrow" aria-hidden="true"></i>
+                <div class="card-icon rose">🎵</div>
+                <div class="card-content">
+                    <div class="card-title">TikTok</div>
+                    <div class="card-sub">@hiepmadia678</div>
+                </div>
+                <span class="card-count" data-count="social_tiktok"></span>
+                <i class="fas fa-arrow-up-right-from-square card-arrow" aria-hidden="true"></i>
             </a>
 
             <a href="https://www.facebook.com/share/1Ea1z2vcK6/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="card" data-resource="social_facebook">
-                <span class="emoji">📘</span>
-                <span class="content">
-                    <span class="title">Facebook</span>
-                    <span class="sub">Hoàng Hiệp</span>
-                </span>
-                <span class="count" data-count="social_facebook"></span>
-                <i class="fas fa-arrow-up-right-from-square arrow" aria-hidden="true"></i>
+                <div class="card-icon cyan">📘</div>
+                <div class="card-content">
+                    <div class="card-title">Facebook</div>
+                    <div class="card-sub">Hoàng Hiệp</div>
+                </div>
+                <span class="card-count" data-count="social_facebook"></span>
+                <i class="fas fa-arrow-up-right-from-square card-arrow" aria-hidden="true"></i>
             </a>
 
             <a href="https://www.instagram.com/hiepmadia678" target="_blank" rel="noopener noreferrer" class="card" data-resource="social_instagram">
-                <span class="emoji">📷</span>
-                <span class="content">
-                    <span class="title">Instagram</span>
-                    <span class="sub">@hiepmadia678</span>
-                </span>
-                <span class="count" data-count="social_instagram"></span>
-                <i class="fas fa-arrow-up-right-from-square arrow" aria-hidden="true"></i>
+                <div class="card-icon amber">📷</div>
+                <div class="card-content">
+                    <div class="card-title">Instagram</div>
+                    <div class="card-sub">@hiepmadia678</div>
+                </div>
+                <span class="card-count" data-count="social_instagram"></span>
+                <i class="fas fa-arrow-up-right-from-square card-arrow" aria-hidden="true"></i>
             </a>
         </div>
     </section>
 
     <!-- ===== TÀI NGUYÊN ===== -->
     <section class="section">
-        <h2 class="section-title">
-            <span class="icon">📦</span>
-            <span>Tài nguyên</span>
-        </h2>
+        <div class="section-head">
+            <div class="icon-badge">📦</div>
+            <div class="title">Tài nguyên</div>
+            <div class="line"></div>
+        </div>
 
-        <h3 class="category">🔐 Chứng chỉ</h3>
+        <!-- Chứng chỉ -->
+        <h3 class="category"><span class="dot"></span>Chứng chỉ</h3>
         <div class="list">
             <a href="https://khoindvn.io.vn" target="_blank" rel="noopener noreferrer" class="card" data-resource="res_khoindvn">
-                <span class="emoji">🔐</span>
-                <span class="content">
-                    <span class="title">Khoindvn</span>
-                    <span class="sub">Esign · Ksign</span>
-                </span>
-                <span class="count" data-count="res_khoindvn"></span>
-                <i class="fas fa-arrow-up-right-from-square arrow" aria-hidden="true"></i>
+                <div class="card-icon violet">🔐</div>
+                <div class="card-content">
+                    <div class="card-title">Khoindvn</div>
+                    <div class="card-sub">Esign · Ksign</div>
+                </div>
+                <span class="card-count" data-count="res_khoindvn"></span>
+                <i class="fas fa-arrow-up-right-from-square card-arrow" aria-hidden="true"></i>
             </a>
 
             <a href="https://certios.xyz" target="_blank" rel="noopener noreferrer" class="card" data-resource="res_certios">
-                <span class="emoji">🔐</span>
-                <span class="content">
-                    <span class="title">Certios</span>
-                    <span class="sub">CSign Free</span>
-                </span>
-                <span class="count" data-count="res_certios"></span>
-                <i class="fas fa-arrow-up-right-from-square arrow" aria-hidden="true"></i>
+                <div class="card-icon violet">🔐</div>
+                <div class="card-content">
+                    <div class="card-title">Certios</div>
+                    <div class="card-sub">CSign Free</div>
+                </div>
+                <span class="card-count" data-count="res_certios"></span>
+                <i class="fas fa-arrow-up-right-from-square card-arrow" aria-hidden="true"></i>
             </a>
         </div>
 
-        <h3 class="category">🛠️ Công cụ</h3>
+        <!-- Công cụ -->
+        <h3 class="category"><span class="dot"></span>Công cụ</h3>
         <div class="list">
             <a href="https://sideinstaller.net/" target="_blank" rel="noopener noreferrer" class="card" data-resource="res_sideinstaller">
-                <span class="emoji">🛠️</span>
-                <span class="content">
-                    <span class="title">SideInstaller</span>
-                    <span class="sub">Công cụ sideload</span>
-                </span>
-                <span class="count" data-count="res_sideinstaller"></span>
-                <i class="fas fa-arrow-up-right-from-square arrow" aria-hidden="true"></i>
+                <div class="card-icon emerald">🛠️</div>
+                <div class="card-content">
+                    <div class="card-title">SideInstaller</div>
+                    <div class="card-sub">Công cụ sideload</div>
+                </div>
+                <span class="card-count" data-count="res_sideinstaller"></span>
+                <i class="fas fa-arrow-up-right-from-square card-arrow" aria-hidden="true"></i>
             </a>
 
             <a href="https://config-fix-lag-ios.netlify.app/iphone_config_2026.mobileconfig" target="_blank" rel="noopener noreferrer" class="card" data-resource="res_fixlag">
-                <span class="emoji">⚙️</span>
-                <span class="content">
-                    <span class="title">Fix Lag iPhone 2026</span>
-                    <span class="sub">Config tối ưu</span>
-                </span>
-                <span class="count" data-count="res_fixlag"></span>
-                <i class="fas fa-arrow-up-right-from-square arrow" aria-hidden="true"></i>
+                <div class="card-icon emerald">⚙️</div>
+                <div class="card-content">
+                    <div class="card-title">Fix Lag iPhone 2026</div>
+                    <div class="card-sub">Config tối ưu</div>
+                </div>
+                <span class="card-count" data-count="res_fixlag"></span>
+                <i class="fas fa-arrow-up-right-from-square card-arrow" aria-hidden="true"></i>
             </a>
         </div>
 
-        <h3 class="category">📥 IPA Downloads</h3>
+        <!-- IPA -->
+        <h3 class="category"><span class="dot"></span>IPA Downloads</h3>
         <div class="list">
             <a href="https://github.com/nguyenls3005-cell/Test-Up/releases/download/AirCard/AirCard-iOS_1.3.ipa" target="_blank" rel="noopener noreferrer" class="card" data-resource="res_aircard">
-                <span class="emoji">💳</span>
-                <span class="content">
-                    <span class="title">AirCard iOS</span>
-                    <span class="sub">Thẻ ảo</span>
-                </span>
-                <span class="count" data-count="res_aircard"></span>
-                <i class="fas fa-download arrow" aria-hidden="true"></i>
+                <div class="card-icon cyan">💳</div>
+                <div class="card-content">
+                    <div class="card-title">AirCard iOS</div>
+                    <div class="card-sub">Tiện ích</div>
+                </div>
+                <span class="card-count" data-count="res_aircard"></span>
+                <i class="fas fa-download card-arrow" aria-hidden="true"></i>
             </a>
 
             <a href="https://dl.ipas.cc/ipas/sbr4ai.ipa" target="_blank" rel="noopener noreferrer" class="card" data-resource="res_locket">
-                <span class="emoji">📸</span>
-                <span class="content">
-                    <span class="title">Locket Premium</span>
-                    <span class="sub">Widget ảnh</span>
-                </span>
-                <span class="count" data-count="res_locket"></span>
-                <i class="fas fa-download arrow" aria-hidden="true"></i>
+                <div class="card-icon rose">📸</div>
+                <div class="card-content">
+                    <div class="card-title">Locket Premium</div>
+                    <div class="card-sub">Widget ảnh</div>
+                </div>
+                <span class="card-count" data-count="res_locket"></span>
+                <i class="fas fa-download card-arrow" aria-hidden="true"></i>
             </a>
 
             <a href="https://dl.ipas.cc/ipas/7q6hng.ipa" target="_blank" rel="noopener noreferrer" class="card" data-resource="res_spotify">
-                <span class="emoji">🎧</span>
-                <span class="content">
-                    <span class="title">Spotify Premium</span>
-                    <span class="sub">Nghe nhạc</span>
-                </span>
-                <span class="count" data-count="res_spotify"></span>
-                <i class="fas fa-download arrow" aria-hidden="true"></i>
+                <div class="card-icon emerald">🎧</div>
+                <div class="card-content">
+                    <div class="card-title">Spotify Premium</div>
+                    <div class="card-sub">Nghe nhạc</div>
+                </div>
+                <span class="card-count" data-count="res_spotify"></span>
+                <i class="fas fa-download card-arrow" aria-hidden="true"></i>
             </a>
 
             <a href="https://dl.ipas.cc/ipas/p8uoks.ipa" target="_blank" rel="noopener noreferrer" class="card" data-resource="res_youtube">
-                <span class="emoji">▶️</span>
-                <span class="content">
-                    <span class="title">YouTube Premium</span>
-                    <span class="sub">Xem video</span>
-                </span>
-                <span class="count" data-count="res_youtube"></span>
-                <i class="fas fa-download arrow" aria-hidden="true"></i>
+                <div class="card-icon rose">▶️</div>
+                <div class="card-content">
+                    <div class="card-title">YouTube Premium</div>
+                    <div class="card-sub">Xem video</div>
+                </div>
+                <span class="card-count" data-count="res_youtube"></span>
+                <i class="fas fa-download card-arrow" aria-hidden="true"></i>
             </a>
         </div>
     </section>
 
     <!-- ===== FOOTER ===== -->
     <footer class="footer">
-        <div>Made by <span class="name">Hoàng Hiệp</span></div>
-        <div>© 2026</div>
+        <div class="footer-left">
+            <div class="footer-logo">H</div>
+            <span class="footer-name">Hoàng Hiệp</span>
+        </div>
+        <div class="footer-copy">© 2026</div>
     </footer>
 
 </main>
@@ -688,13 +869,9 @@ body {
 (function () {
     "use strict";
 
-    /* ============================================================
-       CONFIG
-       ============================================================ */
     const NAMESPACE = "hiepmadia678-hub";
     const API_BASE = "https://abacus.jasoncameron.dev";
 
-    // Tất cả resource keys — social + tài nguyên
     const RESOURCES = [
         "social_discord_server",
         "social_discord_dm",
@@ -711,9 +888,6 @@ body {
         "res_youtube"
     ];
 
-    /* ============================================================
-       HELPERS
-       ============================================================ */
     function formatNumber(n) {
         if (n === null || n === undefined || isNaN(n)) return "—";
         if (n >= 1000000) return (n / 1000000).toFixed(1).replace(".0", "") + "M";
@@ -751,9 +925,6 @@ body {
         }
     }
 
-    /* ============================================================
-       VISIT COUNTER (đếm 1 lần/session)
-       ============================================================ */
     async function trackVisit() {
         const el = document.querySelector('[data-value="visits"]');
         if (!el) return;
@@ -779,56 +950,41 @@ body {
         }
     }
 
-    /* ============================================================
-       LOAD COUNTERS CHO TẤT CẢ CÁC NÚT
-       ============================================================ */
     async function loadResourceCount(key) {
         const el = document.querySelector('[data-count="' + key + '"]');
         if (!el) return;
-
         const value = await apiGet(key);
         if (value !== null) {
-            el.innerHTML = '<i class="fas fa-arrow-down icon"></i>' + formatNumber(value);
+            el.textContent = formatNumber(value);
             el.classList.add("loaded");
         }
     }
 
-    /* ============================================================
-       CLICK HANDLER — tăng counter khi click
-       ============================================================ */
     function attachClickHandlers() {
         document.querySelectorAll("[data-resource]").forEach((card) => {
             card.addEventListener("click", () => {
                 const key = card.getAttribute("data-resource");
                 if (!key) return;
 
-                // Tăng counter (fire and forget)
                 apiHit(key).then((value) => {
                     const el = document.querySelector('[data-count="' + key + '"]');
                     if (el && value !== null) {
-                        el.innerHTML = '<i class="fas fa-arrow-down icon"></i>' + formatNumber(value);
+                        el.textContent = formatNumber(value);
                         el.classList.add("loaded", "bump");
                         setTimeout(() => el.classList.remove("bump"), 400);
                     }
                 });
 
-                // Cập nhật tổng lượt tải
-                updateTotalDownloads();
+                updateTotalClicks();
             });
         });
     }
 
-    /* ============================================================
-       TỔNG LƯỢT TẢI (sum của tất cả resource)
-       ============================================================ */
-    async function updateTotalDownloads() {
+    async function updateTotalClicks() {
         const el = document.querySelector('[data-value="downloads"]');
         if (!el) return;
 
-        const values = await Promise.all(
-            RESOURCES.map((key) => apiGet(key))
-        );
-
+        const values = await Promise.all(RESOURCES.map((key) => apiGet(key)));
         const total = values.reduce((sum, v) => sum + (v || 0), 0);
 
         el.textContent = formatNumber(total);
@@ -837,13 +993,10 @@ body {
         if (stat) stat.classList.add("loaded");
     }
 
-    /* ============================================================
-       INIT
-       ============================================================ */
     function init() {
         trackVisit();
         RESOURCES.forEach(loadResourceCount);
-        updateTotalDownloads();
+        updateTotalClicks();
         attachClickHandlers();
     }
 
