@@ -5,9 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#0a0a0c">
 <meta name="color-scheme" content="dark">
-<title>Sonchoigame — NS MOD</title>
-<meta name="description" content="Sonchoigame — NS MOD. Tổng hợp tài nguyên, công cụ và IPA cho cộng đồng iOS.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a0a0c'/%3E%3Ctext x='50' y='70' font-family='system-ui' font-size='54' font-weight='700' fill='%23f5f5f7' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
+<title>Hoàng Hiệp — Tài Nguyên iOS</title>
+<meta name="description" content="Chia sẻ tài nguyên vọc vạch iOS — chứng chỉ, công cụ và IPA miễn phí.">
+<meta name="author" content="Hoàng Hiệp">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a0a0c'/%3E%3Ctext x='50' y='70' font-family='system-ui' font-size='54' font-weight='700' fill='%23f5f5f7' text-anchor='middle'%3EH%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -17,6 +18,7 @@
     --bg: #0a0a0c;
     --surface: #121215;
     --surface-hover: #17171b;
+    --surface-active: #1c1c20;
     --border: #1e1e22;
     --border-hover: #2a2a30;
     --text: #f5f5f7;
@@ -28,6 +30,7 @@
     --font: "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
     --safe-top: env(safe-area-inset-top, 0px);
     --safe-bot: env(safe-area-inset-bottom, 0px);
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -61,8 +64,8 @@ body {
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    margin-bottom: 32px;
-    padding-bottom: 20px;
+    margin-bottom: 28px;
+    padding-bottom: 18px;
     border-bottom: 1px solid var(--border);
 }
 
@@ -130,7 +133,7 @@ body {
    HERO
    ============================================================ */
 .hero {
-    margin-bottom: 28px;
+    margin-bottom: 24px;
 }
 
 .hero h1 {
@@ -142,58 +145,32 @@ body {
     margin-bottom: 6px;
 }
 
-.hero .sub {
-    font-size: 14.5px;
+.hero .handle {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13.5px;
     font-weight: 400;
     color: var(--text-2);
+    margin-bottom: 14px;
+}
+
+.hero .handle::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 8px var(--green);
+    flex-shrink: 0;
+}
+
+.hero .bio {
+    font-size: 14.5px;
     line-height: 1.55;
-}
-
-/* ============================================================
-   ACTION BUTTON (VÀO WEB)
-   ============================================================ */
-.action-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    width: 100%;
-    padding: 16px 20px;
-    margin-bottom: 28px;
-    background: linear-gradient(135deg, #0a84ff, #0066cc);
-    border: none;
-    border-radius: 14px;
-    color: #fff;
-    font-family: var(--font);
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    text-decoration: none;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    box-shadow:
-        0 10px 30px -10px rgba(10, 132, 255, 0.6),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    transition: transform 0.2s cubic-bezier(0.34, 1.3, 0.64, 1), box-shadow 0.2s ease;
-    -webkit-user-select: none;
-    user-select: none;
-}
-
-.action-btn:hover {
-    transform: translateY(-1px);
-    box-shadow:
-        0 14px 36px -10px rgba(10, 132, 255, 0.75),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-}
-
-.action-btn:active {
-    transform: scale(0.985);
-    transition-duration: 0.06s;
-}
-
-.action-btn i {
-    font-size: 14px;
+    color: var(--text-2);
+    font-weight: 400;
+    max-width: 480px;
 }
 
 /* ============================================================
@@ -226,7 +203,7 @@ body {
     right: 20%;
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--accent), transparent);
-    opacity: 0.4;
+    opacity: 0.5;
 }
 
 .stat-label {
@@ -244,107 +221,16 @@ body {
     color: var(--text);
     line-height: 1.1;
     font-variant-numeric: tabular-nums;
+    transition: color 0.3s var(--ease);
 }
 
-/* ============================================================
-   INFO CARD
-   ============================================================ */
-.info-card {
-    padding: 20px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    margin-bottom: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-}
-
-.info-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.info-row:not(:last-child) {
-    padding-bottom: 14px;
-    border-bottom: 1px solid var(--border);
-}
-
-.info-icon {
-    flex-shrink: 0;
-    width: 32px;
-    height: 32px;
-    border-radius: 9px;
-    display: grid;
-    place-items: center;
-    font-size: 14px;
-    background: #1a1a1d;
-    color: var(--text-2);
-}
-
-.info-content {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-}
-
-.info-title {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--text);
-    letter-spacing: -0.008em;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.info-sub {
-    font-size: 12px;
-    font-weight: 400;
-    color: var(--text-3);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.info-link {
-    color: var(--accent);
-    text-decoration: none;
-    font-weight: 500;
-}
-
-.info-link:hover {
-    text-decoration: underline;
-}
-
-.badge-required {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 10.5px;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: #ff9f0a;
-    background: rgba(255, 159, 10, 0.1);
-    border: 1px solid rgba(255, 159, 10, 0.25);
-    border-radius: 6px;
-    padding: 3px 7px;
-    flex-shrink: 0;
-}
-
-.badge-required i {
-    font-size: 9px;
-}
+.stat-value.loading { color: var(--text-4); }
 
 /* ============================================================
    SEARCH
    ============================================================ */
 .search-wrap {
-    margin-bottom: 20px;
+    margin-bottom: 24px;
 }
 
 .search-box {
@@ -355,7 +241,7 @@ body {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 12px;
-    transition: border-color 0.2s ease, background 0.2s ease;
+    transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
 }
 
 .search-box:focus-within {
@@ -378,42 +264,186 @@ body {
     font-size: 14px;
     font-weight: 400;
     letter-spacing: -0.005em;
+    min-width: 0;
 }
 
-.search-box input::placeholder {
-    color: var(--text-4);
-}
+.search-box input::placeholder { color: var(--text-4); }
 
 .search-hint {
-    font-size: 12px;
+    font-size: 11.5px;
     color: var(--text-3);
     margin-top: 8px;
     padding-left: 4px;
 }
 
-.search-result {
+.no-result {
     display: none;
-    padding: 24px 16px;
+    padding: 22px 16px;
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 12px;
     text-align: center;
     font-size: 13.5px;
     color: var(--text-3);
+    margin-bottom: 24px;
 }
 
-.search-result i {
+.no-result.show { display: block; }
+
+.no-result i {
     display: block;
-    font-size: 24px;
+    font-size: 22px;
     color: var(--text-4);
     margin-bottom: 10px;
 }
 
 /* ============================================================
+   SECTION
+   ============================================================ */
+.section {
+    margin-bottom: 32px;
+}
+
+.section-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 12px;
+    padding-left: 4px;
+}
+
+.subsection {
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--text-3);
+    margin: 18px 0 8px;
+    padding-left: 4px;
+}
+
+.subsection:first-of-type { margin-top: 0; }
+
+/* ============================================================
+   LIST (khung bao ngoài, phân cách bằng line)
+   ============================================================ */
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+/* ============================================================
+   CARD
+   ============================================================ */
+.card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    background: var(--surface);
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s var(--ease);
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    min-height: 58px;
+}
+
+.card:hover { background: var(--surface-hover); }
+.card:active { background: var(--surface-active); }
+
+.card:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: -2px;
+}
+
+.card-icon {
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    display: grid;
+    place-items: center;
+    font-size: 16px;
+    line-height: 1;
+    background: #1a1a1d;
+    color: var(--text);
+}
+
+.card-content {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.card-title {
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--text);
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-sub {
+    font-size: 12.5px;
+    font-weight: 400;
+    color: var(--text-3);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-count {
+    flex-shrink: 0;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-3);
+    font-variant-numeric: tabular-nums;
+    padding: 3px 8px;
+    background: #1a1a1d;
+    border-radius: 6px;
+    opacity: 0;
+    transition: opacity 0.3s var(--ease), color 0.2s var(--ease);
+    min-width: 32px;
+    text-align: center;
+}
+
+.card-count.loaded { opacity: 1; }
+.card:hover .card-count { color: var(--text-2); }
+
+.card-arrow {
+    flex-shrink: 0;
+    color: var(--text-4);
+    font-size: 11px;
+    transition: color 0.2s var(--ease), transform 0.2s var(--ease);
+}
+
+.card:hover .card-arrow {
+    color: var(--text-2);
+    transform: translateX(2px);
+}
+
+/* ẩn card khi search không khớp */
+.card.hidden { display: none; }
+.list.hidden { display: none; }
+.subsection.hidden { display: none; }
+.section-title.hidden { display: none; }
+
+/* ============================================================
    FOOTER
    ============================================================ */
 .footer {
-    margin-top: 40px;
+    margin-top: 48px;
     padding-top: 20px;
     border-top: 1px solid var(--border);
     text-align: center;
@@ -435,11 +465,11 @@ body {
 @media (max-width: 380px) {
     body { padding: calc(18px + var(--safe-top)) 16px calc(48px + var(--safe-bot)); }
     .hero h1 { font-size: 26px; }
-    .hero .sub { font-size: 13.5px; }
-    .action-btn { padding: 14px 18px; font-size: 14px; }
+    .hero .bio { font-size: 13.5px; }
     .stat-value { font-size: 19px; }
-    .info-card { padding: 16px; }
-    .info-title { font-size: 13.5px; }
+    .card { padding: 13px 14px; gap: 12px; min-height: 54px; }
+    .card-title { font-size: 14px; }
+    .card-sub { font-size: 12px; }
 }
 </style>
 </head>
@@ -450,65 +480,31 @@ body {
     <!-- ===== TOP BAR ===== -->
     <header class="topbar">
         <div class="brand">
-            <div class="brand-logo">S</div>
+            <div class="brand-logo">H</div>
             <div class="brand-text">
-                <div class="brand-name">Sonchoigame</div>
-                <div class="brand-sub">NS MOD</div>
+                <div class="brand-name">Hoàng Hiệp</div>
+                <div class="brand-sub">Tài Nguyên iOS</div>
             </div>
         </div>
-        <div class="topbar-time" id="clock">18:48:14</div>
+        <div class="topbar-time" id="clock">--:--:--</div>
     </header>
 
     <!-- ===== HERO ===== -->
     <section class="hero">
-        <h1>NS MOD</h1>
-        <p class="sub">Tổng hợp tài nguyên, công cụ và IPA miễn phí cho cộng đồng iOS.</p>
+        <h1>Hoàng Hiệp</h1>
+        <div class="handle">@hiepmadia678</div>
+        <p class="bio">Chia sẻ tài nguyên vọc vạch iOS — chứng chỉ, công cụ và IPA miễn phí, cập nhật liên tục cho cộng đồng.</p>
     </section>
-
-    <!-- ===== ACTION BUTTON ===== -->
-    <a href="#" class="action-btn" id="enterBtn">
-        <i class="fas fa-arrow-right"></i>
-        <span>Nhấn VÀO WEB để phát</span>
-    </a>
 
     <!-- ===== STATS ===== -->
     <section class="stats-row">
         <div class="stat-box">
-            <div class="stat-label">Lượt xem</div>
-            <div class="stat-value">5.001</div>
+            <div class="stat-label">Lượt truy cập</div>
+            <div class="stat-value loading" data-value="visits">—</div>
         </div>
         <div class="stat-box">
-            <div class="stat-label">Cập nhật</div>
-            <div class="stat-value">2.026</div>
-        </div>
-    </section>
-
-    <!-- ===== INFO CARD ===== -->
-    <section class="info-card">
-        <div class="info-row">
-            <div class="info-icon">📢</div>
-            <div class="info-content">
-                <div class="info-title">ĐĂNG KÝ KÊNH TẠI ĐÂY</div>
-                <div class="info-sub">Kênh thông báo chính thức</div>
-            </div>
-            <span class="badge-required"><i class="fas fa-exclamation"></i>Bắt buộc</span>
-        </div>
-
-        <div class="info-row">
-            <div class="info-icon">🔗</div>
-            <div class="info-content">
-                <div class="info-title">NHÓM THÔNG BÁO</div>
-                <div class="info-sub">Tham gia để nhận cập nhật mới nhất</div>
-            </div>
-            <span class="badge-required"><i class="fas fa-exclamation"></i>Bắt buộc</span>
-        </div>
-
-        <div class="info-row">
-            <div class="info-icon">🇻🇳</div>
-            <div class="info-content">
-                <div class="info-title">Hỗ trợ tiếng Việt</div>
-                <div class="info-sub">Có dấu / không dấu và từ khóa gần đúng</div>
-            </div>
+            <div class="stat-label">Tổng lượt click</div>
+            <div class="stat-value loading" data-value="downloads">—</div>
         </div>
     </section>
 
@@ -521,14 +517,168 @@ body {
         <div class="search-hint">Hỗ trợ tìm kiếm có dấu, không dấu và từ khóa gần đúng.</div>
     </div>
 
-    <div class="search-result" id="searchResult">
+    <div class="no-result" id="noResult">
         <i class="fas fa-search"></i>
         Không tìm thấy kết quả
     </div>
 
+    <!-- ===== KẾT NỐI ===== -->
+    <section class="section" data-section>
+        <div class="section-title" data-section-title>Kết nối</div>
+
+        <div class="list" data-list>
+            <a href="https://discord.gg/hzYHCtFWdB" target="_blank" rel="noopener noreferrer" class="card" data-resource="social_discord_server" data-search="discord server cộng đồng">
+                <div class="card-icon">💬</div>
+                <div class="card-content">
+                    <div class="card-title">Discord Server</div>
+                    <div class="card-sub">Cộng đồng</div>
+                </div>
+                <span class="card-count" data-count="social_discord_server"></span>
+                <i class="fas fa-arrow-up-right-from-square card-arrow" aria-hidden="true"></i>
+            </a>
+
+            <a href="https://discord.gg/7A6hbKyK" target="_blank" rel="noopener noreferrer" class="card" data-resource="social_discord_dm" data-search="discord cá nhân hiepmadia678">
+                <div class="card-icon">💬</div>
+                <div class="card-content">
+                    <div class="card-title">Discord Cá Nhân</div>
+                    <div class="card-sub">@hiepmadia678</div>
+                </div>
+                <span class="card-count" data-count="social_discord_dm"></span>
+                <i class="fas fa-arrow-up-right-from-square card-arrow" aria-hidden="true"></i>
+            </a>
+
+            <a href="https://www.tiktok.com/@hiepmadia678?_r=1&_t=ZS-9AM019z2oQK" target="_blank" rel="noopener noreferrer" class="card" data-resource="social_tiktok" data-search="tiktok video hiepmadia678">
+                <div class="card-icon">🎵</div>
+                <div class="card-content">
+                    <div class="card-title">TikTok</div>
+                    <div class="card-sub">@hiepmadia678</div>
+                </div>
+                <span class="card-count" data-count="social_tiktok"></span>
+                <i class="fas fa-arrow-up-right-from-square card-arrow" aria-hidden="true"></i>
+            </a>
+
+            <a href="https://www.facebook.com/share/1Ea1z2vcK6/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="card" data-resource="social_facebook" data-search="facebook mạng xã hội hoàng hiệp">
+                <div class="card-icon">📘</div>
+                <div class="card-content">
+                    <div class="card-title">Facebook</div>
+                    <div class="card-sub">Hoàng Hiệp</div>
+                </div>
+                <span class="card-count" data-count="social_facebook"></span>
+                <i class="fas fa-arrow-up-right-from-square card-arrow" aria-hidden="true"></i>
+            </a>
+
+            <a href="https://www.instagram.com/hiepmadia678" target="_blank" rel="noopener noreferrer" class="card" data-resource="social_instagram" data-search="instagram ig hiepmadia678">
+                <div class="card-icon">📷</div>
+                <div class="card-content">
+                    <div class="card-title">Instagram</div>
+                    <div class="card-sub">@hiepmadia678</div>
+                </div>
+                <span class="card-count" data-count="social_instagram"></span>
+                <i class="fas fa-arrow-up-right-from-square card-arrow" aria-hidden="true"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- ===== TÀI NGUYÊN ===== -->
+    <section class="section" data-section>
+        <div class="section-title" data-section-title>Tài nguyên</div>
+
+        <!-- Chứng chỉ -->
+        <div class="subsection" data-subsection>Chứng chỉ</div>
+        <div class="list" data-list>
+            <a href="https://khoindvn.io.vn" target="_blank" rel="noopener noreferrer" class="card" data-resource="res_khoindvn" data-search="khoindvn esign ksign chứng chỉ cert">
+                <div class="card-icon">🔐</div>
+                <div class="card-content">
+                    <div class="card-title">Khoindvn</div>
+                    <div class="card-sub">Esign · Ksign</div>
+                </div>
+                <span class="card-count" data-count="res_khoindvn"></span>
+                <i class="fas fa-arrow-up-right-from-square card-arrow" aria-hidden="true"></i>
+            </a>
+
+            <a href="https://certios.xyz" target="_blank" rel="noopener noreferrer" class="card" data-resource="res_certios" data-search="certios csign free chứng chỉ cert">
+                <div class="card-icon">🔐</div>
+                <div class="card-content">
+                    <div class="card-title">Certios</div>
+                    <div class="card-sub">CSign Free</div>
+                </div>
+                <span class="card-count" data-count="res_certios"></span>
+                <i class="fas fa-arrow-up-right-from-square card-arrow" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <!-- Công cụ -->
+        <div class="subsection" data-subsection>Công cụ</div>
+        <div class="list" data-list>
+            <a href="https://sideinstaller.net/" target="_blank" rel="noopener noreferrer" class="card" data-resource="res_sideinstaller" data-search="sideinstaller sideload công cụ tool">
+                <div class="card-icon">🛠️</div>
+                <div class="card-content">
+                    <div class="card-title">SideInstaller</div>
+                    <div class="card-sub">Công cụ sideload</div>
+                </div>
+                <span class="card-count" data-count="res_sideinstaller"></span>
+                <i class="fas fa-arrow-up-right-from-square card-arrow" aria-hidden="true"></i>
+            </a>
+
+            <a href="https://config-fix-lag-ios.netlify.app/iphone_config_2026.mobileconfig" target="_blank" rel="noopener noreferrer" class="card" data-resource="res_fixlag" data-search="fix lag iphone 2026 config tối ưu">
+                <div class="card-icon">⚙️</div>
+                <div class="card-content">
+                    <div class="card-title">Fix Lag iPhone 2026</div>
+                    <div class="card-sub">Config tối ưu</div>
+                </div>
+                <span class="card-count" data-count="res_fixlag"></span>
+                <i class="fas fa-arrow-up-right-from-square card-arrow" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <!-- IPA -->
+        <div class="subsection" data-subsection>IPA Downloads</div>
+        <div class="list" data-list>
+            <a href="https://github.com/nguyenls3005-cell/Test-Up/releases/download/AirCard/AirCard-iOS_1.3.ipa" target="_blank" rel="noopener noreferrer" class="card" data-resource="res_aircard" data-search="aircard ios thẻ ảo tiện ích ipa">
+                <div class="card-icon">💳</div>
+                <div class="card-content">
+                    <div class="card-title">AirCard iOS</div>
+                    <div class="card-sub">Tiện ích</div>
+                </div>
+                <span class="card-count" data-count="res_aircard"></span>
+                <i class="fas fa-download card-arrow" aria-hidden="true"></i>
+            </a>
+
+            <a href="https://dl.ipas.cc/ipas/sbr4ai.ipa" target="_blank" rel="noopener noreferrer" class="card" data-resource="res_locket" data-search="locket premium widget ảnh ipa">
+                <div class="card-icon">📸</div>
+                <div class="card-content">
+                    <div class="card-title">Locket Premium</div>
+                    <div class="card-sub">Widget ảnh</div>
+                </div>
+                <span class="card-count" data-count="res_locket"></span>
+                <i class="fas fa-download card-arrow" aria-hidden="true"></i>
+            </a>
+
+            <a href="https://dl.ipas.cc/ipas/7q6hng.ipa" target="_blank" rel="noopener noreferrer" class="card" data-resource="res_spotify" data-search="spotify premium nghe nhạc ipa">
+                <div class="card-icon">🎧</div>
+                <div class="card-content">
+                    <div class="card-title">Spotify Premium</div>
+                    <div class="card-sub">Nghe nhạc</div>
+                </div>
+                <span class="card-count" data-count="res_spotify"></span>
+                <i class="fas fa-download card-arrow" aria-hidden="true"></i>
+            </a>
+
+            <a href="https://dl.ipas.cc/ipas/p8uoks.ipa" target="_blank" rel="noopener noreferrer" class="card" data-resource="res_youtube" data-search="youtube premium xem video ipa">
+                <div class="card-icon">▶️</div>
+                <div class="card-content">
+                    <div class="card-title">YouTube Premium</div>
+                    <div class="card-sub">Xem video</div>
+                </div>
+                <span class="card-count" data-count="res_youtube"></span>
+                <i class="fas fa-download card-arrow" aria-hidden="true"></i>
+            </a>
+        </div>
+    </section>
+
     <!-- ===== FOOTER ===== -->
     <footer class="footer">
-        <div>Made by <span class="name">Sonchoigame</span></div>
+        <div>Made by <span class="name">Hoàng Hiệp</span></div>
         <div>© 2026</div>
     </footer>
 
@@ -537,6 +687,25 @@ body {
 <script>
 (function () {
     "use strict";
+
+    const NAMESPACE = "hiepmadia678-hub";
+    const API_BASE = "https://abacus.jasoncameron.dev";
+
+    const RESOURCES = [
+        "social_discord_server",
+        "social_discord_dm",
+        "social_tiktok",
+        "social_facebook",
+        "social_instagram",
+        "res_khoindvn",
+        "res_certios",
+        "res_sideinstaller",
+        "res_fixlag",
+        "res_aircard",
+        "res_locket",
+        "res_spotify",
+        "res_youtube"
+    ];
 
     /* ===== CLOCK ===== */
     function updateClock() {
@@ -551,26 +720,171 @@ body {
     updateClock();
     setInterval(updateClock, 1000);
 
-    /* ===== SEARCH (demo) ===== */
-    const input = document.getElementById("searchInput");
-    const result = document.getElementById("searchResult");
+    /* ===== HELPERS ===== */
+    function formatNumber(n) {
+        if (n === null || n === undefined || isNaN(n)) return "—";
+        if (n >= 1000000) return (n / 1000000).toFixed(1).replace(".0", "") + "M";
+        if (n >= 1000) return (n / 1000).toFixed(1).replace(".0", "") + "K";
+        return String(n);
+    }
 
-    input.addEventListener("input", () => {
-        const q = input.value.trim();
-        if (q.length === 0) {
-            result.style.display = "none";
-            return;
+    function normalize(str) {
+        return str
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/đ/g, "d")
+            .replace(/Đ/g, "d")
+            .trim();
+    }
+
+    async function apiGet(key) {
+        try {
+            const res = await fetch(API_BASE + "/get/" + NAMESPACE + "/" + key, { cache: "no-store" });
+            if (!res.ok) throw new Error("API " + res.status);
+            const data = await res.json();
+            return typeof data.value === "number" ? data.value : 0;
+        } catch (err) {
+            return null;
         }
-        // Demo: không có dữ liệu thật, luôn báo không tìm thấy
-        result.style.display = "block";
-    });
+    }
 
-    /* ===== ENTER BUTTON ===== */
-    document.getElementById("enterBtn").addEventListener("click", (e) => {
-        e.preventDefault();
-        // TODO: đổi href="#" thành link thật của mày
-        if (navigator.vibrate) navigator.vibrate(10);
-    });
+    async function apiHit(key) {
+        try {
+            const res = await fetch(API_BASE + "/hit/" + NAMESPACE + "/" + key, { cache: "no-store" });
+            if (!res.ok) throw new Error("API " + res.status);
+            const data = await res.json();
+            return typeof data.value === "number" ? data.value : 0;
+        } catch (err) {
+            return null;
+        }
+    }
+
+    /* ===== VISITS ===== */
+    async function trackVisit() {
+        const el = document.querySelector('[data-value="visits"]');
+        if (!el) return;
+
+        let value = null;
+        const visited = sessionStorage.getItem("hh_visited");
+
+        if (!visited) {
+            value = await apiHit("visits");
+            if (value !== null) sessionStorage.setItem("hh_visited", "1");
+        } else {
+            value = await apiGet("visits");
+        }
+
+        if (value !== null) {
+            el.textContent = formatNumber(value);
+            el.classList.remove("loading");
+        } else {
+            el.textContent = "—";
+            el.classList.remove("loading");
+        }
+    }
+
+    /* ===== RESOURCE COUNTS ===== */
+    async function loadResourceCount(key) {
+        const el = document.querySelector('[data-count="' + key + '"]');
+        if (!el) return;
+        const value = await apiGet(key);
+        if (value !== null) {
+            el.textContent = formatNumber(value);
+            el.classList.add("loaded");
+        }
+    }
+
+    function attachClickHandlers() {
+        document.querySelectorAll("[data-resource]").forEach((card) => {
+            card.addEventListener("click", () => {
+                const key = card.getAttribute("data-resource");
+                if (!key) return;
+
+                apiHit(key).then((value) => {
+                    const el = document.querySelector('[data-count="' + key + '"]');
+                    if (el && value !== null) {
+                        el.textContent = formatNumber(value);
+                        el.classList.add("loaded");
+                    }
+                });
+
+                updateTotalClicks();
+            });
+        });
+    }
+
+    async function updateTotalClicks() {
+        const el = document.querySelector('[data-value="downloads"]');
+        if (!el) return;
+
+        const values = await Promise.all(RESOURCES.map((key) => apiGet(key)));
+        const total = values.reduce((sum, v) => sum + (v || 0), 0);
+
+        el.textContent = formatNumber(total);
+        el.classList.remove("loading");
+    }
+
+    /* ===== SEARCH ===== */
+    function setupSearch() {
+        const input = document.getElementById("searchInput");
+        const noResult = document.getElementById("noResult");
+        if (!input) return;
+
+        const allCards = Array.from(document.querySelectorAll("[data-resource]"));
+
+        input.addEventListener("input", () => {
+            const q = normalize(input.value);
+            let visibleCount = 0;
+
+            allCards.forEach((card) => {
+                const haystack = normalize(
+                    (card.getAttribute("data-search") || "") + " " +
+                    (card.querySelector(".card-title")?.textContent || "") + " " +
+                    (card.querySelector(".card-sub")?.textContent || "")
+                );
+                const match = q === "" || haystack.includes(q);
+                card.classList.toggle("hidden", !match);
+                if (match) visibleCount++;
+            });
+
+            // Ẩn/hiện subsection + list nếu không có card nào visible
+            document.querySelectorAll("[data-list]").forEach((list) => {
+                const hasVisible = list.querySelector("[data-resource]:not(.hidden)");
+                list.classList.toggle("hidden", !hasVisible);
+            });
+
+            document.querySelectorAll("[data-subsection]").forEach((sub) => {
+                const nextList = sub.nextElementSibling;
+                const hasVisible = nextList && nextList.querySelector("[data-resource]:not(.hidden)");
+                sub.classList.toggle("hidden", !hasVisible);
+            });
+
+            // Ẩn section nếu không còn gì
+            document.querySelectorAll("[data-section]").forEach((section) => {
+                const hasVisible = section.querySelector("[data-resource]:not(.hidden)");
+                section.classList.toggle("hidden", !hasVisible);
+            });
+
+            // Hiện no-result nếu không match gì
+            noResult.classList.toggle("show", visibleCount === 0 && q !== "");
+        });
+    }
+
+    /* ===== INIT ===== */
+    function init() {
+        trackVisit();
+        RESOURCES.forEach(loadResourceCount);
+        updateTotalClicks();
+        attachClickHandlers();
+        setupSearch();
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", init);
+    } else {
+        init();
+    }
 })();
 </script>
 </body>
