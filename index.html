@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#0a0a0a">
+<meta name="theme-color" content="#020617">
 <meta name="color-scheme" content="dark">
 <title>Hoàng Hiệp — Tài Nguyên iOS</title>
 <meta name="description" content="Chia sẻ tài nguyên vọc vạch iOS — chứng chỉ, công cụ và IPA miễn phí, cập nhật liên tục.">
@@ -11,26 +11,40 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Hoàng Hiệp — Tài Nguyên iOS">
 <meta property="og:description" content="Chứng chỉ, công cụ và IPA miễn phí cho cộng đồng iOS.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a0a0a'/%3E%3Ctext x='50' y='68' font-family='system-ui' font-size='54' font-weight='600' fill='%23fafafa' text-anchor='middle'%3EH%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23020617'/%3E%3Ctext x='50' y='68' font-family='system-ui' font-size='54' font-weight='600' fill='%2394fdf8' text-anchor='middle'%3EH%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
 :root {
-    --bg: #0a0a0a;
-    --surface: #121212;
-    --surface-hover: #181818;
-    --border: #1f1f1f;
-    --border-hover: #2e2e2e;
-    --text: #fafafa;
-    --text-2: #a1a1a1;
-    --text-3: #666666;
-    --text-4: #444444;
+    --bg: #020617;
+    --bg-glow-1: rgba(148, 253, 248, 0.12);
+    --bg-glow-2: rgba(59, 130, 246, 0.10);
+    --surface: rgba(255, 255, 255, 0.035);
+    --surface-hover: rgba(255, 255, 255, 0.065);
+    --surface-active: rgba(255, 255, 255, 0.09);
+    --border: rgba(255, 255, 255, 0.08);
+    --border-hover: rgba(255, 255, 255, 0.18);
+    --text: #f8fafc;
+    --text-2: #94a3b8;
+    --text-3: #64748b;
+    --text-4: #475569;
+    --accent: #94fdf8;
+    --accent-dim: rgba(148, 253, 248, 0.15);
+    --accent-glow: rgba(148, 253, 248, 0.4);
+    --green: #4ade80;
     --font: "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    --radius-card: 16px;
+    --radius-pill: 100px;
+    --radius-badge: 8px;
     --safe-top: env(safe-area-inset-top, 0px);
     --safe-bot: env(safe-area-inset-bottom, 0px);
+    --ease: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -45,35 +59,87 @@ body {
     min-height: 100dvh;
     display: flex;
     justify-content: center;
-    padding: calc(48px + var(--safe-top)) 20px calc(60px + var(--safe-bot));
+    padding: calc(48px + var(--safe-top)) 20px calc(72px + var(--safe-bot));
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     letter-spacing: -0.011em;
     line-height: 1.5;
-    animation: pageIn 0.4s ease-out;
+    position: relative;
+    overflow-x: hidden;
+    animation: pageIn 0.5s var(--ease);
 }
 
 @keyframes pageIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   BACKGROUND GLOW — animated
+   ============================================================ */
+.bg-glow {
+    position: fixed;
+    inset: -20%;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.bg-glow::before,
+.bg-glow::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    will-change: transform;
+}
+
+.bg-glow::before {
+    width: 520px;
+    height: 520px;
+    background: var(--bg-glow-1);
+    top: -180px;
+    left: -160px;
+    animation: float1 22s ease-in-out infinite;
+}
+
+.bg-glow::after {
+    width: 460px;
+    height: 460px;
+    background: var(--bg-glow-2);
+    bottom: -160px;
+    right: -140px;
+    animation: float2 26s ease-in-out infinite;
+}
+
+@keyframes float1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(60px, 40px) scale(1.15); }
+}
+
+@keyframes float2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-50px, -40px) scale(1.2); }
 }
 
 .container {
     width: 100%;
     max-width: 560px;
+    position: relative;
+    z-index: 1;
 }
 
-/* ============================================
+/* ============================================================
    HERO
-   ============================================ */
+   ============================================================ */
 .hero {
-    margin-bottom: 56px;
+    margin-bottom: 36px;
 }
 
 .hero h1 {
-    font-size: 32px;
-    font-weight: 600;
-    letter-spacing: -0.025em;
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
     color: var(--text);
     margin-bottom: 6px;
     line-height: 1.15;
@@ -82,11 +148,17 @@ body {
 .hero .handle {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 7px;
     font-size: 14px;
     font-weight: 500;
     color: var(--text-2);
-    margin-bottom: 20px;
+    margin-bottom: 18px;
+    padding: 5px 12px 5px 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 
 .hero .handle::before {
@@ -94,15 +166,15 @@ body {
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: #4ade80;
-    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6);
+    background: var(--green);
+    box-shadow: 0 0 8px var(--green);
     animation: statusPulse 2.4s ease-out infinite;
 }
 
 @keyframes statusPulse {
-    0% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6); }
-    70% { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+    0% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6), 0 0 8px var(--green); }
+    70% { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0), 0 0 8px var(--green); }
+    100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0), 0 0 8px var(--green); }
 }
 
 .hero .bio {
@@ -113,11 +185,86 @@ body {
     max-width: 480px;
 }
 
-/* ============================================
+/* ============================================================
+   STATS
+   ============================================================ */
+.stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.stat {
+    padding: 18px 18px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
+}
+
+.stat::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 15%;
+    right: 15%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0;
+    transition: opacity 0.4s var(--ease);
+}
+
+.stat.loaded::before { opacity: 1; }
+
+.stat .label {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-3);
+}
+
+.stat .label .icon {
+    font-size: 13px;
+    line-height: 1;
+}
+
+.stat .value {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--text);
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+    transition: color 0.3s var(--ease);
+}
+
+.stat .value.loading {
+    color: var(--text-4);
+    animation: valuePulse 1.4s ease-in-out infinite;
+}
+
+@keyframes valuePulse {
+    0%, 100% { opacity: 0.35; }
+    50% { opacity: 0.7; }
+}
+
+/* ============================================================
    SECTION
-   ============================================ */
+   ============================================================ */
 .section {
-    margin-bottom: 44px;
+    margin-bottom: 36px;
 }
 
 .section-title {
@@ -129,38 +276,37 @@ body {
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--text-3);
-    margin-bottom: 16px;
+    margin-bottom: 14px;
     padding-left: 2px;
 }
 
 .section-title .icon {
     font-size: 13px;
     line-height: 1;
-    filter: saturate(0.9);
 }
 
 .category {
     font-size: 13px;
     font-weight: 500;
     color: var(--text-2);
-    margin: 22px 0 10px;
+    margin: 20px 0 8px;
     padding-left: 2px;
 }
 
 .category:first-of-type { margin-top: 0; }
 
-/* ============================================
+/* ============================================================
    LIST
-   ============================================ */
+   ============================================================ */
 .list {
     display: flex;
     flex-direction: column;
     gap: 6px;
 }
 
-/* ============================================
+/* ============================================================
    CARD
-   ============================================ */
+   ============================================================ */
 .card {
     display: flex;
     align-items: center;
@@ -168,28 +314,40 @@ body {
     padding: 14px 16px;
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 10px;
+    border-radius: var(--radius-card);
     text-decoration: none;
     color: inherit;
-    transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
-    min-height: 56px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition:
+        background 0.2s var(--ease),
+        border-color 0.2s var(--ease),
+        box-shadow 0.3s var(--ease),
+        transform 0.15s var(--ease);
+    min-height: 58px;
     cursor: pointer;
     -webkit-user-select: none;
     user-select: none;
+    position: relative;
+    overflow: hidden;
 }
 
 .card:hover {
     background: var(--surface-hover);
     border-color: var(--border-hover);
+    box-shadow:
+        0 0 0 1px rgba(148, 253, 248, 0.08),
+        0 8px 32px -8px rgba(148, 253, 248, 0.15);
 }
 
 .card:active {
     transform: scale(0.995);
-    transition-duration: 0.05s;
+    background: var(--surface-active);
+    transition-duration: 0.06s;
 }
 
 .card:focus-visible {
-    outline: 2px solid var(--text-2);
+    outline: 2px solid var(--accent);
     outline-offset: 2px;
 }
 
@@ -228,23 +386,66 @@ body {
     text-overflow: ellipsis;
 }
 
+.card .count {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-4);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-badge);
+    padding: 3px 8px;
+    font-variant-numeric: tabular-nums;
+    transition: color 0.2s var(--ease), border-color 0.2s var(--ease), background 0.2s var(--ease);
+    opacity: 0;
+    min-width: 32px;
+    justify-content: center;
+}
+
+.card .count.loaded { opacity: 1; }
+
+.card:hover .count {
+    color: var(--text-2);
+    border-color: var(--border-hover);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.card .count .icon {
+    font-size: 9px;
+    line-height: 1;
+    opacity: 0.8;
+}
+
+.card .count.bump {
+    animation: countBump 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes countBump {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); color: var(--accent); border-color: var(--accent); }
+    100% { transform: scale(1); }
+}
+
 .card .arrow {
     flex-shrink: 0;
     color: var(--text-4);
     font-size: 11px;
-    transition: color 0.15s ease, transform 0.15s ease;
+    transition: color 0.2s var(--ease), transform 0.2s var(--ease);
 }
 
 .card:hover .arrow {
-    color: var(--text-2);
-    transform: translateX(2px);
+    color: var(--accent);
+    transform: translateX(3px);
 }
 
-/* ============================================
+/* ============================================================
    FOOTER
-   ============================================ */
+   ============================================================ */
 .footer {
-    margin-top: 64px;
+    margin-top: 56px;
     padding-top: 24px;
     border-top: 1px solid var(--border);
     text-align: center;
@@ -260,18 +461,22 @@ body {
     font-weight: 500;
 }
 
-/* ============================================
+/* ============================================================
    SMALL
-   ============================================ */
+   ============================================================ */
 @media (max-width: 380px) {
-    body { padding: calc(36px + var(--safe-top)) 16px calc(48px + var(--safe-bot)); }
-    .hero { margin-bottom: 44px; }
+    body { padding: calc(36px + var(--safe-top)) 16px calc(56px + var(--safe-bot)); }
+    .hero { margin-bottom: 28px; }
     .hero h1 { font-size: 28px; }
     .hero .bio { font-size: 14px; }
-    .card { padding: 13px 14px; gap: 12px; min-height: 52px; }
+    .stats { gap: 8px; margin-bottom: 32px; }
+    .stat { padding: 15px 14px; }
+    .stat .value { font-size: 22px; }
+    .card { padding: 13px 14px; gap: 12px; min-height: 54px; }
     .card .emoji { width: 24px; font-size: 17px; }
     .card .title { font-size: 13.5px; }
     .card .sub { font-size: 11.5px; }
+    .card .count { font-size: 10px; padding: 2px 6px; min-width: 28px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -279,10 +484,13 @@ body {
         animation-duration: 0.01ms !important;
         transition-duration: 0.01ms !important;
     }
+    .bg-glow::before, .bg-glow::after { animation: none; }
 }
 </style>
 </head>
 <body>
+
+<div class="bg-glow" aria-hidden="true"></div>
 
 <main class="container">
 
@@ -293,6 +501,24 @@ body {
         <p class="bio">Chia sẻ tài nguyên vọc vạch iOS — chứng chỉ, công cụ và IPA miễn phí, cập nhật liên tục cho cộng đồng.</p>
     </header>
 
+    <!-- ===== STATS ===== -->
+    <section class="stats">
+        <div class="stat" id="statVisits">
+            <div class="label">
+                <span class="icon">👁️</span>
+                <span>Lượt truy cập</span>
+            </div>
+            <div class="value loading" data-value="visits">—</div>
+        </div>
+        <div class="stat" id="statDownloads">
+            <div class="label">
+                <span class="icon">📥</span>
+                <span>Tổng lượt tải</span>
+            </div>
+            <div class="value loading" data-value="downloads">—</div>
+        </div>
+    </section>
+
     <!-- ===== KẾT NỐI ===== -->
     <section class="section">
         <h2 class="section-title">
@@ -301,48 +527,53 @@ body {
         </h2>
 
         <div class="list">
-            <a href="https://discord.gg/hzYHCtFWdB" target="_blank" rel="noopener noreferrer" class="card">
+            <a href="https://discord.gg/hzYHCtFWdB" target="_blank" rel="noopener noreferrer" class="card" data-resource="social_discord_server">
                 <span class="emoji">💬</span>
                 <span class="content">
                     <span class="title">Discord Server</span>
                     <span class="sub">Cộng đồng</span>
                 </span>
+                <span class="count" data-count="social_discord_server"></span>
                 <i class="fas fa-arrow-up-right-from-square arrow" aria-hidden="true"></i>
             </a>
 
-            <a href="https://discord.gg/7A6hbKyK" target="_blank" rel="noopener noreferrer" class="card">
+            <a href="https://discord.gg/7A6hbKyK" target="_blank" rel="noopener noreferrer" class="card" data-resource="social_discord_dm">
                 <span class="emoji">💬</span>
                 <span class="content">
                     <span class="title">Discord Cá Nhân</span>
                     <span class="sub">@hiepmadia678</span>
                 </span>
+                <span class="count" data-count="social_discord_dm"></span>
                 <i class="fas fa-arrow-up-right-from-square arrow" aria-hidden="true"></i>
             </a>
 
-            <a href="https://www.tiktok.com/@hiepmadia678?_r=1&_t=ZS-9AM019z2oQK" target="_blank" rel="noopener noreferrer" class="card">
+            <a href="https://www.tiktok.com/@hiepmadia678?_r=1&_t=ZS-9AM019z2oQK" target="_blank" rel="noopener noreferrer" class="card" data-resource="social_tiktok">
                 <span class="emoji">🎵</span>
                 <span class="content">
                     <span class="title">TikTok</span>
                     <span class="sub">@hiepmadia678</span>
                 </span>
+                <span class="count" data-count="social_tiktok"></span>
                 <i class="fas fa-arrow-up-right-from-square arrow" aria-hidden="true"></i>
             </a>
 
-            <a href="https://www.facebook.com/share/1Ea1z2vcK6/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="card">
+            <a href="https://www.facebook.com/share/1Ea1z2vcK6/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="card" data-resource="social_facebook">
                 <span class="emoji">📘</span>
                 <span class="content">
                     <span class="title">Facebook</span>
                     <span class="sub">Hoàng Hiệp</span>
                 </span>
+                <span class="count" data-count="social_facebook"></span>
                 <i class="fas fa-arrow-up-right-from-square arrow" aria-hidden="true"></i>
             </a>
 
-            <a href="https://www.instagram.com/hiepmadia678" target="_blank" rel="noopener noreferrer" class="card">
+            <a href="https://www.instagram.com/hiepmadia678" target="_blank" rel="noopener noreferrer" class="card" data-resource="social_instagram">
                 <span class="emoji">📷</span>
                 <span class="content">
                     <span class="title">Instagram</span>
                     <span class="sub">@hiepmadia678</span>
                 </span>
+                <span class="count" data-count="social_instagram"></span>
                 <i class="fas fa-arrow-up-right-from-square arrow" aria-hidden="true"></i>
             </a>
         </div>
@@ -355,86 +586,91 @@ body {
             <span>Tài nguyên</span>
         </h2>
 
-        <!-- Chứng chỉ -->
         <h3 class="category">🔐 Chứng chỉ</h3>
         <div class="list">
-            <a href="https://khoindvn.io.vn" target="_blank" rel="noopener noreferrer" class="card">
+            <a href="https://khoindvn.io.vn" target="_blank" rel="noopener noreferrer" class="card" data-resource="res_khoindvn">
                 <span class="emoji">🔐</span>
                 <span class="content">
                     <span class="title">Khoindvn</span>
                     <span class="sub">Esign · Ksign</span>
                 </span>
+                <span class="count" data-count="res_khoindvn"></span>
                 <i class="fas fa-arrow-up-right-from-square arrow" aria-hidden="true"></i>
             </a>
 
-            <a href="https://certios.xyz" target="_blank" rel="noopener noreferrer" class="card">
+            <a href="https://certios.xyz" target="_blank" rel="noopener noreferrer" class="card" data-resource="res_certios">
                 <span class="emoji">🔐</span>
                 <span class="content">
                     <span class="title">Certios</span>
                     <span class="sub">CSign Free</span>
                 </span>
+                <span class="count" data-count="res_certios"></span>
                 <i class="fas fa-arrow-up-right-from-square arrow" aria-hidden="true"></i>
             </a>
         </div>
 
-        <!-- Công cụ -->
         <h3 class="category">🛠️ Công cụ</h3>
         <div class="list">
-            <a href="https://sideinstaller.net/" target="_blank" rel="noopener noreferrer" class="card">
+            <a href="https://sideinstaller.net/" target="_blank" rel="noopener noreferrer" class="card" data-resource="res_sideinstaller">
                 <span class="emoji">🛠️</span>
                 <span class="content">
                     <span class="title">SideInstaller</span>
                     <span class="sub">Công cụ sideload</span>
                 </span>
+                <span class="count" data-count="res_sideinstaller"></span>
                 <i class="fas fa-arrow-up-right-from-square arrow" aria-hidden="true"></i>
             </a>
 
-            <a href="https://config-fix-lag-ios.netlify.app/iphone_config_2026.mobileconfig" target="_blank" rel="noopener noreferrer" class="card">
+            <a href="https://config-fix-lag-ios.netlify.app/iphone_config_2026.mobileconfig" target="_blank" rel="noopener noreferrer" class="card" data-resource="res_fixlag">
                 <span class="emoji">⚙️</span>
                 <span class="content">
                     <span class="title">Fix Lag iPhone 2026</span>
                     <span class="sub">Config tối ưu</span>
                 </span>
+                <span class="count" data-count="res_fixlag"></span>
                 <i class="fas fa-arrow-up-right-from-square arrow" aria-hidden="true"></i>
             </a>
         </div>
 
-        <!-- IPA -->
         <h3 class="category">📥 IPA Downloads</h3>
         <div class="list">
-            <a href="https://github.com/nguyenls3005-cell/Test-Up/releases/download/AirCard/AirCard-iOS_1.3.ipa" target="_blank" rel="noopener noreferrer" class="card">
+            <a href="https://github.com/nguyenls3005-cell/Test-Up/releases/download/AirCard/AirCard-iOS_1.3.ipa" target="_blank" rel="noopener noreferrer" class="card" data-resource="res_aircard">
                 <span class="emoji">💳</span>
                 <span class="content">
                     <span class="title">AirCard iOS</span>
                     <span class="sub">Thẻ ảo</span>
                 </span>
+                <span class="count" data-count="res_aircard"></span>
                 <i class="fas fa-download arrow" aria-hidden="true"></i>
             </a>
 
-            <a href="https://dl.ipas.cc/ipas/sbr4ai.ipa" target="_blank" rel="noopener noreferrer" class="card">
+            <a href="https://dl.ipas.cc/ipas/sbr4ai.ipa" target="_blank" rel="noopener noreferrer" class="card" data-resource="res_locket">
                 <span class="emoji">📸</span>
                 <span class="content">
                     <span class="title">Locket Premium</span>
                     <span class="sub">Widget ảnh</span>
                 </span>
+                <span class="count" data-count="res_locket"></span>
                 <i class="fas fa-download arrow" aria-hidden="true"></i>
             </a>
 
-            <a href="https://dl.ipas.cc/ipas/7q6hng.ipa" target="_blank" rel="noopener noreferrer" class="card">
+            <a href="https://dl.ipas.cc/ipas/7q6hng.ipa" target="_blank" rel="noopener noreferrer" class="card" data-resource="res_spotify">
                 <span class="emoji">🎧</span>
                 <span class="content">
                     <span class="title">Spotify Premium</span>
                     <span class="sub">Nghe nhạc</span>
                 </span>
+                <span class="count" data-count="res_spotify"></span>
                 <i class="fas fa-download arrow" aria-hidden="true"></i>
             </a>
 
-            <a href="https://dl.ipas.cc/ipas/p8uoks.ipa" target="_blank" rel="noopener noreferrer" class="card">
+            <a href="https://dl.ipas.cc/ipas/p8uoks.ipa" target="_blank" rel="noopener noreferrer" class="card" data-resource="res_youtube">
                 <span class="emoji">▶️</span>
                 <span class="content">
                     <span class="title">YouTube Premium</span>
                     <span class="sub">Xem video</span>
                 </span>
+                <span class="count" data-count="res_youtube"></span>
                 <i class="fas fa-download arrow" aria-hidden="true"></i>
             </a>
         </div>
@@ -448,5 +684,175 @@ body {
 
 </main>
 
+<script>
+(function () {
+    "use strict";
+
+    /* ============================================================
+       CONFIG
+       ============================================================ */
+    const NAMESPACE = "hiepmadia678-hub";
+    const API_BASE = "https://abacus.jasoncameron.dev";
+
+    // Tất cả resource keys — social + tài nguyên
+    const RESOURCES = [
+        "social_discord_server",
+        "social_discord_dm",
+        "social_tiktok",
+        "social_facebook",
+        "social_instagram",
+        "res_khoindvn",
+        "res_certios",
+        "res_sideinstaller",
+        "res_fixlag",
+        "res_aircard",
+        "res_locket",
+        "res_spotify",
+        "res_youtube"
+    ];
+
+    /* ============================================================
+       HELPERS
+       ============================================================ */
+    function formatNumber(n) {
+        if (n === null || n === undefined || isNaN(n)) return "—";
+        if (n >= 1000000) return (n / 1000000).toFixed(1).replace(".0", "") + "M";
+        if (n >= 1000) return (n / 1000).toFixed(1).replace(".0", "") + "K";
+        return String(n);
+    }
+
+    async function apiGet(key) {
+        try {
+            const res = await fetch(API_BASE + "/get/" + NAMESPACE + "/" + key, {
+                method: "GET",
+                cache: "no-store"
+            });
+            if (!res.ok) throw new Error("API " + res.status);
+            const data = await res.json();
+            return typeof data.value === "number" ? data.value : 0;
+        } catch (err) {
+            console.warn("[Counter] get failed:", key, err.message);
+            return null;
+        }
+    }
+
+    async function apiHit(key) {
+        try {
+            const res = await fetch(API_BASE + "/hit/" + NAMESPACE + "/" + key, {
+                method: "GET",
+                cache: "no-store"
+            });
+            if (!res.ok) throw new Error("API " + res.status);
+            const data = await res.json();
+            return typeof data.value === "number" ? data.value : 0;
+        } catch (err) {
+            console.warn("[Counter] hit failed:", key, err.message);
+            return null;
+        }
+    }
+
+    /* ============================================================
+       VISIT COUNTER (đếm 1 lần/session)
+       ============================================================ */
+    async function trackVisit() {
+        const el = document.querySelector('[data-value="visits"]');
+        if (!el) return;
+
+        let value = null;
+        const visited = sessionStorage.getItem("hh_visited");
+
+        if (!visited) {
+            value = await apiHit("visits");
+            if (value !== null) sessionStorage.setItem("hh_visited", "1");
+        } else {
+            value = await apiGet("visits");
+        }
+
+        if (value !== null) {
+            el.textContent = formatNumber(value);
+            el.classList.remove("loading");
+            const stat = el.closest(".stat");
+            if (stat) stat.classList.add("loaded");
+        } else {
+            el.textContent = "—";
+            el.classList.remove("loading");
+        }
+    }
+
+    /* ============================================================
+       LOAD COUNTERS CHO TẤT CẢ CÁC NÚT
+       ============================================================ */
+    async function loadResourceCount(key) {
+        const el = document.querySelector('[data-count="' + key + '"]');
+        if (!el) return;
+
+        const value = await apiGet(key);
+        if (value !== null) {
+            el.innerHTML = '<i class="fas fa-arrow-down icon"></i>' + formatNumber(value);
+            el.classList.add("loaded");
+        }
+    }
+
+    /* ============================================================
+       CLICK HANDLER — tăng counter khi click
+       ============================================================ */
+    function attachClickHandlers() {
+        document.querySelectorAll("[data-resource]").forEach((card) => {
+            card.addEventListener("click", () => {
+                const key = card.getAttribute("data-resource");
+                if (!key) return;
+
+                // Tăng counter (fire and forget)
+                apiHit(key).then((value) => {
+                    const el = document.querySelector('[data-count="' + key + '"]');
+                    if (el && value !== null) {
+                        el.innerHTML = '<i class="fas fa-arrow-down icon"></i>' + formatNumber(value);
+                        el.classList.add("loaded", "bump");
+                        setTimeout(() => el.classList.remove("bump"), 400);
+                    }
+                });
+
+                // Cập nhật tổng lượt tải
+                updateTotalDownloads();
+            });
+        });
+    }
+
+    /* ============================================================
+       TỔNG LƯỢT TẢI (sum của tất cả resource)
+       ============================================================ */
+    async function updateTotalDownloads() {
+        const el = document.querySelector('[data-value="downloads"]');
+        if (!el) return;
+
+        const values = await Promise.all(
+            RESOURCES.map((key) => apiGet(key))
+        );
+
+        const total = values.reduce((sum, v) => sum + (v || 0), 0);
+
+        el.textContent = formatNumber(total);
+        el.classList.remove("loading");
+        const stat = el.closest(".stat");
+        if (stat) stat.classList.add("loaded");
+    }
+
+    /* ============================================================
+       INIT
+       ============================================================ */
+    function init() {
+        trackVisit();
+        RESOURCES.forEach(loadResourceCount);
+        updateTotalDownloads();
+        attachClickHandlers();
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", init);
+    } else {
+        init();
+    }
+})();
+</script>
 </body>
 </html>
