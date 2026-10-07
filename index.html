@@ -24,7 +24,6 @@
     --amber-glow: rgba(245, 158, 11, 0.5);
     --teal: #14b8a6;
     --teal-2: #2dd4bf;
-    --teal-glow: rgba(20, 184, 166, 0.45);
     --violet: #8b5cf6;
     --success: #22c55e;
     --danger: #ef4444;
@@ -35,7 +34,6 @@
     --surface: rgba(255, 255, 255, 0.028);
     --surface-hi: rgba(255, 255, 255, 0.05);
     --border: rgba(255, 255, 255, 0.07);
-    --border-hi: rgba(255, 255, 255, 0.14);
     --font-body: "Be Vietnam Pro", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
     --font-display: "Outfit", "Be Vietnam Pro", sans-serif;
     --safe-top: env(safe-area-inset-top, 0px);
@@ -44,10 +42,8 @@
     --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
     --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 html { -webkit-text-size-adjust: 100%; }
-
 body {
     font-family: var(--font-body);
     background: var(--bg);
@@ -64,21 +60,14 @@ body {
     overflow-x: hidden;
     position: relative;
 }
-
 .ambient {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    overflow: hidden;
+    position: fixed; inset: 0; z-index: 0;
+    pointer-events: none; overflow: hidden;
 }
 .ambient::before,
 .ambient::after {
-    content: "";
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(100px);
-    will-change: transform;
+    content: ""; position: absolute; border-radius: 50%;
+    filter: blur(100px); will-change: transform;
 }
 .ambient::before {
     width: 620px; height: 620px;
@@ -100,11 +89,8 @@ body {
     0%, 100% { transform: translate(0, 0) scale(1); }
     50% { transform: translate(-60px, -50px) scale(1.15); }
 }
-
 .grid-bg {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
+    position: fixed; inset: 0; z-index: 0;
     pointer-events: none;
     background-image:
         linear-gradient(rgba(255, 255, 255, 0.016) 1px, transparent 1px),
@@ -113,7 +99,6 @@ body {
     mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 0%, transparent 85%);
     -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 0%, transparent 85%);
 }
-
 .top-dock {
     position: fixed;
     top: calc(12px + var(--safe-top));
@@ -122,9 +107,7 @@ body {
     width: calc(100% - 28px);
     max-width: 500px;
     z-index: 60;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: flex; align-items: center; justify-content: space-between;
     gap: 10px;
     padding: 8px 8px 8px 16px;
     background: rgba(10, 12, 24, 0.72);
@@ -132,25 +115,18 @@ body {
     border-radius: 100px;
     backdrop-filter: blur(24px) saturate(160%);
     -webkit-backdrop-filter: blur(24px) saturate(160%);
-    box-shadow:
-        0 12px 32px -12px rgba(0, 0, 0, 0.6),
-        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    box-shadow: 0 12px 32px -12px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 .dock-clock {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
+    display: inline-flex; align-items: center; gap: 8px;
     font-family: var(--font-display);
-    font-size: 13px;
-    font-weight: 600;
+    font-size: 13px; font-weight: 600;
     color: var(--text-2);
     font-variant-numeric: tabular-nums;
-    letter-spacing: 0.02em;
-    padding-left: 6px;
+    letter-spacing: 0.02em; padding-left: 6px;
 }
 .dock-clock i {
-    color: var(--amber);
-    font-size: 12px;
+    color: var(--amber); font-size: 12px;
     filter: drop-shadow(0 0 6px var(--amber-glow));
 }
 .dock-actions { display: flex; gap: 6px; }
@@ -158,19 +134,12 @@ body {
     position: relative;
     width: 40px; height: 40px;
     border-radius: 50%;
-    display: grid;
-    place-items: center;
+    display: grid; place-items: center;
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    color: var(--text-2);
-    font-size: 14px;
-    cursor: pointer;
-    font-family: inherit;
-    transition:
-        background 0.2s var(--ease-smooth),
-        border-color 0.2s var(--ease-smooth),
-        color 0.2s var(--ease-smooth),
-        transform 0.15s var(--ease-spring);
+    color: var(--text-2); font-size: 14px;
+    cursor: pointer; font-family: inherit;
+    transition: background 0.2s var(--ease-smooth), border-color 0.2s var(--ease-smooth), color 0.2s var(--ease-smooth), transform 0.15s var(--ease-spring);
 }
 .dock-btn:hover {
     background: rgba(255, 255, 255, 0.08);
@@ -178,99 +147,64 @@ body {
     color: var(--text-1);
 }
 .dock-btn:active { transform: scale(0.9); }
-.dock-btn:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
 .dock-badge {
     position: absolute;
     top: 2px; right: 2px;
     min-width: 16px; height: 16px;
-    padding: 0 4px;
-    border-radius: 8px;
+    padding: 0 4px; border-radius: 8px;
     background: linear-gradient(135deg, var(--amber), #d97706);
-    color: #fff;
-    font-size: 9px;
-    font-weight: 800;
-    display: grid;
-    place-items: center;
+    color: #fff; font-size: 9px; font-weight: 800;
+    display: grid; place-items: center;
     font-family: var(--font-display);
-    letter-spacing: 0;
     box-shadow: 0 0 8px var(--amber-glow);
     border: 1.5px solid var(--bg);
 }
-
 .container {
-    width: 100%;
-    max-width: 500px;
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
+    width: 100%; max-width: 500px;
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; gap: 18px;
 }
-
 .profile {
     padding: 20px;
-    background:
-        linear-gradient(135deg, rgba(245, 158, 11, 0.06) 0%, rgba(20, 184, 166, 0.04) 100%),
-        var(--surface);
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.06) 0%, rgba(20, 184, 166, 0.04) 100%), var(--surface);
     border: 1px solid var(--border);
     border-radius: 22px;
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    gap: 16px;
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; gap: 16px;
 }
 .profile::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 10%; right: 10%;
-    height: 1px;
+    content: ""; position: absolute;
+    top: 0; left: 10%; right: 10%; height: 1px;
     background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.5), transparent);
 }
 .profile-avatar {
     position: relative;
     width: 74px; height: 74px;
-    border-radius: 50%;
-    flex-shrink: 0;
+    border-radius: 50%; flex-shrink: 0;
     background: linear-gradient(135deg, var(--amber), var(--teal));
-    display: grid;
-    place-items: center;
-    font-family: var(--font-display);
-    font-size: 26px;
-    font-weight: 800;
-    color: #fff;
-    overflow: visible;
-    isolation: isolate;
+    display: grid; place-items: center;
+    overflow: visible; isolation: isolate;
 }
 .profile-avatar::before {
-    content: "";
-    position: absolute;
-    inset: -3px;
-    border-radius: 50%;
+    content: ""; position: absolute; inset: -3px; border-radius: 50%;
     background: conic-gradient(from 0deg, var(--amber), var(--teal), var(--amber));
     z-index: -1;
     animation: spin 8s linear infinite;
-    opacity: 0.85;
-    filter: blur(0.5px);
+    opacity: 0.85; filter: blur(0.5px);
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 .profile-avatar-inner {
-    position: absolute;
-    inset: 3px;
-    border-radius: 50%;
+    position: absolute; inset: 3px; border-radius: 50%;
     overflow: hidden;
     background: linear-gradient(135deg, #1a1005, #0a0f1a);
-    display: grid;
-    place-items: center;
+    display: grid; place-items: center;
 }
 .profile-avatar-inner img {
-    position: absolute;
-    inset: 0;
+    position: absolute; inset: 0;
     width: 100%; height: 100%;
-    object-fit: cover;
-    z-index: 2;
+    object-fit: cover; z-index: 2;
 }
 .profile-status {
     position: absolute;
@@ -283,10 +217,7 @@ body {
     z-index: 5;
 }
 .profile-status::after {
-    content: "";
-    position: absolute;
-    inset: -4px;
-    border-radius: 50%;
+    content: ""; position: absolute; inset: -4px; border-radius: 50%;
     border: 1.5px solid rgba(34, 197, 94, 0.5);
     animation: pingRing 2.2s ease-out infinite;
 }
@@ -295,58 +226,35 @@ body {
     100% { transform: scale(1.9); opacity: 0; }
 }
 .profile-info {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+    flex: 1; min-width: 0;
+    display: flex; flex-direction: column; gap: 6px;
 }
 .profile-name {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
+    display: inline-flex; align-items: center; gap: 7px;
     font-family: var(--font-display);
-    font-size: 20px;
-    font-weight: 800;
+    font-size: 19px; font-weight: 800;
     letter-spacing: -0.02em;
-    color: var(--text-1);
-    line-height: 1.1;
+    color: var(--text-1); line-height: 1.1;
 }
 .profile-verify {
-    width: 16px; height: 16px;
-    border-radius: 50%;
+    width: 16px; height: 16px; border-radius: 50%;
     background: linear-gradient(135deg, var(--amber), #d97706);
-    display: grid;
-    place-items: center;
-    color: #fff;
-    font-size: 7px;
-    flex-shrink: 0;
+    display: grid; place-items: center;
+    color: #fff; font-size: 7px; flex-shrink: 0;
     box-shadow: 0 0 8px var(--amber-glow);
 }
 .profile-handle {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 12.5px;
-    font-weight: 500;
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12.5px; font-weight: 500;
     color: var(--text-3);
-    letter-spacing: 0.01em;
 }
-.profile-handle i {
-    font-size: 11px;
-    color: var(--teal);
-}
+.profile-handle i { font-size: 11px; color: var(--teal); }
 .profile-bio {
-    font-size: 12.5px;
-    line-height: 1.5;
-    color: var(--text-2);
-    margin-top: 2px;
+    font-size: 12.5px; line-height: 1.5;
+    color: var(--text-2); margin-top: 2px;
 }
-
 .stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
 }
 .stat {
     padding: 14px 12px;
@@ -355,82 +263,60 @@ body {
     border-radius: 16px;
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
+    display: flex; flex-direction: column; align-items: center;
+    gap: 5px; text-align: center; position: relative; overflow: hidden;
 }
 .stat::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 25%; right: 25%;
-    height: 1px;
+    content: ""; position: absolute;
+    top: 0; left: 25%; right: 25%; height: 1px;
     background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.4), transparent);
     opacity: 0.8;
 }
 .stat-icon {
-    width: 26px; height: 26px;
-    border-radius: 8px;
-    display: grid;
-    place-items: center;
+    width: 26px; height: 26px; border-radius: 8px;
+    display: grid; place-items: center;
     font-size: 12px;
     background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(20, 184, 166, 0.12));
     border: 1px solid rgba(245, 158, 11, 0.25);
-    color: var(--amber-2);
-    margin-bottom: 2px;
+    color: var(--amber-2); margin-bottom: 2px;
 }
 .stat-value {
     font-family: var(--font-display);
-    font-size: 19px;
-    font-weight: 800;
+    font-size: 19px; font-weight: 800;
     color: var(--text-1);
-    letter-spacing: -0.02em;
-    line-height: 1;
+    letter-spacing: -0.02em; line-height: 1;
     font-variant-numeric: tabular-nums;
     transition: color 0.3s var(--ease-smooth);
 }
 .stat-value.loading { color: var(--text-4); }
 .stat-label {
-    font-size: 9.5px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-size: 9.5px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
     color: var(--text-3);
 }
-
 .module {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 20px;
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    overflow: hidden;
-    position: relative;
+    overflow: hidden; position: relative;
 }
 .module-head {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    display: flex; align-items: center; gap: 12px;
     padding: 16px 18px;
     border-bottom: 1px solid var(--border);
     position: relative;
 }
 .module-head::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 15%; right: 15%;
-    height: 1px;
+    content: ""; position: absolute;
+    top: 0; left: 15%; right: 15%; height: 1px;
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
 }
 .module-head-icon {
     flex-shrink: 0;
-    width: 34px; height: 34px;
-    border-radius: 11px;
-    display: grid;
-    place-items: center;
+    width: 34px; height: 34px; border-radius: 11px;
+    display: grid; place-items: center;
     font-size: 14px;
     background: linear-gradient(135deg, rgba(245, 158, 11, 0.18), rgba(20, 184, 166, 0.12));
     border: 1px solid rgba(245, 158, 11, 0.3);
@@ -439,52 +325,36 @@ body {
 .module-head-title {
     flex: 1;
     font-family: var(--font-display);
-    font-size: 15px;
-    font-weight: 700;
+    font-size: 15px; font-weight: 700;
     color: var(--text-1);
     letter-spacing: -0.01em;
 }
 .module-head-sub {
-    font-size: 11px;
-    font-weight: 500;
+    font-size: 11px; font-weight: 500;
     color: var(--text-3);
-    letter-spacing: 0.01em;
     margin-top: 1px;
 }
 .module-body {
     padding: 8px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+    display: flex; flex-direction: column; gap: 4px;
 }
-
 .social-item {
-    display: flex;
-    align-items: center;
-    gap: 13px;
+    display: flex; align-items: center; gap: 13px;
     padding: 12px 14px;
     border-radius: 14px;
-    text-decoration: none;
-    color: inherit;
-    transition:
-        background 0.2s var(--ease-smooth),
-        transform 0.15s var(--ease-spring);
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
+    text-decoration: none; color: inherit;
+    transition: background 0.2s var(--ease-smooth), transform 0.15s var(--ease-spring);
+    cursor: pointer; position: relative; overflow: hidden;
 }
 .social-item:hover {
     background: var(--surface-hi);
     transform: translateX(3px);
 }
 .social-item:active { transform: translateX(1px) scale(0.99); }
-.social-item:focus-visible { outline: 2px solid var(--amber); outline-offset: -2px; }
 .social-icon {
     flex-shrink: 0;
-    width: 38px; height: 38px;
-    border-radius: 11px;
-    display: grid;
-    place-items: center;
+    width: 38px; height: 38px; border-radius: 11px;
+    display: grid; place-items: center;
     font-size: 16px;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.09);
@@ -492,12 +362,9 @@ body {
 }
 .social-item:hover .social-icon { transform: scale(1.05); }
 .social-item::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 20%; bottom: 20%;
-    width: 2px;
-    border-radius: 2px;
+    content: ""; position: absolute;
+    left: 0; top: 20%; bottom: 20%;
+    width: 2px; border-radius: 2px;
     background: var(--brand, var(--amber));
     opacity: 0.4;
     transition: opacity 0.2s var(--ease-smooth);
@@ -512,45 +379,31 @@ body {
 .social-item.facebook { --brand: #1877f2; }
 .social-item.instagram { --brand: #e4405f; }
 .social-info {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
+    flex: 1; min-width: 0;
+    display: flex; flex-direction: column; gap: 1px;
 }
 .social-name {
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 14px; font-weight: 600;
     color: var(--text-1);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    letter-spacing: -0.01em;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .social-sub {
-    font-size: 11.5px;
-    font-weight: 400;
+    font-size: 11.5px; font-weight: 400;
     color: var(--text-3);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .social-arrow {
     flex-shrink: 0;
-    font-size: 11px;
-    color: var(--text-4);
+    font-size: 11px; color: var(--text-4);
     transition: transform 0.2s var(--ease-smooth), color 0.2s var(--ease-smooth);
 }
 .social-item:hover .social-arrow {
     color: var(--amber);
     transform: translate(2px, -2px);
 }
-
 .search { padding: 16px 18px; }
 .search-field {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    display: flex; align-items: center; gap: 10px;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--border);
     border-radius: 14px;
@@ -561,59 +414,37 @@ body {
     border-color: rgba(245, 158, 11, 0.4);
     box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
 }
-.search-field > i {
-    color: var(--text-3);
-    font-size: 13px;
-}
+.search-field > i { color: var(--text-3); font-size: 13px; }
 .search-field input {
-    flex: 1;
-    min-width: 0;
-    background: transparent;
-    border: none;
-    outline: none;
+    flex: 1; min-width: 0;
+    background: transparent; border: none; outline: none;
     color: var(--text-1);
     font-family: var(--font-body);
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 14px; font-weight: 500;
     padding: 12px 0;
 }
-.search-field input::placeholder {
-    color: var(--text-4);
-    font-weight: 400;
-}
+.search-field input::placeholder { color: var(--text-4); font-weight: 400; }
 .search-go {
     flex-shrink: 0;
     padding: 10px 14px;
     border-radius: 10px;
     background: linear-gradient(135deg, var(--amber), #d97706);
-    color: #1a1005;
-    border: none;
+    color: #1a1005; border: none;
     font-family: var(--font-display);
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
+    font-size: 12px; font-weight: 800;
+    letter-spacing: 0.04em; text-transform: uppercase;
     cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
+    display: inline-flex; align-items: center; gap: 5px;
     box-shadow: 0 4px 12px -4px var(--amber-glow);
     transition: transform 0.15s var(--ease-spring);
 }
 .search-go:active { transform: scale(0.95); }
 .search-hint {
-    margin-top: 10px;
-    padding-left: 4px;
-    font-size: 11px;
-    color: var(--text-3);
-    display: flex;
-    align-items: center;
-    gap: 6px;
+    margin-top: 10px; padding-left: 4px;
+    font-size: 11px; color: var(--text-3);
+    display: flex; align-items: center; gap: 6px;
 }
-.search-hint i {
-    font-size: 9px;
-    color: var(--amber);
-}
+.search-hint i { font-size: 9px; color: var(--amber); }
 .no-result {
     display: none;
     padding: 26px 20px;
@@ -621,8 +452,7 @@ body {
     border: 1px solid var(--border);
     border-radius: 16px;
     text-align: center;
-    font-size: 13px;
-    color: var(--text-3);
+    font-size: 13px; color: var(--text-3);
 }
 .no-result.show { display: block; }
 .no-result i {
@@ -632,64 +462,142 @@ body {
     margin-bottom: 10px;
 }
 
-.group-title {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 0 4px;
-    margin-bottom: 4px;
-    font-family: var(--font-display);
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--text-3);
+/* ============================================================
+   TAB BAR
+   ============================================================ */
+.tabs-wrap {
+    position: relative;
+    margin: 0 -16px;
+    padding: 0 16px;
 }
-.group-title::before {
+.tabs {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 4px 0 12px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-behavior: smooth;
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tab {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 16px;
+    border-radius: 100px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-2);
+    font-family: var(--font-display);
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    white-space: nowrap;
+    transition:
+        background 0.25s var(--ease-smooth),
+        border-color 0.25s var(--ease-smooth),
+        color 0.25s var(--ease-smooth),
+        transform 0.15s var(--ease-spring);
+    -webkit-user-select: none;
+    user-select: none;
+}
+.tab:active { transform: scale(0.96); }
+.tab i { font-size: 12px; }
+.tab .tab-count {
+    font-size: 10px;
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-3);
+    font-variant-numeric: tabular-nums;
+    transition: all 0.25s var(--ease-smooth);
+}
+.tab:hover {
+    background: var(--surface-hi);
+    border-color: rgba(255, 255, 255, 0.14);
+    color: var(--text-1);
+}
+.tab.active {
+    background: linear-gradient(135deg, var(--amber), #d97706);
+    border-color: transparent;
+    color: #1a1005;
+    box-shadow:
+        0 8px 20px -6px var(--amber-glow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+.tab.active i { color: #1a1005; }
+.tab.active .tab-count {
+    background: rgba(0, 0, 0, 0.15);
+    color: #1a1005;
+}
+/* Fade edge cho scroll ngang */
+.tabs-wrap::after {
     content: "";
-    width: 12px;
-    height: 2px;
-    border-radius: 2px;
-    background: linear-gradient(90deg, var(--amber), var(--teal));
-    box-shadow: 0 0 6px var(--amber-glow);
+    position: absolute;
+    top: 0; right: 0; bottom: 12px;
+    width: 30px;
+    pointer-events: none;
+    background: linear-gradient(90deg, transparent, var(--bg));
 }
 
-.resource-item {
+/* ============================================================
+   RESOURCE LIST
+   ============================================================ */
+.resource-list {
     display: flex;
-    align-items: center;
-    gap: 13px;
+    flex-direction: column;
+    gap: 6px;
+    padding: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    position: relative;
+    overflow: hidden;
+}
+.resource-list::before {
+    content: ""; position: absolute;
+    top: 0; left: 15%; right: 15%; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    pointer-events: none;
+}
+.resource-item {
+    display: flex; align-items: center; gap: 13px;
     padding: 12px 14px;
     border-radius: 14px;
-    text-decoration: none;
-    color: inherit;
-    transition:
-        background 0.2s var(--ease-smooth),
-        transform 0.15s var(--ease-spring);
-    cursor: pointer;
-    position: relative;
+    text-decoration: none; color: inherit;
+    transition: background 0.2s var(--ease-smooth), transform 0.15s var(--ease-spring), opacity 0.3s var(--ease-smooth);
+    cursor: pointer; position: relative;
 }
 .resource-item:hover {
     background: var(--surface-hi);
     transform: translateX(3px);
 }
 .resource-item:active { transform: translateX(1px) scale(0.99); }
-.resource-item:focus-visible { outline: 2px solid var(--amber); outline-offset: -2px; }
+.resource-item.hidden { display: none; }
+.resource-item.fade-in {
+    animation: fadeIn 0.4s var(--ease-out);
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 .resource-icon {
     flex-shrink: 0;
-    width: 42px; height: 42px;
-    border-radius: 12px;
-    display: grid;
-    place-items: center;
+    width: 42px; height: 42px; border-radius: 12px;
+    display: grid; place-items: center;
     font-size: 17px;
     transition: all 0.2s var(--ease-smooth);
-    position: relative;
-    overflow: hidden;
+    position: relative; overflow: hidden;
 }
 .resource-icon::after {
-    content: "";
-    position: absolute;
-    top: 0; left: 20%; right: 20%;
-    height: 1px;
+    content: ""; position: absolute;
+    top: 0; left: 20%; right: 20%; height: 1px;
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
     border-radius: 1px;
 }
@@ -740,43 +648,29 @@ body {
     color: #ffffff;
 }
 .resource-info {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
+    flex: 1; min-width: 0;
+    display: flex; flex-direction: column; gap: 1px;
 }
 .resource-name {
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 14px; font-weight: 600;
     color: var(--text-1);
     letter-spacing: -0.01em;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .resource-sub {
-    font-size: 11.5px;
-    font-weight: 400;
+    font-size: 11.5px; font-weight: 400;
     color: var(--text-3);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .resource-meta {
     flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+    display: flex; align-items: center; gap: 6px;
 }
 .resource-count {
-    font-size: 10.5px;
-    font-weight: 700;
+    font-size: 10.5px; font-weight: 700;
     color: var(--amber-2);
     font-variant-numeric: tabular-nums;
-    display: inline-flex;
-    align-items: center;
-    gap: 3px;
+    display: inline-flex; align-items: center; gap: 3px;
     opacity: 0;
     transition: opacity 0.3s var(--ease-smooth);
     padding: 3px 7px;
@@ -790,8 +684,7 @@ body {
 .resource-count i { font-size: 8px; }
 .resource-arrow {
     flex-shrink: 0;
-    font-size: 11px;
-    color: var(--text-4);
+    font-size: 11px; color: var(--text-4);
     transition: color 0.2s var(--ease-smooth), transform 0.2s var(--ease-smooth);
 }
 .resource-item:hover .resource-arrow {
@@ -799,30 +692,19 @@ body {
     transform: translate(2px, -2px);
 }
 
-.resource-item.hidden,
-.social-item.hidden,
-.group-title.hidden,
-.module-body.hidden,
-.module.hidden { display: none; }
-
 .footer {
     text-align: center;
     padding: 28px 0 0;
     font-size: 11.5px;
     color: var(--text-3);
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+    display: flex; flex-direction: column; gap: 4px;
     letter-spacing: 0.02em;
 }
 .footer-brand {
     font-family: var(--font-display);
-    font-size: 12.5px;
-    font-weight: 700;
+    font-size: 12.5px; font-weight: 700;
     color: var(--amber-2);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    display: inline-flex; align-items: center; justify-content: center;
     gap: 6px;
 }
 .footer-brand i { font-size: 10px; }
@@ -831,18 +713,14 @@ body {
     color: var(--text-4);
     letter-spacing: 0.06em;
 }
-
 .music-float {
     position: fixed;
     bottom: calc(20px + var(--safe-bot));
-    right: 18px;
-    z-index: 70;
+    right: 18px; z-index: 70;
     width: 54px; height: 54px;
     border-radius: 50%;
-    display: grid;
-    place-items: center;
-    border: none;
-    cursor: pointer;
+    display: grid; place-items: center;
+    border: none; cursor: pointer;
     font-family: inherit;
     background: linear-gradient(135deg, var(--amber), #d97706 50%, var(--teal));
     color: #1a1005;
@@ -850,22 +728,13 @@ body {
         0 14px 36px -12px var(--amber-glow),
         0 0 0 1px rgba(255, 255, 255, 0.15) inset,
         inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    transition: transform 0.25s var(--ease-spring), box-shadow 0.25s var(--ease-smooth);
-    isolation: isolate;
-    overflow: hidden;
-    -webkit-user-select: none;
-    user-select: none;
+    transition: transform 0.25s var(--ease-spring);
+    isolation: isolate; overflow: hidden;
 }
 .music-float:active { transform: scale(0.92); }
-.music-float:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
 .music-float::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    border: 2px solid var(--amber);
-    opacity: 0;
-    z-index: -1;
+    content: ""; position: absolute; inset: 0; border-radius: 50%;
+    border: 2px solid var(--amber); opacity: 0; z-index: -1;
 }
 .music-float.playing::before { animation: musicPulse 2s ease-out infinite; }
 @keyframes musicPulse {
@@ -873,22 +742,13 @@ body {
     100% { transform: scale(1.6); opacity: 0; }
 }
 .mf-viz {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 2.5px;
-    height: 20px;
-    width: 24px;
-    position: relative;
-    z-index: 2;
+    display: flex; align-items: center; justify-content: center;
+    gap: 2.5px; height: 20px; width: 24px;
+    position: relative; z-index: 2;
 }
 .mf-viz span {
-    display: block;
-    width: 3px;
-    height: 100%;
-    background: #1a1005;
-    border-radius: 2px;
-    transform-origin: center;
+    display: block; width: 3px; height: 100%;
+    background: #1a1005; border-radius: 2px;
     opacity: 0.35;
     transition: opacity 0.3s var(--ease-smooth);
 }
@@ -905,29 +765,21 @@ body {
     50% { transform: scaleY(1); }
 }
 .mf-icon {
-    display: none;
-    position: relative;
-    z-index: 2;
+    display: none; position: relative; z-index: 2;
     font-size: 18px;
 }
 .music-float:not(.playing) .mf-viz { display: none; }
 .music-float:not(.playing) .mf-icon { display: block; }
-
 .overlay {
-    position: fixed;
-    inset: 0;
+    position: fixed; inset: 0;
     background: rgba(5, 8, 15, 0.7);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     z-index: 80;
-    opacity: 0;
-    visibility: hidden;
-    transition:
-        opacity 0.35s var(--ease-out),
-        visibility 0.35s var(--ease-out);
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.35s var(--ease-out), visibility 0.35s var(--ease-out);
 }
 .overlay.show { opacity: 1; visibility: visible; }
-
 .panel-notif {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -944,54 +796,38 @@ body {
 }
 .panel-notif.show { transform: translateY(0); }
 .panel-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 18px;
-    padding-bottom: 16px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; margin-bottom: 18px; padding-bottom: 16px;
     border-bottom: 1px solid var(--border);
 }
 .panel-head-left {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    display: flex; align-items: center; gap: 12px;
 }
 .panel-head-icon {
-    width: 38px; height: 38px;
-    border-radius: 12px;
-    display: grid;
-    place-items: center;
+    width: 38px; height: 38px; border-radius: 12px;
+    display: grid; place-items: center;
     font-size: 15px;
     background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(245, 158, 11, 0.08));
     border: 1px solid rgba(245, 158, 11, 0.3);
-    color: var(--amber-2);
-    flex-shrink: 0;
+    color: var(--amber-2); flex-shrink: 0;
 }
 .panel-head-title {
     font-family: var(--font-display);
-    font-size: 16px;
-    font-weight: 800;
+    font-size: 16px; font-weight: 800;
     color: var(--text-1);
     letter-spacing: -0.015em;
 }
 .panel-head-sub {
-    font-size: 11px;
-    color: var(--text-3);
-    margin-top: 1px;
+    font-size: 11px; color: var(--text-3); margin-top: 1px;
 }
 .panel-close {
-    width: 36px; height: 36px;
-    border-radius: 12px;
+    width: 36px; height: 36px; border-radius: 12px;
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.08);
     color: var(--text-2);
-    font-size: 14px;
-    cursor: pointer;
-    display: grid;
-    place-items: center;
-    font-family: inherit;
-    flex-shrink: 0;
+    font-size: 14px; cursor: pointer;
+    display: grid; place-items: center;
+    font-family: inherit; flex-shrink: 0;
     transition: all 0.2s var(--ease-smooth);
 }
 .panel-close:hover {
@@ -1000,32 +836,19 @@ body {
     color: #fca5a5;
 }
 .panel-close:active { transform: scale(0.92); }
-.panel-close:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
-
 .notif-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+    display: flex; flex-direction: column; gap: 8px;
 }
 .notif-item {
-    display: flex;
-    align-items: center;
-    gap: 13px;
+    display: flex; align-items: center; gap: 13px;
     padding: 14px;
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 14px;
-    text-decoration: none;
-    color: inherit;
+    text-decoration: none; color: inherit;
     cursor: pointer;
-    transition:
-        background 0.2s var(--ease-smooth),
-        border-color 0.2s var(--ease-smooth),
-        transform 0.15s var(--ease-spring);
-    position: relative;
-    overflow: hidden;
-    -webkit-user-select: none;
-    user-select: none;
+    transition: background 0.2s var(--ease-smooth), border-color 0.2s var(--ease-smooth), transform 0.15s var(--ease-spring);
+    position: relative; overflow: hidden;
 }
 .notif-item:hover {
     background: var(--surface-hi);
@@ -1033,23 +856,17 @@ body {
     transform: translateX(3px);
 }
 .notif-item:active { transform: translateX(1px) scale(0.99); }
-.notif-item:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
 .notif-item.unread::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 25%; bottom: 25%;
-    width: 3px;
-    border-radius: 3px;
+    content: ""; position: absolute;
+    left: 0; top: 25%; bottom: 25%;
+    width: 3px; border-radius: 3px;
     background: linear-gradient(180deg, var(--amber), #d97706);
     box-shadow: 0 0 8px var(--amber-glow);
 }
 .notif-icon {
     flex-shrink: 0;
-    width: 40px; height: 40px;
-    border-radius: 12px;
-    display: grid;
-    place-items: center;
+    width: 40px; height: 40px; border-radius: 12px;
+    display: grid; place-items: center;
     font-size: 16px;
 }
 .notif-icon.amber {
@@ -1068,21 +885,15 @@ body {
     color: #c4b5fd;
 }
 .notif-content {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
+    flex: 1; min-width: 0;
+    display: flex; flex-direction: column; gap: 2px;
 }
 .notif-title {
-    font-size: 13.5px;
-    font-weight: 600;
+    font-size: 13.5px; font-weight: 600;
     color: var(--text-1);
-    letter-spacing: -0.01em;
 }
 .notif-desc {
-    font-size: 11.5px;
-    color: var(--text-3);
+    font-size: 11.5px; color: var(--text-3);
     line-height: 1.45;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -1091,15 +902,13 @@ body {
 }
 .notif-arrow {
     flex-shrink: 0;
-    font-size: 11px;
-    color: var(--text-4);
+    font-size: 11px; color: var(--text-4);
     transition: transform 0.2s var(--ease-smooth), color 0.2s var(--ease-smooth);
 }
 .notif-item:hover .notif-arrow {
     color: var(--amber);
     transform: translateX(3px);
 }
-
 .panel-drawer {
     position: fixed;
     top: 0; right: 0; bottom: 0;
@@ -1109,31 +918,23 @@ body {
     border-left: 1px solid rgba(245, 158, 11, 0.15);
     transform: translateX(100%);
     transition: transform 0.45s var(--ease-out);
-    display: flex;
-    flex-direction: column;
+    display: flex; flex-direction: column;
     padding: calc(24px + var(--safe-top)) 18px calc(24px + var(--safe-bot));
     overflow-y: auto;
     box-shadow: -30px 0 60px -20px rgba(0, 0, 0, 0.85);
 }
 .panel-drawer.show { transform: translateX(0); }
 .drawer-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+    display: flex; flex-direction: column; gap: 4px;
     margin-bottom: 16px;
 }
 .drawer-link {
-    display: flex;
-    align-items: center;
-    gap: 13px;
-    padding: 13px 14px;
-    border-radius: 13px;
+    display: flex; align-items: center; gap: 13px;
+    padding: 13px 14px; border-radius: 13px;
     background: var(--surface);
     border: 1px solid var(--border);
-    text-decoration: none;
-    color: var(--text-2);
-    font-size: 13.5px;
-    font-weight: 500;
+    text-decoration: none; color: var(--text-2);
+    font-size: 13.5px; font-weight: 500;
     cursor: pointer;
     transition: all 0.2s var(--ease-smooth);
 }
@@ -1143,45 +944,31 @@ body {
     color: var(--text-1);
     transform: translateX(4px);
 }
-.drawer-link:focus-visible { outline: 2px solid var(--amber); outline-offset: -2px; }
 .drawer-link i:first-child {
-    flex-shrink: 0;
-    width: 20px;
-    text-align: center;
-    color: var(--amber);
-    font-size: 14px;
+    flex-shrink: 0; width: 20px; text-align: center;
+    color: var(--amber); font-size: 14px;
 }
 .drawer-link span { flex: 1; }
 .drawer-link i:last-child {
-    flex-shrink: 0;
-    font-size: 10px;
+    flex-shrink: 0; font-size: 10px;
     color: var(--text-4);
 }
-
 .intro {
-    position: fixed;
-    inset: 0;
-    z-index: 200;
-    display: grid;
-    place-items: center;
+    position: fixed; inset: 0; z-index: 200;
+    display: grid; place-items: center;
     padding: 20px;
     padding-top: calc(20px + var(--safe-top));
     padding-bottom: calc(20px + var(--safe-bot));
     background: rgba(5, 8, 15, 0.96);
     backdrop-filter: blur(28px);
     -webkit-backdrop-filter: blur(28px);
-    transition:
-        opacity 0.6s var(--ease-out),
-        visibility 0.6s var(--ease-out);
+    transition: opacity 0.6s var(--ease-out), visibility 0.6s var(--ease-out);
 }
 .intro.hide {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
+    opacity: 0; visibility: hidden; pointer-events: none;
 }
 .intro-card {
-    width: 100%;
-    max-width: 380px;
+    width: 100%; max-width: 380px;
     padding: 34px 24px 24px;
     background: linear-gradient(180deg, rgba(15, 18, 32, 0.98), rgba(5, 8, 15, 0.98));
     border: 1px solid rgba(245, 158, 11, 0.28);
@@ -1191,36 +978,26 @@ body {
         0 0 80px -20px var(--amber-glow),
         0 30px 80px -20px rgba(0, 0, 0, 0.9),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    text-align: center;
-    overflow: hidden;
+    text-align: center; overflow: hidden;
 }
 .intro-card::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
+    content: ""; position: absolute;
+    top: 0; left: 0; right: 0; height: 2px;
     background: linear-gradient(90deg, transparent, var(--amber), var(--teal), transparent);
     filter: blur(0.5px);
 }
 .intro-icon {
-    width: 68px; height: 68px;
-    border-radius: 20px;
+    width: 68px; height: 68px; border-radius: 20px;
     margin: 0 auto 22px;
-    display: grid;
-    place-items: center;
+    display: grid; place-items: center;
     background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(20, 184, 166, 0.1));
     border: 1px solid rgba(245, 158, 11, 0.35);
-    font-size: 26px;
-    color: var(--amber-2);
-    box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.12),
-        0 0 40px -10px var(--amber-glow);
+    font-size: 26px; color: var(--amber-2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 0 40px -10px var(--amber-glow);
     position: relative;
 }
 .intro-icon::after {
-    content: "";
-    position: absolute;
-    inset: -12px;
+    content: ""; position: absolute; inset: -12px;
     border-radius: 28px;
     border: 1px solid rgba(245, 158, 11, 0.18);
     animation: introRing 2.4s ease-out infinite;
@@ -1230,55 +1007,39 @@ body {
     100% { transform: scale(1.15); opacity: 0; }
 }
 .intro-label {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
+    display: inline-flex; align-items: center; gap: 10px;
     font-family: var(--font-display);
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    color: var(--text-3);
-    margin-bottom: 18px;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.24em; text-transform: uppercase;
+    color: var(--text-3); margin-bottom: 18px;
 }
 .intro-label::before,
 .intro-label::after {
-    content: "";
-    width: 26px;
-    height: 1px;
+    content: ""; width: 26px; height: 1px;
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2));
 }
 .intro-label::after {
     background: linear-gradient(90deg, rgba(255, 255, 255, 0.2), transparent);
 }
 .intro-title {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+    display: flex; flex-direction: column; gap: 4px;
     font-family: var(--font-display);
-    font-size: 34px;
-    font-weight: 900;
-    letter-spacing: -0.04em;
-    line-height: 1;
+    font-size: 34px; font-weight: 900;
+    letter-spacing: -0.04em; line-height: 1;
     margin-bottom: 18px;
 }
 .intro-title .t-line-1 { color: var(--text-1); }
 .intro-title .t-line-2 {
     background: linear-gradient(135deg, var(--amber-2) 0%, var(--teal-2) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
+    -webkit-background-clip: text; background-clip: text;
     -webkit-text-fill-color: transparent;
     filter: drop-shadow(0 0 24px var(--amber-glow));
 }
 .intro-meta {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
+    display: inline-flex; align-items: center; gap: 8px;
     font-family: var(--font-display);
-    font-size: 10.5px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+    font-size: 10.5px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
     color: var(--amber-2);
     padding: 6px 14px;
     background: rgba(245, 158, 11, 0.08);
@@ -1287,8 +1048,7 @@ body {
     margin-bottom: 16px;
 }
 .intro-meta .dot {
-    width: 5px; height: 5px;
-    border-radius: 50%;
+    width: 5px; height: 5px; border-radius: 50%;
     background: var(--success);
     box-shadow: 0 0 8px var(--success);
     animation: statusBlink 1.6s ease-in-out infinite;
@@ -1298,60 +1058,41 @@ body {
     50% { opacity: 0.3; }
 }
 .intro-desc {
-    font-size: 13px;
-    line-height: 1.55;
-    color: var(--text-2);
-    margin-bottom: 24px;
+    font-size: 13px; line-height: 1.55;
+    color: var(--text-2); margin-bottom: 24px;
     padding: 0 6px;
 }
 .intro-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    width: 100%;
+    display: flex; align-items: center; justify-content: center;
+    gap: 10px; width: 100%;
     padding: 16px 20px;
     background: linear-gradient(135deg, var(--amber) 0%, #d97706 45%, var(--teal) 100%);
-    border: none;
-    border-radius: 15px;
+    border: none; border-radius: 15px;
     color: #1a1005;
     font-family: var(--font-display);
-    font-size: 13.5px;
-    font-weight: 800;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    font-size: 13.5px; font-weight: 800;
+    letter-spacing: 0.06em; text-transform: uppercase;
     cursor: pointer;
-    box-shadow:
-        0 14px 36px -10px var(--amber-glow),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    box-shadow: 0 14px 36px -10px var(--amber-glow), inset 0 1px 0 rgba(255, 255, 255, 0.3);
     transition: transform 0.2s var(--ease-spring);
-    -webkit-user-select: none;
-    user-select: none;
 }
 .intro-btn:active { transform: scale(0.98); }
-.intro-btn:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
 .intro-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: flex; align-items: center; justify-content: space-between;
     font-family: var(--font-display);
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
+    font-size: 9px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase;
     color: var(--text-4);
-    margin-top: 20px;
-    padding-top: 16px;
+    margin-top: 20px; padding-top: 16px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
-
 @media (max-width: 380px) {
     body { padding: calc(76px + var(--safe-top)) 14px calc(64px + var(--safe-bot)); }
     .top-dock { width: calc(100% - 24px); padding: 7px 7px 7px 14px; }
     .dock-clock { font-size: 12px; padding-left: 4px; }
     .dock-btn { width: 36px; height: 36px; font-size: 13px; }
     .profile { padding: 16px; gap: 13px; }
-    .profile-avatar { width: 64px; height: 64px; font-size: 22px; }
+    .profile-avatar { width: 64px; height: 64px; }
     .profile-name { font-size: 17px; }
     .stat { padding: 12px 8px; }
     .stat-value { font-size: 17px; }
@@ -1359,8 +1100,8 @@ body {
     .intro-title { font-size: 28px; }
     .intro-btn { padding: 14px 18px; font-size: 12.5px; }
     .music-float { width: 48px; height: 48px; }
+    .tab { padding: 9px 13px; font-size: 12px; }
 }
-
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -1419,7 +1160,7 @@ body {
     </div>
 
     <div class="notif-list">
-        <a href="#tai-nguyen" class="notif-item unread" data-scroll>
+        <a href="#resources" class="notif-item unread" data-scroll>
             <span class="notif-icon amber"><i class="fas fa-bolt"></i></span>
             <span class="notif-content">
                 <span class="notif-title">Tài nguyên mới đã được thêm</span>
@@ -1428,7 +1169,7 @@ body {
             <i class="fas fa-chevron-right notif-arrow"></i>
         </a>
 
-        <a href="#tool" class="notif-item unread" data-scroll>
+        <a href="#resources" class="notif-item unread" data-scroll>
             <span class="notif-icon teal"><i class="fas fa-screwdriver-wrench"></i></span>
             <span class="notif-content">
                 <span class="notif-title">Tool mới đã cập nhật</span>
@@ -1469,14 +1210,11 @@ body {
         <a href="#ket-noi" class="drawer-link" data-scroll>
             <i class="fas fa-satellite-dish"></i><span>Kết nối</span><i class="fas fa-chevron-right"></i>
         </a>
-        <a href="#tim-kiem" class="drawer-link" data-scroll>
+        <a href="#search-wrap" class="drawer-link" data-scroll>
             <i class="fas fa-magnifying-glass"></i><span>Tìm kiếm</span><i class="fas fa-chevron-right"></i>
         </a>
-        <a href="#tai-nguyen" class="drawer-link" data-scroll>
-            <i class="fas fa-box-open"></i><span>Tài nguyên</span><i class="fas fa-chevron-right"></i>
-        </a>
-        <a href="#tool" class="drawer-link" data-scroll>
-            <i class="fas fa-screwdriver-wrench"></i><span>Tool</span><i class="fas fa-chevron-right"></i>
+        <a href="#resources" class="drawer-link" data-scroll>
+            <i class="fas fa-box-open"></i><span>Tài nguyên & Tool</span><i class="fas fa-chevron-right"></i>
         </a>
     </nav>
 
@@ -1548,7 +1286,7 @@ body {
                 <i class="fas fa-at"></i>
                 <span>hiepmadia678</span>
             </div>
-            <p class="profile-bio">tao là cha là chú lũ đú war ăn hại</p>
+            <p class="profile-bio">Chia sẻ tài nguyên vọc vạch iOS miễn phí cho cộng đồng.</p>
         </div>
     </section>
 
@@ -1587,7 +1325,6 @@ body {
                 </span>
                 <i class="fas fa-arrow-up-right social-arrow"></i>
             </a>
-
             <a href="https://discord.gg/7A6hbKyK" target="_blank" rel="noopener noreferrer" class="social-item discord" data-resource="social_discord_dm">
                 <span class="social-icon discord"><i class="fas fa-comment-dots"></i></span>
                 <span class="social-info">
@@ -1596,7 +1333,6 @@ body {
                 </span>
                 <i class="fas fa-arrow-up-right social-arrow"></i>
             </a>
-
             <a href="https://www.tiktok.com/@hiepmadia678?_r=1&_t=ZS-9AM019z2oQK" target="_blank" rel="noopener noreferrer" class="social-item tiktok" data-resource="social_tiktok">
                 <span class="social-icon tiktok"><i class="fab fa-tiktok"></i></span>
                 <span class="social-info">
@@ -1605,7 +1341,6 @@ body {
                 </span>
                 <i class="fas fa-arrow-up-right social-arrow"></i>
             </a>
-
             <a href="https://www.facebook.com/share/1Ea1z2vcK6/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="social-item facebook" data-resource="social_facebook">
                 <span class="social-icon facebook"><i class="fab fa-facebook-f"></i></span>
                 <span class="social-info">
@@ -1614,7 +1349,6 @@ body {
                 </span>
                 <i class="fas fa-arrow-up-right social-arrow"></i>
             </a>
-
             <a href="https://www.instagram.com/hiepmadia678" target="_blank" rel="noopener noreferrer" class="social-item instagram" data-resource="social_instagram">
                 <span class="social-icon instagram"><i class="fab fa-instagram"></i></span>
                 <span class="social-info">
@@ -1626,7 +1360,7 @@ body {
         </div>
     </section>
 
-    <section class="module" id="tim-kiem">
+    <section class="module" id="search-wrap">
         <div class="module-head">
             <div class="module-head-icon"><i class="fas fa-magnifying-glass"></i></div>
             <div style="flex:1;min-width:0;">
@@ -1655,209 +1389,223 @@ body {
         Không tìm thấy kết quả
     </div>
 
-    <section class="module" id="tai-nguyen">
-        <div class="module-head">
-            <div class="module-head-icon"><i class="fas fa-box-open"></i></div>
-            <div style="flex:1;min-width:0;">
-                <div class="module-head-title">Tài nguyên</div>
-                <div class="module-head-sub">Chứng chỉ · Công cụ · IPA</div>
-            </div>
+    <!-- TAB BAR -->
+    <div class="tabs-wrap" id="resources">
+        <div class="tabs" id="tabs">
+            <button class="tab active" data-tab="all" type="button">
+                <i class="fas fa-layer-group"></i>
+                <span>Tất cả</span>
+                <span class="tab-count" data-tab-count="all">0</span>
+            </button>
+            <button class="tab" data-tab="cert" type="button">
+                <i class="fas fa-certificate"></i>
+                <span>Chứng chỉ</span>
+                <span class="tab-count" data-tab-count="cert">0</span>
+            </button>
+            <button class="tab" data-tab="tool-ios" type="button">
+                <i class="fas fa-wrench"></i>
+                <span>Công cụ</span>
+                <span class="tab-count" data-tab-count="tool-ios">0</span>
+            </button>
+            <button class="tab" data-tab="ipa" type="button">
+                <i class="fas fa-download"></i>
+                <span>IPA</span>
+                <span class="tab-count" data-tab-count="ipa">0</span>
+            </button>
+            <button class="tab" data-tab="fb" type="button">
+                <i class="fab fa-facebook-f"></i>
+                <span>Tool FB</span>
+                <span class="tab-count" data-tab-count="fb">0</span>
+            </button>
+            <button class="tab" data-tab="ig" type="button">
+                <i class="fab fa-instagram"></i>
+                <span>Tool IG</span>
+                <span class="tab-count" data-tab-count="ig">0</span>
+            </button>
+            <button class="tab" data-tab="tt" type="button">
+                <i class="fab fa-tiktok"></i>
+                <span>Tool TikTok</span>
+                <span class="tab-count" data-tab-count="tt">0</span>
+            </button>
         </div>
+    </div>
 
-        <div class="module-body">
-            <div class="group-title" data-group>Chứng chỉ</div>
+    <!-- RESOURCE LIST -->
+    <div class="resource-list" id="resourceList">
+        <!-- CHỨNG CHỈ -->
+        <a href="https://khoindvn.io.vn" target="_blank" rel="noopener noreferrer" class="resource-item" data-resource="res_khoindvn" data-category="cert" data-search="khoindvn esign ksign chứng chỉ cert certificate">
+            <span class="resource-icon cert"><i class="fas fa-certificate"></i></span>
+            <span class="resource-info">
+                <span class="resource-name">Khoindvn</span>
+                <span class="resource-sub">Esign · Ksign</span>
+            </span>
+            <span class="resource-meta">
+                <span class="resource-count" data-count="res_khoindvn"></span>
+                <i class="fas fa-arrow-up-right resource-arrow"></i>
+            </span>
+        </a>
 
-            <a href="https://khoindvn.io.vn" target="_blank" rel="noopener noreferrer" class="resource-item" data-resource="res_khoindvn" data-search="khoindvn esign ksign chứng chỉ cert certificate">
-                <span class="resource-icon cert"><i class="fas fa-certificate"></i></span>
-                <span class="resource-info">
-                    <span class="resource-name">Khoindvn</span>
-                    <span class="resource-sub">Esign · Ksign</span>
-                </span>
-                <span class="resource-meta">
-                    <span class="resource-count" data-count="res_khoindvn"></span>
-                    <i class="fas fa-arrow-up-right resource-arrow"></i>
-                </span>
-            </a>
+        <a href="https://certios.xyz" target="_blank" rel="noopener noreferrer" class="resource-item" data-resource="res_certios" data-category="cert" data-search="certios csign free chứng chỉ cert certificate">
+            <span class="resource-icon cert"><i class="fas fa-shield-halved"></i></span>
+            <span class="resource-info">
+                <span class="resource-name">Certios</span>
+                <span class="resource-sub">CSign Free</span>
+            </span>
+            <span class="resource-meta">
+                <span class="resource-count" data-count="res_certios"></span>
+                <i class="fas fa-arrow-up-right resource-arrow"></i>
+            </span>
+        </a>
 
-            <a href="https://certios.xyz" target="_blank" rel="noopener noreferrer" class="resource-item" data-resource="res_certios" data-search="certios csign free chứng chỉ cert certificate">
-                <span class="resource-icon cert"><i class="fas fa-shield-halved"></i></span>
-                <span class="resource-info">
-                    <span class="resource-name">Certios</span>
-                    <span class="resource-sub">CSign Free</span>
-                </span>
-                <span class="resource-meta">
-                    <span class="resource-count" data-count="res_certios"></span>
-                    <i class="fas fa-arrow-up-right resource-arrow"></i>
-                </span>
-            </a>
+        <!-- CÔNG CỤ iOS -->
+        <a href="https://sideinstaller.net/" target="_blank" rel="noopener noreferrer" class="resource-item" data-resource="res_sideinstaller" data-category="tool-ios" data-search="sideinstaller sideload công cụ tool">
+            <span class="resource-icon tool"><i class="fas fa-wrench"></i></span>
+            <span class="resource-info">
+                <span class="resource-name">SideInstaller</span>
+                <span class="resource-sub">Công cụ sideload</span>
+            </span>
+            <span class="resource-meta">
+                <span class="resource-count" data-count="res_sideinstaller"></span>
+                <i class="fas fa-arrow-up-right resource-arrow"></i>
+            </span>
+        </a>
 
-            <div class="group-title" data-group style="margin-top:10px;">Công cụ</div>
+        <a href="https://config-fix-lag-ios.netlify.app/iphone_config_2026.mobileconfig" target="_blank" rel="noopener noreferrer" class="resource-item" data-resource="res_fixlag" data-category="tool-ios" data-search="fix lag iphone 2026 config tối ưu optimization">
+            <span class="resource-icon config"><i class="fas fa-gauge-high"></i></span>
+            <span class="resource-info">
+                <span class="resource-name">Fix Lag iPhone 2026</span>
+                <span class="resource-sub">Config tối ưu</span>
+            </span>
+            <span class="resource-meta">
+                <span class="resource-count" data-count="res_fixlag"></span>
+                <i class="fas fa-arrow-up-right resource-arrow"></i>
+            </span>
+        </a>
 
-            <a href="https://sideinstaller.net/" target="_blank" rel="noopener noreferrer" class="resource-item" data-resource="res_sideinstaller" data-search="sideinstaller sideload công cụ tool">
-                <span class="resource-icon tool"><i class="fas fa-wrench"></i></span>
-                <span class="resource-info">
-                    <span class="resource-name">SideInstaller</span>
-                    <span class="resource-sub">Công cụ sideload</span>
-                </span>
-                <span class="resource-meta">
-                    <span class="resource-count" data-count="res_sideinstaller"></span>
-                    <i class="fas fa-arrow-up-right resource-arrow"></i>
-                </span>
-            </a>
+        <!-- IPA -->
+        <a href="https://github.com/nguyenls3005-cell/Test-Up/releases/download/AirCard/AirCard-iOS_1.3.ipa" target="_blank" rel="noopener noreferrer" class="resource-item" data-resource="res_aircard" data-category="ipa" data-search="aircard ios thẻ ảo tiện ích ipa virtual card">
+            <span class="resource-icon ipa"><i class="fas fa-id-card"></i></span>
+            <span class="resource-info">
+                <span class="resource-name">AirCard iOS</span>
+                <span class="resource-sub">Tiện ích</span>
+            </span>
+            <span class="resource-meta">
+                <span class="resource-count" data-count="res_aircard"></span>
+                <i class="fas fa-arrow-up-right resource-arrow"></i>
+            </span>
+        </a>
 
-            <a href="https://config-fix-lag-ios.netlify.app/iphone_config_2026.mobileconfig" target="_blank" rel="noopener noreferrer" class="resource-item" data-resource="res_fixlag" data-search="fix lag iphone 2026 config tối ưu optimization">
-                <span class="resource-icon config"><i class="fas fa-gauge-high"></i></span>
-                <span class="resource-info">
-                    <span class="resource-name">Fix Lag iPhone 2026</span>
-                    <span class="resource-sub">Config tối ưu</span>
-                </span>
-                <span class="resource-meta">
-                    <span class="resource-count" data-count="res_fixlag"></span>
-                    <i class="fas fa-arrow-up-right resource-arrow"></i>
-                </span>
-            </a>
+        <a href="https://dl.ipas.cc/ipas/sbr4ai.ipa" target="_blank" rel="noopener noreferrer" class="resource-item" data-resource="res_locket" data-category="ipa" data-search="locket premium widget ảnh ipa photo">
+            <span class="resource-icon ipa"><i class="fas fa-camera"></i></span>
+            <span class="resource-info">
+                <span class="resource-name">Locket Premium</span>
+                <span class="resource-sub">Widget ảnh</span>
+            </span>
+            <span class="resource-meta">
+                <span class="resource-count" data-count="res_locket"></span>
+                <i class="fas fa-arrow-up-right resource-arrow"></i>
+            </span>
+        </a>
 
-            <div class="group-title" data-group style="margin-top:10px;">IPA Downloads</div>
+        <a href="https://dl.ipas.cc/ipas/7q6hng.ipa" target="_blank" rel="noopener noreferrer" class="resource-item" data-resource="res_spotify" data-category="ipa" data-search="spotify premium nghe nhạc ipa music">
+            <span class="resource-icon music"><i class="fab fa-spotify"></i></span>
+            <span class="resource-info">
+                <span class="resource-name">Spotify Premium</span>
+                <span class="resource-sub">Nghe nhạc</span>
+            </span>
+            <span class="resource-meta">
+                <span class="resource-count" data-count="res_spotify"></span>
+                <i class="fas fa-arrow-up-right resource-arrow"></i>
+            </span>
+        </a>
 
-            <a href="https://github.com/nguyenls3005-cell/Test-Up/releases/download/AirCard/AirCard-iOS_1.3.ipa" target="_blank" rel="noopener noreferrer" class="resource-item" data-resource="res_aircard" data-search="aircard ios thẻ ảo tiện ích ipa virtual card">
-                <span class="resource-icon ipa"><i class="fas fa-id-card"></i></span>
-                <span class="resource-info">
-                    <span class="resource-name">AirCard iOS</span>
-                    <span class="resource-sub">Tiện ích</span>
-                </span>
-                <span class="resource-meta">
-                    <span class="resource-count" data-count="res_aircard"></span>
-                    <i class="fas fa-arrow-up-right resource-arrow"></i>
-                </span>
-            </a>
+        <a href="https://dl.ipas.cc/ipas/p8uoks.ipa" target="_blank" rel="noopener noreferrer" class="resource-item" data-resource="res_youtube" data-category="ipa" data-search="youtube premium xem video ipa">
+            <span class="resource-icon video"><i class="fab fa-youtube"></i></span>
+            <span class="resource-info">
+                <span class="resource-name">YouTube Premium</span>
+                <span class="resource-sub">Xem video</span>
+            </span>
+            <span class="resource-meta">
+                <span class="resource-count" data-count="res_youtube"></span>
+                <i class="fas fa-arrow-up-right resource-arrow"></i>
+            </span>
+        </a>
 
-            <a href="https://dl.ipas.cc/ipas/sbr4ai.ipa" target="_blank" rel="noopener noreferrer" class="resource-item" data-resource="res_locket" data-search="locket premium widget ảnh ipa photo">
-                <span class="resource-icon ipa"><i class="fas fa-camera"></i></span>
-                <span class="resource-info">
-                    <span class="resource-name">Locket Premium</span>
-                    <span class="resource-sub">Widget ảnh</span>
-                </span>
-                <span class="resource-meta">
-                    <span class="resource-count" data-count="res_locket"></span>
-                    <i class="fas fa-arrow-up-right resource-arrow"></i>
-                </span>
-            </a>
+        <!-- TOOL FACEBOOK -->
+        <a href="https://www.mediafire.com/file/03wid0zssqddt6d/Axius+-+Ba%CC%81o+Ca%CC%81o+Tu%CC%9B%CC%A3+%C4%90o%CC%A3%CC%82ng+V5.txt/file" target="_blank" rel="noopener noreferrer" class="resource-item" data-resource="tool_fb_axius_v5" data-category="fb" data-search="axius v5 tool facebook auto report báo cáo tự động">
+            <span class="resource-icon fb"><i class="fab fa-facebook-f"></i></span>
+            <span class="resource-info">
+                <span class="resource-name">Tool Facebook Axius V5</span>
+                <span class="resource-sub">Tiện ích Facebook</span>
+            </span>
+            <span class="resource-meta">
+                <span class="resource-count" data-count="tool_fb_axius_v5"></span>
+                <i class="fas fa-arrow-up-right resource-arrow"></i>
+            </span>
+        </a>
 
-            <a href="https://dl.ipas.cc/ipas/7q6hng.ipa" target="_blank" rel="noopener noreferrer" class="resource-item" data-resource="res_spotify" data-search="spotify premium nghe nhạc ipa music">
-                <span class="resource-icon music"><i class="fab fa-spotify"></i></span>
-                <span class="resource-info">
-                    <span class="resource-name">Spotify Premium</span>
-                    <span class="resource-sub">Nghe nhạc</span>
-                </span>
-                <span class="resource-meta">
-                    <span class="resource-count" data-count="res_spotify"></span>
-                    <i class="fas fa-arrow-up-right resource-arrow"></i>
-                </span>
-            </a>
+        <a href="https://www.mediafire.com/file/endyah5a9e80uzf/Tool+Auto+Report+Promax.js/file" target="_blank" rel="noopener noreferrer" class="resource-item" data-resource="tool_fb_promax" data-category="fb" data-search="promax tool facebook auto report báo cáo">
+            <span class="resource-icon fb"><i class="fab fa-facebook-f"></i></span>
+            <span class="resource-info">
+                <span class="resource-name">Tool Facebook Pro Max</span>
+                <span class="resource-sub">Tiện ích Facebook</span>
+            </span>
+            <span class="resource-meta">
+                <span class="resource-count" data-count="tool_fb_promax"></span>
+                <i class="fas fa-arrow-up-right resource-arrow"></i>
+            </span>
+        </a>
 
-            <a href="https://dl.ipas.cc/ipas/p8uoks.ipa" target="_blank" rel="noopener noreferrer" class="resource-item" data-resource="res_youtube" data-search="youtube premium xem video ipa">
-                <span class="resource-icon video"><i class="fab fa-youtube"></i></span>
-                <span class="resource-info">
-                    <span class="resource-name">YouTube Premium</span>
-                    <span class="resource-sub">Xem video</span>
-                </span>
-                <span class="resource-meta">
-                    <span class="resource-count" data-count="res_youtube"></span>
-                    <i class="fas fa-arrow-up-right resource-arrow"></i>
-                </span>
-            </a>
-        </div>
-    </section>
+        <a href="https://www.mediafire.com/file/nmwkacb0q7jjj6u/zTool+Team+V1.js/file" target="_blank" rel="noopener noreferrer" class="resource-item" data-resource="tool_fb_ztool_v1" data-category="fb" data-search="ztool v1 tool facebook auto report báo cáo">
+            <span class="resource-icon fb"><i class="fab fa-facebook-f"></i></span>
+            <span class="resource-info">
+                <span class="resource-name">Tool Facebook zTool V1</span>
+                <span class="resource-sub">Tiện ích Facebook</span>
+            </span>
+            <span class="resource-meta">
+                <span class="resource-count" data-count="tool_fb_ztool_v1"></span>
+                <i class="fas fa-arrow-up-right resource-arrow"></i>
+            </span>
+        </a>
 
-    <section class="module" id="tool">
-        <div class="module-head">
-            <div class="module-head-icon"><i class="fas fa-screwdriver-wrench"></i></div>
-            <div style="flex:1;min-width:0;">
-                <div class="module-head-title">Tool</div>
-                <div class="module-head-sub">Facebook · Instagram · TikTok</div>
-            </div>
-        </div>
+        <a href="https://www.mediafire.com/file/3hmmsxwmbya2ew7/FB+Auto+Report+V18.0.js/file" target="_blank" rel="noopener noreferrer" class="resource-item" data-resource="tool_fb_crack_ndien" data-category="fb" data-search="crack ndien fake tool facebook auto report báo cáo v18">
+            <span class="resource-icon fb"><i class="fab fa-facebook-f"></i></span>
+            <span class="resource-info">
+                <span class="resource-name">Tool Facebook Crack by Ndien Fake</span>
+                <span class="resource-sub">Tiện ích Facebook</span>
+            </span>
+            <span class="resource-meta">
+                <span class="resource-count" data-count="tool_fb_crack_ndien"></span>
+                <i class="fas fa-arrow-up-right resource-arrow"></i>
+            </span>
+        </a>
 
-        <div class="module-body">
-            <div class="group-title" data-group>Tool Facebook</div>
+        <!-- TOOL INSTAGRAM -->
+        <a href="https://www.mediafire.com/file/npiy1815erl50tk/zTool+Team+-+Dame+Instagram+ba%CC%89n+mo%CC%9B%CC%81i.js/file" target="_blank" rel="noopener noreferrer" class="resource-item" data-resource="tool_ig_ztool" data-category="ig" data-search="ztool dame instagram tool ig mới nhất">
+            <span class="resource-icon ig"><i class="fab fa-instagram"></i></span>
+            <span class="resource-info">
+                <span class="resource-name">Tool Instagram zTool bản mới</span>
+                <span class="resource-sub">Tiện ích Instagram</span>
+            </span>
+            <span class="resource-meta">
+                <span class="resource-count" data-count="tool_ig_ztool"></span>
+                <i class="fas fa-arrow-up-right resource-arrow"></i>
+            </span>
+        </a>
 
-            <a href="https://www.mediafire.com/file/03wid0zssqddt6d/Axius+-+Ba%CC%81o+Ca%CC%81o+Tu%CC%9B%CC%A3+%C4%90o%CC%A3%CC%82ng+V5.txt/file" target="_blank" rel="noopener noreferrer" class="resource-item" data-resource="tool_fb_axius_v5" data-search="axius v5 tool facebook auto report báo cáo tự động">
-                <span class="resource-icon fb"><i class="fab fa-facebook-f"></i></span>
-                <span class="resource-info">
-                    <span class="resource-name">Tool Facebook Axius V5</span>
-                    <span class="resource-sub">Tiện ích Facebook</span>
-                </span>
-                <span class="resource-meta">
-                    <span class="resource-count" data-count="tool_fb_axius_v5"></span>
-                    <i class="fas fa-arrow-up-right resource-arrow"></i>
-                </span>
-            </a>
-
-            <a href="https://www.mediafire.com/file/endyah5a9e80uzf/Tool+Auto+Report+Promax.js/file" target="_blank" rel="noopener noreferrer" class="resource-item" data-resource="tool_fb_promax" data-search="promax tool facebook auto report báo cáo">
-                <span class="resource-icon fb"><i class="fab fa-facebook-f"></i></span>
-                <span class="resource-info">
-                    <span class="resource-name">Tool Facebook Pro Max</span>
-                    <span class="resource-sub">Tiện ích Facebook</span>
-                </span>
-                <span class="resource-meta">
-                    <span class="resource-count" data-count="tool_fb_promax"></span>
-                    <i class="fas fa-arrow-up-right resource-arrow"></i>
-                </span>
-            </a>
-
-            <a href="https://www.mediafire.com/file/nmwkacb0q7jjj6u/zTool+Team+V1.js/file" target="_blank" rel="noopener noreferrer" class="resource-item" data-resource="tool_fb_ztool_v1" data-search="ztool v1 tool facebook auto report báo cáo">
-                <span class="resource-icon fb"><i class="fab fa-facebook-f"></i></span>
-                <span class="resource-info">
-                    <span class="resource-name">Tool Facebook zTool V1</span>
-                    <span class="resource-sub">Tiện ích Facebook</span>
-                </span>
-                <span class="resource-meta">
-                    <span class="resource-count" data-count="tool_fb_ztool_v1"></span>
-                    <i class="fas fa-arrow-up-right resource-arrow"></i>
-                </span>
-            </a>
-
-            <a href="https://www.mediafire.com/file/3hmmsxwmbya2ew7/FB+Auto+Report+V18.0.js/file" target="_blank" rel="noopener noreferrer" class="resource-item" data-resource="tool_fb_crack_ndien" data-search="crack ndien fake tool facebook auto report báo cáo v18">
-                <span class="resource-icon fb"><i class="fab fa-facebook-f"></i></span>
-                <span class="resource-info">
-                    <span class="resource-name">Tool Facebook Crack by Ndien Fake</span>
-                    <span class="resource-sub">Tiện ích Facebook</span>
-                </span>
-                <span class="resource-meta">
-                    <span class="resource-count" data-count="tool_fb_crack_ndien"></span>
-                    <i class="fas fa-arrow-up-right resource-arrow"></i>
-                </span>
-            </a>
-
-            <div class="group-title" data-group style="margin-top:10px;">Tool Instagram</div>
-
-            <a href="https://www.mediafire.com/file/npiy1815erl50tk/zTool+Team+-+Dame+Instagram+ba%CC%89n+mo%CC%9B%CC%81i.js/file" target="_blank" rel="noopener noreferrer" class="resource-item" data-resource="tool_ig_ztool" data-search="ztool dame instagram tool ig mới nhất">
-                <span class="resource-icon ig"><i class="fab fa-instagram"></i></span>
-                <span class="resource-info">
-                    <span class="resource-name">Tool Instagram zTool bản mới</span>
-                    <span class="resource-sub">Tiện ích Instagram</span>
-                </span>
-                <span class="resource-meta">
-                    <span class="resource-count" data-count="tool_ig_ztool"></span>
-                    <i class="fas fa-arrow-up-right resource-arrow"></i>
-                </span>
-            </a>
-
-            <div class="group-title" data-group style="margin-top:10px;">Tool TikTok</div>
-
-            <a href="https://www.mediafire.com/file/ljtmikwj7k5zgys/ROSZ+TOOL+V2%F0%9F%92%A2.js/file" target="_blank" rel="noopener noreferrer" class="resource-item" data-resource="tool_tt_rosz_v2" data-search="rosz tool v2 tiktok tt">
-                <span class="resource-icon tt"><i class="fab fa-tiktok"></i></span>
-                <span class="resource-info">
-                    <span class="resource-name">Tool TikTok ROSZ Tool V2</span>
-                    <span class="resource-sub">Tiện ích TikTok</span>
-                </span>
-                <span class="resource-meta">
-                    <span class="resource-count" data-count="tool_tt_rosz_v2"></span>
-                    <i class="fas fa-arrow-up-right resource-arrow"></i>
-                </span>
-            </a>
-        </div>
-    </section>
+        <!-- TOOL TIKTOK -->
+        <a href="https://www.mediafire.com/file/ljtmikwj7k5zgys/ROSZ+TOOL+V2%F0%9F%92%A2.js/file" target="_blank" rel="noopener noreferrer" class="resource-item" data-resource="tool_tt_rosz_v2" data-category="tt" data-search="rosz tool v2 tiktok tt">
+            <span class="resource-icon tt"><i class="fab fa-tiktok"></i></span>
+            <span class="resource-info">
+                <span class="resource-name">Tool TikTok ROSZ Tool V2</span>
+                <span class="resource-sub">Tiện ích TikTok</span>
+            </span>
+            <span class="resource-meta">
+                <span class="resource-count" data-count="tool_tt_rosz_v2"></span>
+                <i class="fas fa-arrow-up-right resource-arrow"></i>
+            </span>
+        </a>
+    </div>
 
     <footer class="footer">
         <div class="footer-brand">
@@ -2007,16 +1755,8 @@ body {
         });
     }
 
-    if (notifBtn) notifBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        showPanel(notifPanel);
-    });
-
-    if (menuBtn) menuBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        showPanel(drawerPanel);
-    });
-
+    if (notifBtn) notifBtn.addEventListener("click", (e) => { e.preventDefault(); showPanel(notifPanel); });
+    if (menuBtn) menuBtn.addEventListener("click", (e) => { e.preventDefault(); showPanel(drawerPanel); });
     if (notifClose) notifClose.addEventListener("click", hideAllPanels);
     if (drawerClose) drawerClose.addEventListener("click", hideAllPanels);
     if (overlay) overlay.addEventListener("click", hideAllPanels);
@@ -2131,54 +1871,80 @@ body {
         el.classList.remove("loading");
     }
 
-    /* SEARCH */
-    function setupSearch() {
-        const input = document.getElementById("searchInput");
-        const noResult = document.getElementById("noResult");
-        if (!input) return;
+    /* TAB FILTER + SEARCH */
+    const tabButtons = Array.from(document.querySelectorAll(".tab"));
+    const allItems = Array.from(document.querySelectorAll(".resource-item"));
+    const searchInput = document.getElementById("searchInput");
+    const noResult = document.getElementById("noResult");
 
-        const allCards = Array.from(document.querySelectorAll("[data-resource]"));
+    let currentTab = "all";
+    let currentQuery = "";
 
-        input.addEventListener("input", () => {
-            const q = normalize(input.value);
-            let visible = 0;
+    // Đếm số lượng mỗi tab
+    function updateTabCounts() {
+        const counts = { all: allItems.length };
+        allItems.forEach((item) => {
+            const cat = item.getAttribute("data-category") || "";
+            counts[cat] = (counts[cat] || 0) + 1;
+        });
+        document.querySelectorAll("[data-tab-count]").forEach((el) => {
+            const key = el.getAttribute("data-tab-count");
+            el.textContent = counts[key] || 0;
+        });
+    }
 
-            allCards.forEach((card) => {
-                const haystack = normalize(
-                    (card.getAttribute("data-search") || "") + " " +
-                    (card.querySelector(".resource-name")?.textContent || "") + " " +
-                    (card.querySelector(".resource-sub")?.textContent || "") + " " +
-                    (card.querySelector(".social-name")?.textContent || "") + " " +
-                    (card.querySelector(".social-sub")?.textContent || "")
-                );
-                const match = q === "" || haystack.includes(q);
-                card.classList.toggle("hidden", !match);
-                if (match) visible++;
-            });
+    function applyFilter() {
+        let visible = 0;
+        allItems.forEach((item) => {
+            const cat = item.getAttribute("data-category") || "";
+            const matchTab = currentTab === "all" || cat === currentTab;
+            const haystack = normalize(
+                (item.getAttribute("data-search") || "") + " " +
+                (item.querySelector(".resource-name")?.textContent || "") + " " +
+                (item.querySelector(".resource-sub")?.textContent || "")
+            );
+            const matchSearch = currentQuery === "" || haystack.includes(currentQuery);
+            const show = matchTab && matchSearch;
 
-            document.querySelectorAll("[data-group]").forEach((group) => {
-                let next = group.nextElementSibling;
-                let hasVisible = false;
-                while (next && !next.hasAttribute("data-group")) {
-                    if (next.matches("[data-resource]:not(.hidden)")) {
-                        hasVisible = true;
-                        break;
-                    }
-                    next = next.nextElementSibling;
+            if (show) {
+                if (item.classList.contains("hidden")) {
+                    item.classList.remove("hidden");
+                    item.classList.remove("fade-in");
+                    void item.offsetWidth;
+                    item.classList.add("fade-in");
                 }
-                group.classList.toggle("hidden", !hasVisible);
-            });
-
-            document.querySelectorAll(".module").forEach((mod) => {
-                if (mod.querySelector("[data-resource]")) {
-                    const hasVisible = mod.querySelector("[data-resource]:not(.hidden)");
-                    mod.classList.toggle("hidden", !hasVisible);
-                }
-            });
-
-            if (noResult) {
-                noResult.classList.toggle("show", visible === 0 && q !== "");
+                visible++;
+            } else {
+                item.classList.add("hidden");
+                item.classList.remove("fade-in");
             }
+        });
+
+        if (noResult) {
+            noResult.classList.toggle("show", visible === 0);
+        }
+    }
+
+    if (tabButtons.length) {
+        tabButtons.forEach((btn) => {
+            btn.addEventListener("click", () => {
+                tabButtons.forEach((b) => b.classList.remove("active"));
+                btn.classList.add("active");
+                currentTab = btn.getAttribute("data-tab") || "all";
+                if (navigator.vibrate) navigator.vibrate(5);
+                applyFilter();
+                // Auto scroll tab vào giữa
+                try {
+                    btn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+                } catch (e) {}
+            });
+        });
+    }
+
+    if (searchInput) {
+        searchInput.addEventListener("input", () => {
+            currentQuery = normalize(searchInput.value);
+            applyFilter();
         });
     }
 
@@ -2188,7 +1954,8 @@ body {
         RESOURCES.forEach(loadResourceCount);
         updateTotalClicks();
         attachClickHandlers();
-        setupSearch();
+        updateTabCounts();
+        applyFilter();
     }
 
     if (document.readyState === "loading") {
