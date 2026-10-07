@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#05080f">
 <meta name="color-scheme" content="dark">
-<title>Hoàng Hiệp — iOS Hub</title>
-<meta name="description" content="tao là cha là chú lũ đú war ăn hại">
-<meta name="author" content="Hoàng Hiệp">
+<title>Nguyễn Hoàng Hiệp</title>
+<meta name="description" content="Tài nguyên vọc vạch iOS — chứng chỉ, công cụ và IPA miễn phí.">
+<meta name="author" content="Nguyễn Hoàng Hiệp">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Hoàng Hiệp — iOS Hub">
-<meta property="og:description" content="tao là cha là chú lũ đú war ăn hại">
+<meta property="og:title" content="Nguyễn Hoàng Hiệp">
+<meta property="og:description" content="Chứng chỉ, công cụ và IPA miễn phí cho cộng đồng iOS.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23f59e0b'/%3E%3Cstop offset='1' stop-color='%2314b8a6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='24' fill='url(%23g)'/%3E%3Ctext x='50' y='70' font-family='system-ui' font-size='54' font-weight='900' fill='white' text-anchor='middle'%3EH%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -724,6 +724,21 @@ body {
     border: 1px solid rgba(239, 68, 68, 0.35);
     color: #fca5a5;
 }
+.resource-icon.fb {
+    background: linear-gradient(135deg, rgba(24, 119, 242, 0.2), rgba(24, 119, 242, 0.08));
+    border: 1px solid rgba(24, 119, 242, 0.35);
+    color: #60a5fa;
+}
+.resource-icon.ig {
+    background: linear-gradient(135deg, rgba(228, 64, 95, 0.2), rgba(228, 64, 95, 0.08));
+    border: 1px solid rgba(228, 64, 95, 0.35);
+    color: #f472b6;
+}
+.resource-icon.tt {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(0, 0, 0, 0.5));
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+}
 .resource-info {
     flex: 1;
     min-width: 0;
@@ -1337,7 +1352,7 @@ body {
     .dock-btn { width: 36px; height: 36px; font-size: 13px; }
     .profile { padding: 16px; gap: 13px; }
     .profile-avatar { width: 64px; height: 64px; font-size: 22px; }
-    .profile-name { font-size: 18px; }
+    .profile-name { font-size: 17px; }
     .stat { padding: 12px 8px; }
     .stat-value { font-size: 17px; }
     .stat-label { font-size: 9px; }
@@ -1360,7 +1375,6 @@ body {
 <div class="ambient" aria-hidden="true"></div>
 <div class="grid-bg" aria-hidden="true"></div>
 
-<!-- TOP DOCK -->
 <div class="top-dock">
     <div class="dock-clock">
         <i class="fas fa-clock"></i>
@@ -1377,7 +1391,6 @@ body {
     </div>
 </div>
 
-<!-- MUSIC PLAYER -->
 <audio id="bgMusic" loop preload="none">
     <source src="music.mp3" type="audio/mpeg">
 </audio>
@@ -1389,10 +1402,8 @@ body {
     <i class="fas fa-music mf-icon" aria-hidden="true"></i>
 </button>
 
-<!-- OVERLAY -->
 <div class="overlay" id="overlay" aria-hidden="true"></div>
 
-<!-- NOTIF PANEL -->
 <div class="panel-notif" id="notifPanel" role="dialog" aria-modal="true" aria-labelledby="notifTitle">
     <div class="panel-head">
         <div class="panel-head-left">
@@ -1417,11 +1428,11 @@ body {
             <i class="fas fa-chevron-right notif-arrow"></i>
         </a>
 
-        <a href="https://discord.gg/hzYHCtFWdB" target="_blank" rel="noopener noreferrer" class="notif-item unread">
-            <span class="notif-icon teal"><i class="fab fa-discord"></i></span>
+        <a href="#tool" class="notif-item unread" data-scroll>
+            <span class="notif-icon teal"><i class="fas fa-screwdriver-wrench"></i></span>
             <span class="notif-content">
-                <span class="notif-title">Kênh Discord chính thức</span>
-                <span class="notif-desc">Tham gia để nhận file, cập nhật và hỗ trợ trực tiếp từ cộng đồng.</span>
+                <span class="notif-title">Tool mới đã cập nhật</span>
+                <span class="notif-desc">Tool Facebook, Instagram, TikTok mới nhất vừa được thêm vào.</span>
             </span>
             <i class="fas fa-chevron-right notif-arrow"></i>
         </a>
@@ -1437,7 +1448,6 @@ body {
     </div>
 </div>
 
-<!-- DRAWER -->
 <div class="panel-drawer" id="drawerPanel" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
     <div class="panel-head">
         <div class="panel-head-left">
@@ -1465,6 +1475,9 @@ body {
         <a href="#tai-nguyen" class="drawer-link" data-scroll>
             <i class="fas fa-box-open"></i><span>Tài nguyên</span><i class="fas fa-chevron-right"></i>
         </a>
+        <a href="#tool" class="drawer-link" data-scroll>
+            <i class="fas fa-screwdriver-wrench"></i><span>Tool</span><i class="fas fa-chevron-right"></i>
+        </a>
     </nav>
 
     <nav class="drawer-nav">
@@ -1486,7 +1499,6 @@ body {
     </nav>
 </div>
 
-<!-- INTRO -->
 <div class="intro" id="intro">
     <div class="intro-card">
         <div class="intro-icon"><i class="fas fa-shield-halved"></i></div>
@@ -1499,7 +1511,7 @@ body {
 
         <div class="intro-meta">
             <span class="dot"></span>
-            <span>Online · Hiepmadia678</span>
+            <span>Online · Nguyễn Hoàng Hiệp</span>
         </div>
 
         <p class="intro-desc">
@@ -1513,31 +1525,30 @@ body {
 
         <div class="intro-footer">
             <span>Encrypted</span>
-            <span>HH // 2026</span>
+            <span>NHH // 2026</span>
         </div>
     </div>
 </div>
 
-<!-- MAIN -->
 <main class="container">
 
     <section class="profile" id="profile">
         <div class="profile-avatar">
             <div class="profile-avatar-inner">
-                <img src="avatar.jpg.WEBP" alt="Hoàng Hiệp" onerror="this.style.display='none'">
+                <img src="avatar.jpg.WEBP" alt="Nguyễn Hoàng Hiệp" onerror="this.style.display='none'">
             </div>
             <span class="profile-status" aria-label="Online"></span>
         </div>
         <div class="profile-info">
             <div class="profile-name">
-                <span>Hoàng Hiệp</span>
+                <span>Nguyễn Hoàng Hiệp</span>
                 <span class="profile-verify"><i class="fas fa-check"></i></span>
             </div>
             <div class="profile-handle">
                 <i class="fas fa-at"></i>
                 <span>hiepmadia678</span>
             </div>
-            <p class="profile-bio">Chia sẻ tài nguyên vọc vạch iOS miễn phí cho cộng đồng.</p>
+            <p class="profile-bio">tao là cha là chú lũ đú war ăn hại</p>
         </div>
     </section>
 
@@ -1599,7 +1610,7 @@ body {
                 <span class="social-icon facebook"><i class="fab fa-facebook-f"></i></span>
                 <span class="social-info">
                     <span class="social-name">Facebook</span>
-                    <span class="social-sub">Hoàng Hiệp</span>
+                    <span class="social-sub">Nguyễn Hoàng Hiệp</span>
                 </span>
                 <i class="fas fa-arrow-up-right social-arrow"></i>
             </a>
@@ -1626,7 +1637,7 @@ body {
         <div class="search">
             <div class="search-field">
                 <i class="fas fa-search"></i>
-                <input type="text" id="searchInput" placeholder="Tìm tài nguyên, chứng chỉ, IPA..." autocomplete="off">
+                <input type="text" id="searchInput" placeholder="Tìm tài nguyên, tool, chứng chỉ, IPA..." autocomplete="off">
                 <button class="search-go" type="button">
                     <span>Tìm</span>
                     <i class="fas fa-arrow-right"></i>
@@ -1758,10 +1769,100 @@ body {
         </div>
     </section>
 
+    <section class="module" id="tool">
+        <div class="module-head">
+            <div class="module-head-icon"><i class="fas fa-screwdriver-wrench"></i></div>
+            <div style="flex:1;min-width:0;">
+                <div class="module-head-title">Tool</div>
+                <div class="module-head-sub">Facebook · Instagram · TikTok</div>
+            </div>
+        </div>
+
+        <div class="module-body">
+            <div class="group-title" data-group>Tool Facebook</div>
+
+            <a href="https://www.mediafire.com/file/03wid0zssqddt6d/Axius+-+Ba%CC%81o+Ca%CC%81o+Tu%CC%9B%CC%A3+%C4%90o%CC%A3%CC%82ng+V5.txt/file" target="_blank" rel="noopener noreferrer" class="resource-item" data-resource="tool_fb_axius_v5" data-search="axius v5 tool facebook auto report báo cáo tự động">
+                <span class="resource-icon fb"><i class="fab fa-facebook-f"></i></span>
+                <span class="resource-info">
+                    <span class="resource-name">Tool Facebook Axius V5</span>
+                    <span class="resource-sub">Tiện ích Facebook</span>
+                </span>
+                <span class="resource-meta">
+                    <span class="resource-count" data-count="tool_fb_axius_v5"></span>
+                    <i class="fas fa-arrow-up-right resource-arrow"></i>
+                </span>
+            </a>
+
+            <a href="https://www.mediafire.com/file/endyah5a9e80uzf/Tool+Auto+Report+Promax.js/file" target="_blank" rel="noopener noreferrer" class="resource-item" data-resource="tool_fb_promax" data-search="promax tool facebook auto report báo cáo">
+                <span class="resource-icon fb"><i class="fab fa-facebook-f"></i></span>
+                <span class="resource-info">
+                    <span class="resource-name">Tool Facebook Pro Max</span>
+                    <span class="resource-sub">Tiện ích Facebook</span>
+                </span>
+                <span class="resource-meta">
+                    <span class="resource-count" data-count="tool_fb_promax"></span>
+                    <i class="fas fa-arrow-up-right resource-arrow"></i>
+                </span>
+            </a>
+
+            <a href="https://www.mediafire.com/file/nmwkacb0q7jjj6u/zTool+Team+V1.js/file" target="_blank" rel="noopener noreferrer" class="resource-item" data-resource="tool_fb_ztool_v1" data-search="ztool v1 tool facebook auto report báo cáo">
+                <span class="resource-icon fb"><i class="fab fa-facebook-f"></i></span>
+                <span class="resource-info">
+                    <span class="resource-name">Tool Facebook zTool V1</span>
+                    <span class="resource-sub">Tiện ích Facebook</span>
+                </span>
+                <span class="resource-meta">
+                    <span class="resource-count" data-count="tool_fb_ztool_v1"></span>
+                    <i class="fas fa-arrow-up-right resource-arrow"></i>
+                </span>
+            </a>
+
+            <a href="https://www.mediafire.com/file/3hmmsxwmbya2ew7/FB+Auto+Report+V18.0.js/file" target="_blank" rel="noopener noreferrer" class="resource-item" data-resource="tool_fb_crack_ndien" data-search="crack ndien fake tool facebook auto report báo cáo v18">
+                <span class="resource-icon fb"><i class="fab fa-facebook-f"></i></span>
+                <span class="resource-info">
+                    <span class="resource-name">Tool Facebook Crack by Ndien Fake</span>
+                    <span class="resource-sub">Tiện ích Facebook</span>
+                </span>
+                <span class="resource-meta">
+                    <span class="resource-count" data-count="tool_fb_crack_ndien"></span>
+                    <i class="fas fa-arrow-up-right resource-arrow"></i>
+                </span>
+            </a>
+
+            <div class="group-title" data-group style="margin-top:10px;">Tool Instagram</div>
+
+            <a href="https://www.mediafire.com/file/npiy1815erl50tk/zTool+Team+-+Dame+Instagram+ba%CC%89n+mo%CC%9B%CC%81i.js/file" target="_blank" rel="noopener noreferrer" class="resource-item" data-resource="tool_ig_ztool" data-search="ztool dame instagram tool ig mới nhất">
+                <span class="resource-icon ig"><i class="fab fa-instagram"></i></span>
+                <span class="resource-info">
+                    <span class="resource-name">Tool Instagram zTool bản mới</span>
+                    <span class="resource-sub">Tiện ích Instagram</span>
+                </span>
+                <span class="resource-meta">
+                    <span class="resource-count" data-count="tool_ig_ztool"></span>
+                    <i class="fas fa-arrow-up-right resource-arrow"></i>
+                </span>
+            </a>
+
+            <div class="group-title" data-group style="margin-top:10px;">Tool TikTok</div>
+
+            <a href="https://www.mediafire.com/file/ljtmikwj7k5zgys/ROSZ+TOOL+V2%F0%9F%92%A2.js/file" target="_blank" rel="noopener noreferrer" class="resource-item" data-resource="tool_tt_rosz_v2" data-search="rosz tool v2 tiktok tt">
+                <span class="resource-icon tt"><i class="fab fa-tiktok"></i></span>
+                <span class="resource-info">
+                    <span class="resource-name">Tool TikTok ROSZ Tool V2</span>
+                    <span class="resource-sub">Tiện ích TikTok</span>
+                </span>
+                <span class="resource-meta">
+                    <span class="resource-count" data-count="tool_tt_rosz_v2"></span>
+                    <i class="fas fa-arrow-up-right resource-arrow"></i>
+                </span>
+            </a>
+        </div>
+    </section>
+
     <footer class="footer">
         <div class="footer-brand">
             <i class="fas fa-code"></i>
-            <span>Made by Hoàng Hiệp</span>
+            <span>Made by Nguyễn Hoàng Hiệp</span>
         </div>
         <div class="footer-copy">© 2026 · All rights reserved</div>
     </footer>
@@ -1778,7 +1879,9 @@ body {
         "social_discord_server", "social_discord_dm", "social_tiktok",
         "social_facebook", "social_instagram",
         "res_khoindvn", "res_certios", "res_sideinstaller", "res_fixlag",
-        "res_aircard", "res_locket", "res_spotify", "res_youtube"
+        "res_aircard", "res_locket", "res_spotify", "res_youtube",
+        "tool_fb_axius_v5", "tool_fb_promax", "tool_fb_ztool_v1",
+        "tool_fb_crack_ndien", "tool_ig_ztool", "tool_tt_rosz_v2"
     ];
 
     /* CLOCK */
